@@ -1,5 +1,9 @@
 #pragma once
 #include <iostream>
+#include "Cliente.h"
+#include "Vendedor.h"
+#include "InterfazCliente.h"
+#include "InterfazVendedor.h"
 #include <fstream>
 using namespace std;
 using namespace System;

@@ -8,7 +8,7 @@ using namespace std;
 
 class InterfazLogin : public Interfaz {
 private:
-    Login *login;
+
 public:
     InterfazLogin(){
         login = new Login();
