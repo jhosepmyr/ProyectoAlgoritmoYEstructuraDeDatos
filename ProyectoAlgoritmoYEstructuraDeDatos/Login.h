@@ -46,8 +46,8 @@ public:
                 cout << "Presiona ENTER para continuar";
                 system("pause>0");
                 system("cls");
-                tipoInterfaz auxInterfazUsuario(nombre, contra);
-                auxInterfazUsuario.mostrarInterfaz();
+                tipoInterfaz* auxInterfazUsuario= new tipoInterfaz(nombre, contra);
+                auxInterfazUsuario->mostrarInterfaz();
                 //auxUsuario
                 delete auxUsuario;
                 auxUsuario = nullptr;

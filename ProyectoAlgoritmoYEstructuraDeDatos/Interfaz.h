@@ -14,5 +14,5 @@ protected:
     Inventario objInventario;
 public:
     Interfaz(){}
-    virtual void mostrarInterfaz(){}
+    void mostrarInterfaz(){}
 };
