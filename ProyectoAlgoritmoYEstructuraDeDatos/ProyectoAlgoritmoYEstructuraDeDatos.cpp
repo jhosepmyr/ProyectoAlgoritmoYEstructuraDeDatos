@@ -13,7 +13,7 @@ int main()
     //Console::SetWindowSize(100, 100);
     //Console::CursorVisible = false;
 
-    InterfazLogin* sistema;
+    InterfazLogin* sistema = new InterfazLogin();
     sistema->ventanaIngreso();
 
     system("pause>0");
