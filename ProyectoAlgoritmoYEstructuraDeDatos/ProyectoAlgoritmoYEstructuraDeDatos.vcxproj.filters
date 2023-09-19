@@ -31,6 +31,9 @@
     <Filter Include="Archivos de encabezado\Entidades\Interfazes">
       <UniqueIdentifier>{5b859230-7d0c-4a41-89de-d56cf3243ab8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Entidades\Usuarios">
+      <UniqueIdentifier>{17132cd8-1cf2-4671-8582-3444fe11fefe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -54,9 +57,6 @@
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
     <ClInclude Include="Muebles.h">
-      <Filter>Archivos de encabezado\Entidades</Filter>
-    </ClInclude>
-    <ClInclude Include="Usuario.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
     <ClInclude Include="Files.h">
@@ -95,6 +95,15 @@
     <ClInclude Include="InterfazInventario.h">
       <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
     </ClInclude>
+    <ClInclude Include="Usuario.h">
+      <Filter>Archivos de encabezado\Entidades\Usuarios</Filter>
+    </ClInclude>
+    <ClInclude Include="Cliente.h">
+      <Filter>Archivos de encabezado\Entidades\Usuarios</Filter>
+    </ClInclude>
+    <ClInclude Include="Vendedor.h">
+      <Filter>Archivos de encabezado\Entidades\Usuarios</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProyectoAlgoritmoYEstructuraDeDatos.cpp">
@@ -111,5 +120,13 @@
     <Image Include="app.ico">
       <Filter>Archivos de recursos</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="DatosSesionVendedores.txt">
+      <Filter>Archivos de encabezado\Archivos</Filter>
+    </Text>
+    <Text Include="DatosSesionClientes.txt">
+      <Filter>Archivos de encabezado\Archivos</Filter>
+    </Text>
   </ItemGroup>
 </Project>

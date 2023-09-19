@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include "Usuario.h"
 #include "Inventario.h"
 
 using namespace System;
@@ -15,4 +14,5 @@ protected:
     Inventario objInventario;
 public:
     Interfaz(){}
+    virtual void mostrarInterfaz(){}
 };

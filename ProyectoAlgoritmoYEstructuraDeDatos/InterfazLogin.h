@@ -1,10 +1,9 @@
 #pragma once
 #include "Interfaz.h"
 #include "Login.h"
-#include "Usuario.h"
-#include <string>
+#include "InterfazCliente.h"
+#include "InterfazVendedor.h"
 
-using namespace System;
 using namespace std;
 
 class InterfazLogin : public Interfaz {
@@ -12,35 +11,35 @@ private:
     Login *login;
 public:
     InterfazLogin(){
-        this->opcion=0;
+        login = new Login();
+        this->tipoUsuario = 0;
     }
 
     void ventanaIngreso() {
         do {
-            cout << "1. Iniciar sesión\n";
+            cout << "1. Iniciar sesion\n";
             cout << "2. Registrarse\n";
             cout << "3. Salir\n";
-            cout << "Selecciona una opcion ingresando el número\n\n";
-            cout << "Opción: ";
-            if (opcion == 1 || opcion == 2)
+            cout << "Selecciona una opcion ingresando el numero\n\n";
+            cout << "Opcion: ";
+            cin >> this->opcion;       
+            if (this->opcion == '1' || this->opcion == '2')
             {
-                Console::SetCursorPosition(5, 22);
-                cout << "Tipo de Usuario (Cliente: 1, Vendedor: 2): ";
-                cin >> tipoUsuario;
+                cout << "Tipo de Usuario (Cliente: 1, Vendedor: 2):\n ";
+                cin >> this->tipoUsuario;
             }
             validarOpcion();
+            system("cls");
             generarInterfazTipoUsuario();
-
-        } while (opcion < 1 || opcion > 3);
+        } while (this->opcion < 1 || this->opcion > 3);
     }
-
+    
     void validarOpcion() {
-        auto opcionValida = [](char op) {return op == '1' || op == '2' || op == '3'; };
-
+        auto opcionValida = [](char op)->bool {return op == '1' || op == '2' || op == '3'; };
         if (!opcionValida(this->opcion) || !opcionValida(this->tipoUsuario)) {
-            //Console::ForegroundColor = ConsoleColor::Red;
-            //Console::SetCursorPosition(17, 24); 
-            cout << "Seleccione una opción válida.\n" << endl;
+            cout << "Seleccione una opcion valida.\n" << endl;
+            this->opcion = 4;
+            this->tipoUsuario = 4;
             system("pause>0");
         }
     }
@@ -48,14 +47,10 @@ public:
     void dibujarInterfaz() {
         do {
             for (int x = 2; x <= 57; x++) {
-                //dibuja la linea 
-                //Console::SetCursorPosition(x, 2); 
-                //Console::ForegroundColor = ConsoleColor::Cyan; ; 
                 cout << (char)219;
             }
             cout << "\n";
             cout << R"(
-
                     _______      _______.
                    /  _____|    /       |
                   |  |  __     |   (----`
@@ -64,31 +59,32 @@ public:
                    \______| |_______/  v1.0  
             )";
             cout << "\n";
-            for (int x = 2; x <= 57; x++) { //dibuja la linea 
-                //Console::SetCursorPosition(x, 36); 
-                //Console::ForegroundColor = ConsoleColor::Cyan; ; 
+            for (int x = 2; x <= 57; x++) { 
                 cout << (char)219;
             }
             cout << "\n";
         } while (opcion < 1 || opcion > 3);
     }
+
     void generarInterfazTipoUsuario() {
         switch (this->opcion) {
-            //llamada a funciones template
             case '1': {
-                if (tipoUsuario == 1) {
-                    this->login->iniciarSesion<Cliente>();
+                if (this->tipoUsuario == '1') {
+                    this->login->iniciarSesion<Cliente, InterfazCliente>();
                 }
-                else {
-                    this->login->iniciarSesion<Vendedor>();
+                if (this->tipoUsuario == '2')
+                {
+                    this->login->iniciarSesion<Vendedor, InterfazVendedor>();
                 }
+                this->opcion = 4;
                 break;
             }
             case '2': {
-                if (tipoUsuario == 1) {
+                if (this->tipoUsuario == '1') {
                     this->login->registrarse<Cliente>();
                 } 
-                else {
+                if (this->tipoUsuario == '2')
+                {
                     this->login->registrarse<Vendedor>();
                 }
                 this->opcion = 4;

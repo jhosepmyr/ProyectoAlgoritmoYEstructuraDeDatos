@@ -127,6 +127,7 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cliente.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Electrodomesticos.h" />
     <ClInclude Include="Files.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Producto.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Usuario.h" />
+    <ClInclude Include="Vendedor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
@@ -164,6 +166,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="DatosSesionVendedores.txt" />
+    <Text Include="DatosSesionClientes.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

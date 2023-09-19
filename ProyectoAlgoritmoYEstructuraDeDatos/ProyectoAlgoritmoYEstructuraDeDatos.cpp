@@ -1,24 +1,20 @@
 #include "pch.h"
 #include <iostream>
 #include <string>
-#include <locale.h>
-
+//#include <locale.h>
 #include "InterfazInicio.h"
-
-using namespace System;
+#include "InterfazLogin.h"
+//using namespace System;
 using namespace std;
 
 int main()
 {
-    setlocale(LC_ALL, "");
-    int opcion = 1;
+    //setlocale(LC_ALL, "");
+    //Console::SetWindowSize(100, 100);
+    //Console::CursorVisible = false;
 
-    Console::SetWindowSize(100, 100);
-    Console::CursorVisible = false;
-
-    InterfazInicio sistema;
-    sistema.ventanaInicio();
-    sistema.iniciarLogin();
+    InterfazLogin* sistema;
+    sistema->ventanaIngreso();
 
     system("pause>0");
     return 0;
