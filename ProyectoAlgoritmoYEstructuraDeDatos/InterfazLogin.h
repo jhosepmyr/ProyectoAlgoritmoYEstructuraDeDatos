@@ -1,8 +1,6 @@
 #pragma once
 #include "Interfaz.h"
 #include "Login.h"
-#include "InterfazCliente.h"
-#include "InterfazVendedor.h"
 
 using namespace std;
 

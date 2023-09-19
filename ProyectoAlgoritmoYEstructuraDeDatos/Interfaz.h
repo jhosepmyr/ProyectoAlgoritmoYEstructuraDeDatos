@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include "Inventario.h"
 
 using namespace System;
 using namespace std;
@@ -11,7 +10,7 @@ protected:
     //int* tipoUsuario;
     char opcion;
     char tipoUsuario;
-    Inventario objInventario;
+    //Inventario objInventario;
 public:
     Interfaz(){}
     void mostrarInterfaz(){}
