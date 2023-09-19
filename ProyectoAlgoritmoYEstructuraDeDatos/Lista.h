@@ -34,6 +34,7 @@ public:
     void    eliminaPos(uint pos);
     void    eliminaFinal();
     void    MostrarDatosPROD();
+    void    buscarPRODMAYVALOR();
 
     T       obtenerInicial();
     T       obtenerPos(uint pos);
@@ -172,6 +173,7 @@ T Lista<T>::obtenerFinal() {
     return obtenerPos(lon - 1);
 }
 
+
 template<class T>
 void Lista<T>::MostrarDatosPROD() {
     Nodo* aux = ini;
@@ -179,6 +181,28 @@ void Lista<T>::MostrarDatosPROD() {
         aux->elem.mostrarDatos();
         aux = aux->sig;
     }
+}
+
+template<class T>
+void Lista<T>::buscarPRODMAYVALOR() {
+    Nodo* aux = ini;
+    int arr[lon];
+    for (int i = 0; i < lon; i++) {
+        arr[i] = aux->elem.getPrecio();
+        aux = aux->sig;
+    }
+    auto ordIntercambio = [](int a[], int n)
+        {
+            for (int i = 0; i < n - 1; i++) {
+                for (int k = i + 1; k < n; k++) {
+                    if (a[i] > a[k]) {
+                        swap(a[i], a[k]);
+                    }
+                }
+            }
+        };
+    ordIntercambio(arr, lon);
+
 }
 
 template <class T>
