@@ -9,11 +9,13 @@ class InterfazInicio : public Interfaz {
 private:
     InterfazLogin* interfazLogin;
 public:
-    InterfazInicio() {}
+    InterfazInicio() {
+        interfazLogin = new InterfazLogin();
+    }
     void ventanaInicio() {
-        //Console::SetCursorPosition(0, 8);
+        Console::SetCursorPosition(0, 8);
         cout << endl;
-        /*cout << R"(
+        cout << R"(
          _______  __    __  .______       __    __    
         /  _____||  |  |  | |   _  \     |  |  |  |   
        |  |  __  |  |  |  | |  |_)  |    |  |  |  |   
@@ -26,13 +28,10 @@ public:
            \   \    |   __   | |  |  |  | |   ___/ 
        .----)   |   |  |  |  | |  `--'  | |  |     
        |_______/    |__|  |__|  \______/  | _|                               
-)";*/
-        cout << "guru shop";
-        //Console::ForegroundColor = ConsoleColor::Blue;
-        //Console::SetCursorPosition(14, 22); 
-        cout << endl;
+)";
+        Console::ForegroundColor = ConsoleColor::Blue;
+        Console::SetCursorPosition(14, 23); 
         cout << "Presiona ENTER para continuar";
-        cout << endl;
         system("pause>0");
         system("cls");
     }

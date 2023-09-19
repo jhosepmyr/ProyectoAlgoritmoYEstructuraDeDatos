@@ -28,11 +28,11 @@
     <Filter Include="Archivos de encabezado\Archivos">
       <UniqueIdentifier>{c8cff5dd-57ba-40a8-a929-d9349f4a886a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado\Entidades\Interfazes">
-      <UniqueIdentifier>{5b859230-7d0c-4a41-89de-d56cf3243ab8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Archivos de encabezado\Entidades\Usuarios">
       <UniqueIdentifier>{17132cd8-1cf2-4671-8582-3444fe11fefe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Entidades\Interfaces">
+      <UniqueIdentifier>{5b859230-7d0c-4a41-89de-d56cf3243ab8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,25 +75,25 @@
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
     <ClInclude Include="Interfaz.h">
-      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+      <Filter>Archivos de encabezado\Entidades\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="InterfazInicio.h">
-      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+      <Filter>Archivos de encabezado\Entidades\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="InterfazLogin.h">
-      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+      <Filter>Archivos de encabezado\Entidades\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="InterfazCliente.h">
-      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+      <Filter>Archivos de encabezado\Entidades\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="InterfazVendedor.h">
-      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+      <Filter>Archivos de encabezado\Entidades\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="InterfazPago.h">
-      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+      <Filter>Archivos de encabezado\Entidades\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="InterfazInventario.h">
-      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+      <Filter>Archivos de encabezado\Entidades\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Usuario.h">
       <Filter>Archivos de encabezado\Entidades\Usuarios</Filter>

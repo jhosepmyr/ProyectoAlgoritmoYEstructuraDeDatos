@@ -8,8 +8,8 @@ class Interfaz {
 protected:
     //int* opcion;
     //int* tipoUsuario;
-    char opcion;
-    char tipoUsuario;
+    int opcion;
+    int tipoUsuario;
     //Inventario objInventario;
 public:
     Interfaz(){}
