@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de origen">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Entidades">
+      <UniqueIdentifier>{9d4bb3e2-35a2-4c29-8ac2-791258621dc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\EstructurasTemplates">
+      <UniqueIdentifier>{25da88c8-b56c-4b74-b998-4df3fd9b38b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Lambdas">
+      <UniqueIdentifier>{06da12ef-516b-47f5-9a30-1bac603d57bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Ordenamiento">
+      <UniqueIdentifier>{3bbc46e0-b3fa-4aae-98f0-d49aee528320}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Archivos">
+      <UniqueIdentifier>{c8cff5dd-57ba-40a8-a929-d9349f4a886a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Entidades\Interfazes">
+      <UniqueIdentifier>{5b859230-7d0c-4a41-89de-d56cf3243ab8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>Archivos de recursos</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Electrodomesticos.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Producto.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Muebles.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Usuario.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Files.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventario.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Lista.h">
+      <Filter>Archivos de encabezado\EstructurasTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="Lambdas.h">
+      <Filter>Archivos de encabezado\Lambdas</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaz.h">
+      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfazInicio.h">
+      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfazLogin.h">
+      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfazCliente.h">
+      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfazVendedor.h">
+      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+    </ClInclude>
+    <ClInclude Include="InterfazPago.h">
+      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ProyectoAlgoritmoYEstructuraDeDatos.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="app.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
