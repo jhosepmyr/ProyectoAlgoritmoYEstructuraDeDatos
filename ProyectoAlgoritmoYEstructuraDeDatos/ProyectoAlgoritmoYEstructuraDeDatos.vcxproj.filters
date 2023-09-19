@@ -92,6 +92,9 @@
     <ClInclude Include="InterfazPago.h">
       <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
     </ClInclude>
+    <ClInclude Include="InterfazInventario.h">
+      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProyectoAlgoritmoYEstructuraDeDatos.cpp">

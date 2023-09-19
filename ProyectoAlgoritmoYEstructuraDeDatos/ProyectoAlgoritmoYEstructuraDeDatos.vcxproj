@@ -133,6 +133,7 @@
     <ClInclude Include="Interfaz.h" />
     <ClInclude Include="InterfazCliente.h" />
     <ClInclude Include="InterfazInicio.h" />
+    <ClInclude Include="InterfazInventario.h" />
     <ClInclude Include="InterfazLogin.h" />
     <ClInclude Include="InterfazPago.h" />
     <ClInclude Include="InterfazVendedor.h" />
