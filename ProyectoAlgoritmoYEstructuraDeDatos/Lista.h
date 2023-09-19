@@ -2,7 +2,6 @@
 
 #include <functional>
 #include "Files.h"
-#include "Electrodomesticos.h" 
 using namespace std;
 
 typedef unsigned int uint;
@@ -12,12 +11,13 @@ class Lista {
     struct Nodo;
     typedef function<int(T, T)> Comp;
     Nodo* ini;
-    uint    lon; // número de elementos en la lista
-    //Comp    comparar; // lambda de criterio de comparación
+    uint    lon; // nÃºmero de elementos en la lista
+
+    //Comp    comparar; // lambda de criterio de comparaciÃ³n
 
 public:
     Lista() : ini(nullptr), lon(0) { };
-    Lista(Comp comparar) : ini(nullptr), lon(0) { };
+    Lista(Comp comparar) : ini(nullptr), lon(0){ };
     ~Lista();
 
     uint    longitud();
@@ -33,16 +33,17 @@ public:
     void    eliminaInicial();
     void    eliminaPos(uint pos);
     void    eliminaFinal();
+    void    MostrarDatosPROD();
 
     T       obtenerInicial();
     T       obtenerPos(uint pos);
     T       obtenerFinal();
-    T       buscar(T elem);
+    T     buscarporID(int ID);
 };
 
 template <class T>
 struct Lista<T>::Nodo {
-    T       elem;
+    T elem;
     Nodo* sig; // puntero apunta al siguiente nodo
     Nodo(T elem, Nodo* sig = nullptr) : elem(elem), sig(sig) {}
 };
@@ -144,6 +145,7 @@ void Lista<T>::eliminaPos(uint pos) {
         lon--;
     }
 }
+
 template <class T>
 void Lista<T>::eliminaFinal() {
     eliminaPos(lon - 1);
@@ -153,6 +155,7 @@ template <class T>
 T Lista<T>::obtenerInicial() {
     return obtenerPos(0);
 }
+
 template <class T>
 T Lista<T>::obtenerPos(uint pos) {
     if (pos >= 0 && pos < lon) {
@@ -163,19 +166,28 @@ T Lista<T>::obtenerPos(uint pos) {
         return aux->elem;
     }
 }
+
 template <class T>
 T Lista<T>::obtenerFinal() {
     return obtenerPos(lon - 1);
 }
 
+template<class T>
+void Lista<T>::MostrarDatosPROD() {
+    Nodo* aux = ini;
+    for (int i = 0; i < lon; i++) {
+        aux->elem.mostrarDatos();
+        aux = aux->sig;
+    }
+}
+
 template <class T>
-T Lista<T>::buscar(T elem) {
+T Lista<T>::buscarporID(int ID) {
     Nodo* aux = ini;
     while (aux != nullptr) {
-        if (comparar(aux->elem, elem) == 0) {
+        if (aux->elem.getID()==ID) {
             return aux->elem;
         }
         aux = aux->sig;
     }
-    return 0;
 }
