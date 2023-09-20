@@ -11,6 +11,7 @@ private:
 	Lista<Producto>*lst;
 	Pila<Producto> *carrito;
 
+
 public:
 	Controller() {
 		fls = new Files();
@@ -18,6 +19,7 @@ public:
 		lst = new Lista<Producto>();		
 		agregaDatosIniciales(0);
 	};
+
 	int agregaDatosIniciales(int n) {// aqui solo se agregaran los datos por default del txt
 		lst->agregaInicial(Producto(fls->getIDs(n), fls->getNombre(n), fls->getPrecios(n),fls->getMaterial(n), fls->getEstado(n), fls->getTVIDAS(n)));
 		n++;

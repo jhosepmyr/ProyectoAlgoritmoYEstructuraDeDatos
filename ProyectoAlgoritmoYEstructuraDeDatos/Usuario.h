@@ -9,7 +9,7 @@ protected:
     string contra;
     string nombreArchivo;
     int numUsuarios;
-    int ID = 1;
+    int ID;
 public:
     Usuario() : nombre(""), contra("") {}
     Usuario(string _nombre, string _contra) : nombre(_nombre), contra(_contra) {}

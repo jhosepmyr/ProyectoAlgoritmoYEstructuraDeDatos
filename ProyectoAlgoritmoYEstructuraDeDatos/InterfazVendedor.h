@@ -8,7 +8,7 @@ class InterfazVendedor : public Interfaz {
 private: 
     Vendedor* vendedorAux;
 public:
-    InterfazVendedor(string _nombre, string _contra) {
+    InterfazVendedor(string _nombre, string _contra, int numUsuario) {
         this->vendedorAux = new Vendedor(_nombre, _contra);
     }
     void mostrarInterfaz() {

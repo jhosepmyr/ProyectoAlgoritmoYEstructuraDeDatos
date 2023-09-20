@@ -10,9 +10,10 @@ using namespace System;
 
 class Login {
 private:
+    int numUsuario; //sirve para saber en que archivo se almacenaran los datos de un usuario en especifico
 
 public:
-	Login(){}
+    Login() { this->numUsuario = 1; }
     // función con template para Login
     template <typename T, class tipoInterfaz>
     void iniciarSesion() {
@@ -40,13 +41,14 @@ public:
         string linea;
 
         while (getline(archivoLectura, linea)) {
+            this->numUsuario++; //esta relacionado con la linea en el txt
             // Verifica si la línea contiene el nombre y la contraseña separados por un espacio
             if (linea == nombre + " " + contra) {
                 cout << "Inicio de sesion exitoso." << endl << endl;
                 cout << "Presiona ENTER para continuar";
                 system("pause>0");
                 system("cls");
-                tipoInterfaz* auxInterfazUsuario= new tipoInterfaz(nombre, contra);
+                tipoInterfaz* auxInterfazUsuario = new tipoInterfaz(nombre, contra, this->numUsuario);
                 auxInterfazUsuario->mostrarInterfaz();
                 //auxUsuario
                 delete auxUsuario;
