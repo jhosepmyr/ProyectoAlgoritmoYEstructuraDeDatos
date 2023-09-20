@@ -1,2 +1,3 @@
-nombre1 precio1 tipo1 identificador1
-nombre2 precio2 tipo2 identificador2
+arroz 18 comestible Juan123
+leche 5 comestible Luis324
+mesa 50 noComestible Joan1234
