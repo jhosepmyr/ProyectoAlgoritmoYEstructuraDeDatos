@@ -37,7 +37,7 @@ public:
         system("cls");
     }
     void iniciarLogin() {
-        this->interfazLogin->ventanaIngreso();
+        this->interfazLogin->mostrarInterfaz();
     }
 };
 

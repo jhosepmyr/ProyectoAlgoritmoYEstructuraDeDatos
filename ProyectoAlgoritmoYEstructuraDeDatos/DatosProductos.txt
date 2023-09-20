@@ -1,0 +1,2 @@
+nombre1 precio1 tipo1 identificador1
+nombre2 precio2 tipo2 identificador2

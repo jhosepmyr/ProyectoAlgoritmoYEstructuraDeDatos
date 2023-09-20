@@ -1,32 +1,49 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include "Files.h"
 using namespace std;
 
 class Usuario {
 protected:
+
     string nombre;
+    string apellido;
     string contra;
-    string nombreArchivo;
-    int numUsuarios;
+    string datosInicioSesion;//archivo donde se guarda las contrasenas y usuarios
+    Files personal;
+    Lista<Producto> productos;
     int ID = 1;
 public:
     Usuario() : nombre(""), contra("") {}
-    Usuario(string _nombre, string _contra) : nombre(_nombre), contra(_contra) {}
+    Usuario(string _nombre, string _contra) : personal(_nombre, _contra) {
+        this->nombre = _nombre;
+        this->contra = _contra;
+        this->productos = this->personal.getProductos();
+    }
 
-    int getNumUsuarios() {
-        return this->numUsuarios;
-    } //servira para nombre de carpeta por usuario
     int getID() {
         return this->ID;
-    }//IMPLEMENTAR, es para crear txt por usuario
+    }
     string getNombre() {
         return this->nombre;
+    }
+    string getApellido() {
+        return this->apellido;
     }
     string getContra() {
         return this->contra;
     }
-    string getNombreArchivo() {
-        return nombreArchivo;
+    string getDatosInicioSesion() {
+        return datosInicioSesion;
+    }
+    void mostrarDatosPersonales() {
+        cout << "INFORMACION PERSONAL" << endl;
+        cout << "Nombre: " + this->nombre << endl;
+        cout << "Apellido: " + this->apellido << endl;
+        cout << "Contrasena: " + this->contra << endl;
+    }
+    void mostrarProductos() {
+        this->productos.MostrarDatosPROD();
     }
 };

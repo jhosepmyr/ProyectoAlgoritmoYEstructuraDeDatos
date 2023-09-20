@@ -168,6 +168,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="DatosCarritosCompras.txt" />
+    <Text Include="DatosProductos.txt" />
     <Text Include="DatosSesionVendedores.txt" />
     <Text Include="DatosSesionClientes.txt" />
   </ItemGroup>

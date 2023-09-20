@@ -30,10 +30,10 @@ public:
         T* auxUsuario = new T(nombre, contra);
 
 
-        ifstream archivoLectura(auxUsuario->getNombreArchivo()); //llamada al archivo txt
+        ifstream archivoLectura(auxUsuario->getDatosInicioSesion()); //llamada al archivo txt
 
         if (!archivoLectura.is_open()) {
-            cout << "Error al abrir el archivo " << auxUsuario->getNombreArchivo() << endl;
+            cout << "Error al abrir el archivo " << auxUsuario->getDatosInicioSesion() << endl;
             return;
         }
 
@@ -81,11 +81,11 @@ public:
         //uso del template
         T* auxUsuario = new T(nombre, contra);
 
-        ofstream archivoEscritura(auxUsuario->getNombreArchivo(), ios::app); // Abre el archivo en modo de escritura
-        ifstream archivoLectura(auxUsuario->getNombreArchivo()); //abre archivo en modo lectura
+        ofstream archivoEscritura(auxUsuario->getDatosInicioSesion(), ios::app); // Abre el archivo en modo de escritura
+        ifstream archivoLectura(auxUsuario->getDatosInicioSesion()); //abre archivo en modo lectura
 
         if (!archivoEscritura.is_open()) {
-            cout << "Error al abrir el archivo " << auxUsuario->getNombreArchivo() << endl;
+            cout << "Error al abrir el archivo " << auxUsuario->getDatosInicioSesion() << endl;
             return;
         }
 

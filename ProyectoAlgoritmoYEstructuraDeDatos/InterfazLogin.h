@@ -10,14 +10,20 @@ private:
 public:
     InterfazLogin(){
         login = new Login();
-        this->tipoUsuario = 0;
+        this->tipoUsuario = '0';
+        this->opcion = '0';
     }
 
-    void ventanaIngreso() {
+    void mostrarInterfaz() {
         do {
+            system("cls");
+            this->tipoUsuario = '0';
+            this->opcion = '0';
             cout << "1. Iniciar sesion\n";
             cout << "2. Registrarse\n";
-            cout << "3. Salir\n";
+            cout << "3. Funcionamiento\n";
+            cout << "4. Mostrar los integrantes\n";
+            cout << "5. Salir\n";
             cout << "Selecciona una opcion ingresando el numero\n\n";
             cout << "Opcion: ";
             cin >> this->opcion;       
@@ -28,43 +34,15 @@ public:
             }
             validarOpcion();
             system("cls");
-            generarInterfazTipoUsuario(); //metodo donde esta la llamada a la clase Login
-        } while (this->opcion < 1 || this->opcion > 3);
-    }
-    
-    void validarOpcion() {
-        auto opcionValida = [](char op)->bool {return op == '1' || op == '2' || op == '3'; }; //lambda
-        if (!opcionValida(this->opcion) || !opcionValida(this->tipoUsuario)) {
-            cout << "Seleccione una opcion valida.\n" << endl;
-            this->opcion = 4;
-            this->tipoUsuario = 4;
-            system("pause>0");
-        }
-    }
+            resultadosOpcionSeleccionada();
+            system("pause");
+        } while (this->opcion!= '5');
 
-    void dibujarInterfaz() {
-        do {
-            for (int x = 2; x <= 57; x++) {
-                cout << (char)219;
-            }
-            cout << "\n";
-            cout << R"(
-                    _______      _______.
-                   /  _____|    /       |
-                  |  |  __     |   (----`
-                  |  | |_ |     \   \    
-                  |  |__| | .----)   |   
-                   \______| |_______/  v1.0  
-            )";
-            cout << "\n";
-            for (int x = 2; x <= 57; x++) { 
-                cout << (char)219;
-            }
-            cout << "\n";
-        } while (opcion < 1 || opcion > 3);
+        cout << "\nREGRESE PRONTO\n";
     }
-
-    void generarInterfazTipoUsuario() {
+   
+    //metodo donde esta la llamada a la clase Login
+    void resultadosOpcionSeleccionada() {
         switch (this->opcion) {
             case '1': {
                 if (this->tipoUsuario == '1') {
@@ -74,7 +52,7 @@ public:
                 {
                     this->login->iniciarSesion<Vendedor, InterfazVendedor>();
                 }
-                this->opcion = 4;
+                this->opcion = '0';
                 break;
             }
             case '2': {
@@ -85,7 +63,17 @@ public:
                 {
                     this->login->registrarse<Vendedor>();
                 }
-                this->opcion = 4;
+                this->opcion = '0';
+                break;
+            }
+            case '3': {
+                cout << "informacion mostrada" << endl;
+                this->opcion = '0';
+                break;
+            }
+            case '4': {
+                cout << "los duenos son:" << endl;
+                this->opcion = '0';
                 break;
             }
         }

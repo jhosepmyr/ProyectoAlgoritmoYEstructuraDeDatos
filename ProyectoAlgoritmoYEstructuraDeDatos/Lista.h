@@ -51,12 +51,7 @@ struct Lista<T>::Nodo {
 
 template <class T>
 Lista<T>::~Lista() {
-    Nodo* aux = ini;
-    while (aux != nullptr) {
-        aux = ini;
-        ini = ini->sig;
-        delete aux;
-    }
+
 }
 
 template <class T>
@@ -98,7 +93,7 @@ void Lista<T>::agregaPos(T elem, uint pos) {
 }
 template <class T>
 void Lista<T>::agregaFinal(T elem) {
-    agregarPos(elem, lon); // ;)
+    agregaPos(elem, lon); // ;)
 }
 
 template <class T>
