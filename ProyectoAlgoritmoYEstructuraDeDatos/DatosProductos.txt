@@ -1,3 +1,4 @@
 arroz 18 comestible Juan123
 leche 5 comestible Luis324
 mesa 50 noComestible Joan1234
+sillon 50 noComestible Lucas1212
