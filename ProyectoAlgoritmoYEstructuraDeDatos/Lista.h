@@ -39,7 +39,7 @@ public:
     T       obtenerInicial();
     T       obtenerPos(uint pos);
     T       obtenerFinal();
-    T     buscarporID(int ID);
+    T     buscarporID(string ID);
 };
 
 template <class T>
@@ -51,7 +51,6 @@ struct Lista<T>::Nodo {
 
 template <class T>
 Lista<T>::~Lista() {
-
 }
 
 template <class T>
@@ -181,30 +180,31 @@ void Lista<T>::MostrarDatosPROD() {
 template<class T>
 void Lista<T>::buscarPRODMAYVALOR() {
     Nodo* aux = ini;
-    int arr[lon];
+    Producto *arr=new Producto[lon];
     for (int i = 0; i < lon; i++) {
-        arr[i] = aux->elem.getPrecio();
+        arr[i] = aux->elem;
         aux = aux->sig;
     }
-    auto ordIntercambio = [](int a[], int n)
+    auto ordIntercambio = [](Producto a[], int n)
         {
             for (int i = 0; i < n - 1; i++) {
                 for (int k = i + 1; k < n; k++) {
-                    if (a[i] > a[k]) {
+                    if (a[i].getPrecio() > a[k].getPrecio()) {
                         swap(a[i], a[k]);
                     }
                 }
             }
         };
     ordIntercambio(arr, lon);
+    arr[lon - 1].mostrarDatos();
 
 }
 
 template <class T>
-T Lista<T>::buscarporID(int ID) {
-    Nodo* aux = ini;
+T Lista<T>::buscarporID(string ID) {
+    Nodo *aux = ini;
     while (aux != nullptr) {
-        if (aux->elem.getID()==ID) {
+        if (aux->elem.getIdentificador()==ID) {
             return aux->elem;
         }
         aux = aux->sig;
