@@ -144,6 +144,8 @@
     <ClInclude Include="Login.h" />
     <ClInclude Include="Muebles.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Pedido.h" />
+    <ClInclude Include="Pila.h" />
     <ClInclude Include="Producto.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Usuario.h" />

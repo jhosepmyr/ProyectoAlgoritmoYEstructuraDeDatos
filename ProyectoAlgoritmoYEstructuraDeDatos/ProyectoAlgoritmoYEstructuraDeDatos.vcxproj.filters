@@ -104,6 +104,12 @@
     <ClInclude Include="Vendedor.h">
       <Filter>Archivos de encabezado\Entidades\Usuarios</Filter>
     </ClInclude>
+    <ClInclude Include="Pedido.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Pila.h">
+      <Filter>Archivos de encabezado\EstructurasTemplates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProyectoAlgoritmoYEstructuraDeDatos.cpp">
@@ -128,5 +134,7 @@
     <Text Include="DatosSesionClientes.txt">
       <Filter>Archivos de encabezado\Archivos</Filter>
     </Text>
+    <Text Include="DatosCarritosCompras.txt" />
+    <Text Include="DatosProductos.txt" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <functional>
-#include "Files.h"
 using namespace std;
 
 typedef unsigned int uint;
@@ -40,6 +39,7 @@ public:
     T       obtenerPos(uint pos);
     T       obtenerFinal();
     T     buscarporID(string ID);
+    void     eliminarporID(string ID);
 };
 
 template <class T>
@@ -210,3 +210,23 @@ T Lista<T>::buscarporID(string ID) {
         aux = aux->sig;
     }
 }
+
+template <class T>
+void Lista<T>::eliminarporID(string ID) {
+    Nodo* aux = ini;
+    uint pos = 0;
+    while (aux != nullptr) {
+        if (aux->elem.getIdentificador() == ID) {
+            eliminaPos(pos);
+        }
+        pos++;
+        aux = aux->sig;
+    }
+}
+
+/*Producto rECURSIVO(Nodo *aux, string ID) {
+    if (aux->elem.getIdentificador()==ID) {
+            return aux->elem;
+        }
+    else  if(aux!=nullptr) return rECURSIVO(aux = aux->sig, ID);
+}*/

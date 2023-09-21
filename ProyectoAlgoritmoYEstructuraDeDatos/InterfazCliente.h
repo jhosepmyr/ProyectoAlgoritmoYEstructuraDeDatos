@@ -22,7 +22,7 @@ public:
             cout << "2. Modificar informacion\n";
             cout << "3. Mostrar Productos\n";
             cout << "4. Mi carrito de compras\n";
-            cout << "5.Mostrar Producto de Mayor Valor\n";
+            cout << "5. Mostrar Producto de Mayor Valor\n";
             cout << "6. Cerrar sesion\n";
             cout << "Selecciona una opcion ingresando el numero\n\n";
             cout << "Opcion: ";
@@ -56,7 +56,7 @@ public:
             break;
         }
         case '4': {
-            this->clienteAux->MostarCarrito();
+            //this->clienteAux->mostrarCarrito();
             this->opcion = '0';
             break;
         }

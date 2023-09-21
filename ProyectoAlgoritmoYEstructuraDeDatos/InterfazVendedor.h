@@ -21,7 +21,7 @@ public:
             cout << "1. Informacion personal\n";
             cout << "2. Modificar informacion\n";
             cout << "3. Mis Productos\n";
-            cout << "4. Mostrar carrito de compras\n";
+            cout << "4. Modificar productos\n";
             cout << "5. Salir\n";
             cout << "Selecciona una opcion ingresando el numero\n\n";
             cout << "Opcion: ";

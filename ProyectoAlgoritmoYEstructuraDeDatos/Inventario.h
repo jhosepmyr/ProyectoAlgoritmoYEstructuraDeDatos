@@ -7,14 +7,14 @@ using namespace std;
 class Inventario {
 private:
     int numProductos;
-    Controller *objController;
+    //Controller *objController;
 
 public:
     Inventario() {
-        objController = new Controller();
+        //objController = new Controller();
     }
     void listarProductos() {
-        objController->mostrarLSTPRDCTS();
+        //objController->mostrarLSTPRDCTS();
     }
 
     void aplicarFiltros(); //esto para ordenar de acuerdo a precio, de acuerdo a tiempo de ingreso, categoria

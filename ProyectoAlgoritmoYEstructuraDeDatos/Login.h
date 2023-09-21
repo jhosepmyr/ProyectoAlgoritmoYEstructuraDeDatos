@@ -26,7 +26,7 @@ public:
         cin >> contra;
         cout << endl;
 
-        //uso de template
+        //uso de template,
         T* auxUsuario = new T(nombre, contra);
 
 
