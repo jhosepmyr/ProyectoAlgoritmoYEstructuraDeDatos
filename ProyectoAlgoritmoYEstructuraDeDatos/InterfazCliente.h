@@ -22,8 +22,7 @@ public:
             cout << "2. Modificar informacion\n";
             cout << "3. Mostrar Productos\n";
             cout << "4. Mi carrito de compras\n";
-            cout << "5. Mostrar Producto de Mayor Valor\n";
-            cout << "6. Cerrar sesion\n";
+            cout << "5. Cerrar sesion\n";
             cout << "Selecciona una opcion ingresando el numero\n\n";
             cout << "Opcion: ";
             cin >> this->opcion;
@@ -31,7 +30,7 @@ public:
             system("cls");
             resultadosOpcionSeleccionada();
             system("pause");
-        } while (this->opcion != '6');
+        } while (this->opcion != '5');
         this->clienteAux = nullptr;
         cout << "\nSESION CERRADA\n";
 		system("pause>0");
@@ -56,7 +55,7 @@ public:
             break;
         }
         case '4': {
-            //this->clienteAux->mostrarCarrito();
+            this->clienteAux->mostrarPedido();
             this->opcion = '0';
             break;
         }

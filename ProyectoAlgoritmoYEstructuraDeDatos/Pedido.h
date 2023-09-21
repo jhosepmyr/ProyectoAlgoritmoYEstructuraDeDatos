@@ -6,13 +6,13 @@ using namespace std;
 class Pedido {
 	private:
 	string nombreArchivoPedido;
-	Lista<Producto> carrito;
+	Lista<Producto> carritoCompras;
 public:
 
 void agregaraCarrito(Producto aux){
-	carrito.agregaFinal(aux);
+	this->carritoCompras.agregaFinal(aux);
 }
 void mostrarPila() {
+	this->carritoCompras.MostrarDatosPROD();
 }
-
 };

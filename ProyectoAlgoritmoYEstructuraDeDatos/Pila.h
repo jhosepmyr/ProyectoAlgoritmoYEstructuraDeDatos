@@ -1,6 +1,5 @@
 #pragma once
 #include "Nodo.h"
-#include "Producto.h"
 using namespace std;
 
 template <class T>
@@ -9,7 +8,10 @@ private:
 	Nodo<T>* tope;
 	int lon;
 public:
-	Pila() { tope = NULL; lon = 0; }
+	Pila() { 
+		tope = nullptr; 
+		lon = 0; 
+	}
 	void push(T v);
 	T pop();
 	bool estaVacia();
@@ -22,6 +24,7 @@ void Pila<T>::push(T v) {
 	else tope = new Nodo<T>(v, tope);
 	lon++;
 }
+
 template <class T>
 T Pila<T>::pop() {
 	if (estaVacia()) return nullptr; //ERROR PILA VACIA
@@ -32,6 +35,7 @@ T Pila<T>::pop() {
 	}
 	lon--;
 }
+
 template<class T>
 bool Pila <T>::estaVacia() {
 	return (tope == NULL);

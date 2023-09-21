@@ -3,7 +3,6 @@
 #include <fstream>
 #include "Usuario.h"
 #include "Pedido.h"
-#include "Pila.h"
 
 using namespace std;
 
@@ -35,10 +34,14 @@ public:
                 //el producto retornado se agrega al unico pedido
                 this->pedido.agregaraCarrito(productoAux);
                 //el pedido se agrega a la pila pedidos
-                this->pedidos.push(pedido);
                 this->productos.eliminarporID(identificadorAux);
             }
         } while (opc!='2');
 
+        this->pedidos.push(pedido);
+    }
+
+    void mostrarPedido() {
+        this->pedido.mostrarPila();
     }
 };

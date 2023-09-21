@@ -90,6 +90,7 @@ void Lista<T>::agregaPos(T elem, uint pos) {
         }
     }
 }
+
 template <class T>
 void Lista<T>::agregaFinal(T elem) {
     agregaPos(elem, lon); // ;)
@@ -101,6 +102,7 @@ void Lista<T>::modificarInicial(T elem) {
         ini->elem = elem;
     }
 }
+
 template <class T>
 void Lista<T>::modificarPos(T elem, uint pos) {
     if (pos >= 0 && pos < lon) {
@@ -111,6 +113,7 @@ void Lista<T>::modificarPos(T elem, uint pos) {
         aux->elem = elem;
     }
 }
+
 template <class T>
 void Lista<T>::modificarFinal(T elem) {
     modificar(elem, lon - 1);
@@ -125,6 +128,7 @@ void Lista<T>::eliminaInicial() {
         lon--;
     }
 }
+
 template <class T>
 void Lista<T>::eliminaPos(uint pos) {
     if (pos > lon) return;
@@ -132,12 +136,17 @@ void Lista<T>::eliminaPos(uint pos) {
         eliminaInicial();
     }
     else {
-        Nodo* aux = ini;
-        for (int i = 1; i < pos; i++) {
-            aux = aux->sig;
+        Nodo* eliminar = this->ini;
+        Nodo* anterior = nullptr;
+        uint contador = 0;
+        while (contador < pos) {
+            anterior = eliminar;
+            eliminar = eliminar->sig;
+            contador++;
         }
-        delete aux;
-        lon--;
+        anterior->sig = eliminar->sig;
+        delete eliminar;
+        this->lon--;
     }
 }
 
@@ -167,6 +176,8 @@ T Lista<T>::obtenerFinal() {
     return obtenerPos(lon - 1);
 }
 
+
+//METODOS EXTRA
 
 template<class T>
 void Lista<T>::MostrarDatosPROD() {
@@ -214,13 +225,19 @@ T Lista<T>::buscarporID(string ID) {
 template <class T>
 void Lista<T>::eliminarporID(string ID) {
     Nodo* aux = ini;
-    uint pos = 0;
-    while (aux != nullptr) {
+    int pos = 0;
+    bool encontrado = false;
+    while (aux != nullptr && !encontrado) {
         if (aux->elem.getIdentificador() == ID) {
             eliminaPos(pos);
+            encontrado = true;
+            break;
         }
-        pos++;
-        aux = aux->sig;
+        else
+        {
+            pos++;
+            aux = aux->sig;
+        }
     }
 }
 
