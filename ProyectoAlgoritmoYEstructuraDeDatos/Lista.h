@@ -232,6 +232,7 @@ void Lista<T>::eliminarporID(string ID) {
     while (aux != nullptr && !encontrado) {
         if (aux->elem.getIdentificador() == ID) {
             eliminaPos(pos);
+            cout << "\nSe ha eliminado el producto correctamente" << endl;
             encontrado = true;
             break;
         }
@@ -241,6 +242,7 @@ void Lista<T>::eliminarporID(string ID) {
             aux = aux->sig;
         }
     }
+    cout << "\nSe no se ha encontrado el producto con el identificador brindado" << endl;
 }
 
 /*Producto rECURSIVO(Nodo *aux, string ID) {
