@@ -45,7 +45,7 @@ public:
             break;
         }
         case '2': {
-
+            this->clienteAux->actualizarDatosPersonales();
             this->opcion = '0';
             break;
         }

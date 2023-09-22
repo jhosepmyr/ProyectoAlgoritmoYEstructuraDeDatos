@@ -4,7 +4,7 @@ class Nodo {
 public:
 	T dato;
 	Nodo<T>* siguiente;
-	Nodo(T v,  Nodo<T>* sig = NULL) {
+	Nodo(T v, Nodo<T>* sig = NULL) {
 		dato = v;
 		siguiente = sig;
 	}

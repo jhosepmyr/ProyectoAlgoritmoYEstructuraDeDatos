@@ -1,6 +1,6 @@
 #pragma once
-
 #include <functional>
+
 using namespace std;
 
 typedef unsigned int uint;
