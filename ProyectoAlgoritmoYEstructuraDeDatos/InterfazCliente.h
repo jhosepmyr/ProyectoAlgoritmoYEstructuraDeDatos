@@ -16,6 +16,7 @@ public:
         this->tipoUsuario = '1';
         extraerInformacionUsuario("DatosSesionClientes.txt");
 	}
+
 	void mostrarInterfaz() {
         do {
             system("cls");
