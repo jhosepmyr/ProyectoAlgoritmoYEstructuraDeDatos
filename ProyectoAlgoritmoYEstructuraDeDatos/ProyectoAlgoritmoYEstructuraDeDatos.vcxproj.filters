@@ -125,7 +125,11 @@
     <Text Include="DatosSesionClientes.txt">
       <Filter>Archivos de encabezado\Archivos</Filter>
     </Text>
-    <Text Include="DatosCarritosCompras.txt" />
-    <Text Include="DatosProductos.txt" />
+    <Text Include="DatosProductos.txt">
+      <Filter>Archivos de encabezado\Archivos</Filter>
+    </Text>
+    <Text Include="DatosCarritosCompras.txt">
+      <Filter>Archivos de encabezado\Archivos</Filter>
+    </Text>
   </ItemGroup>
 </Project>

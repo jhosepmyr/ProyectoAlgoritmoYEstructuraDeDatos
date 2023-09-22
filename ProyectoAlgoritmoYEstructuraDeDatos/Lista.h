@@ -74,6 +74,7 @@ void Lista<T>::agregaInicial(T elem) {
 
 template <class T>
 void Lista<T>::agregaPos(T elem, uint pos) {
+
     if (pos > lon) return;
     if (pos == 0) {
         agregaInicial(elem);
@@ -93,7 +94,7 @@ void Lista<T>::agregaPos(T elem, uint pos) {
 
 template <class T>
 void Lista<T>::agregaFinal(T elem) {
-    agregaPos(elem, lon-1); // ;)
+    agregaPos(elem, lon); // ;)
 }
 
 template <class T>

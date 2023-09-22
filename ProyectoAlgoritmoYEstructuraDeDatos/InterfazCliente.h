@@ -42,6 +42,68 @@ public:
 		return;
 	}
 
+    void resultadosOpcionSeleccionada() {
+        switch (this->opcion) {
+        case '1': {
+            this->clienteAux->mostrarDatosPersonales();
+            this->opcion = '0';
+            break;
+        }
+        case '2': {
+            this->clienteAux->actualizarDatosPersonales();
+            this->opcion = '0';
+            break;
+        }
+        case '3': {
+            this->clienteAux->mostrarProductos();
+            this->opcion = '0';
+            break;
+        }
+        case '4': {
+            this->clienteAux->mostrarPedido();
+            this->opcion = '0';
+            break;
+        }
+        }
+    }
+
+    //extraer la informacion personal del txt
+    void extraerInformacionUsuario(string rutaArchivoDatos) {
+        ifstream archivoLectura(rutaArchivoDatos);
+        string contenidoArchivo;
+
+        if (!archivoLectura.is_open())
+        {
+            cout << "Error al abrir el archivo " << this->clienteAux->getDatosInicioSesion() << endl;
+            return;
+        }
+        string linea;
+        while (getline(archivoLectura, linea))
+        {
+            bool verificarNombre = linea.find(this->clienteAux->getNombre()) != string::npos;
+            bool verificarContra = linea.find(this->clienteAux->getContra()) != string::npos;
+            if (verificarContra && verificarNombre)
+            {
+                string nombre;
+                string apellido;
+                string contra;
+                string correoElectronico;
+                int numeroCelular;
+                string direccion;
+                char genero;
+                int DNI;
+                istringstream iss(linea);
+                iss >> nombre >> contra >> apellido >> correoElectronico >> numeroCelular >> direccion >> genero >> DNI;
+                this->clienteAux->setTodaInformacion(nombre, contra, apellido, correoElectronico, numeroCelular, direccion, genero, DNI);
+                return;
+            }
+        }
+        archivoLectura.close();
+        ofstream archivoEscritura(rutaArchivoDatos);
+        archivoEscritura << contenidoArchivo;
+        archivoEscritura.close();
+    }
+
     //actualiza el archivo txt
     void actualizarDatosSesion(string rutaArchivoDatos) {
         ifstream archivoLectura(rutaArchivoDatos);
@@ -82,65 +144,4 @@ public:
         }
     }
 
-    //extraer la informacion personal del txt
-    void extraerInformacionUsuario(string rutaArchivoDatos) {
-        ifstream archivoLectura(rutaArchivoDatos);
-        string contenidoArchivo;
-
-        if (!archivoLectura.is_open())
-        {
-            cout << "Error al abrir el archivo " << this->clienteAux->getDatosInicioSesion() << endl;
-            return;
-        }
-        string linea;
-        while (getline(archivoLectura, linea))
-        {
-            bool verificarNombre = linea.find(this->clienteAux->getNombre()) != string::npos;
-            bool verificarContra = linea.find(this->clienteAux->getContra()) != string::npos;
-            if (verificarContra && verificarNombre)
-            {
-                string nombre;
-                string apellido;
-                string contra;
-                string correoElectronico;
-                int numeroCelular;
-                string direccion;
-                char genero;
-                int DNI;
-                istringstream iss(linea);
-                iss >> nombre >> contra>>apellido>>correoElectronico>>numeroCelular>>direccion>>genero>>DNI;
-                this->clienteAux->setTodaInformacion(nombre, contra, apellido, correoElectronico,numeroCelular,direccion,genero,DNI);
-                return;
-            }
-        }
-        archivoLectura.close();
-        ofstream archivoEscritura(rutaArchivoDatos);
-        archivoEscritura << contenidoArchivo;
-        archivoEscritura.close();
-    }
-
-    void resultadosOpcionSeleccionada() {
-        switch (this->opcion) {
-            case '1': {
-                this->clienteAux->mostrarDatosPersonales();
-                this->opcion = '0';
-                break;
-            }
-            case '2': {
-                this->clienteAux->actualizarDatosPersonales();
-                this->opcion = '0';
-                break;
-            }
-            case '3': {
-                this->clienteAux->mostrarProductos();
-                this->opcion = '0';
-                break;
-            }
-            case '4': {
-                this->clienteAux->mostrarPedido();
-                this->opcion = '0';
-                break;
-            }
-        }
-    }
 };

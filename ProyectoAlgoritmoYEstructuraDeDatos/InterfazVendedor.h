@@ -11,6 +11,7 @@ public:
     InterfazVendedor(string _nombre, string _contra) {
 
         this->vendedorAux = new Vendedor(_nombre, _contra);
+        this->vendedorAux->setProductosPropios();
         this->tipoUsuario = '2';
         extraerInformacionUsuario("DatosSesionVendedores.txt");
     }
