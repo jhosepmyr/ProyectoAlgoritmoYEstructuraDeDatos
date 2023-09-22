@@ -222,6 +222,7 @@ T Lista<T>::buscarporID(string ID) {
     }
 }
 
+
 template <class T>
 void Lista<T>::eliminarporID(string ID) {
     Nodo* aux = ini;
