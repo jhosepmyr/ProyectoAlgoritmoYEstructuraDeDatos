@@ -1,6 +1,7 @@
 #pragma once
 #include "Interfaz.h"
 #include "Cliente.h"
+#include <sstream>
 
 using namespace std;
 
@@ -13,6 +14,7 @@ public:
 	InterfazCliente(string _nombre, string _contra) {
 		this->clienteAux = new Cliente(_nombre, _contra);
         this->tipoUsuario = '1';
+        extraerInformacionUsuario("DatosSesionClientes.txt");
 	}
 	void mostrarInterfaz() {
         do {
@@ -30,7 +32,7 @@ public:
             validarOpcion();
             system("cls");
             resultadosOpcionSeleccionada();
-            actualizarDatosInformacionPersonal();
+            if (this->opcion == '5') actualizarDatosSesion("DatosSesionClientes.txt");
             system("pause");
         } while (this->opcion != '5');
         this->clienteAux = nullptr;
@@ -39,11 +41,81 @@ public:
 		return;
 	}
 
-    void actualizarDatosInformacionPersonal() {
-        if (this->opcion=='5')
+    //actualiza el archivo txt
+    void actualizarDatosSesion(string rutaArchivoDatos) {
+        ifstream archivoLectura(rutaArchivoDatos);
+        string contenidoArchivo;
+        if (archivoLectura.is_open())
         {
-           // this->datosActualizados.actualizarDatosSesion("DatosSesionClientes.txt", this->clienteAux);
+            string linea;
+            while (getline(archivoLectura, linea))
+            {
+                bool verificarNombre = linea.find(this->clienteAux->getNombre()) != string::npos;
+                bool verificarContra = linea.find(this->clienteAux->getContra()) != string::npos;
+                if (verificarContra && verificarNombre)
+                {
+                    string nuevaLinea = this->clienteAux->getNombre() + " " +
+                        this->clienteAux->getContra() + " " +
+                        this->clienteAux->getApellido() + " " +
+                        this->clienteAux->getCorreoElectronico() + " " +
+                        to_string(this->clienteAux->getNumeroCelular()) + " " +
+                        this->clienteAux->getDireccion() + " " +
+                        to_string(this->clienteAux->getGenero()) + " " +
+                        to_string(this->clienteAux->getDNI());
+                    contenidoArchivo += nuevaLinea + "\n";
+                }
+                else
+                {
+                    contenidoArchivo += linea + "\n";
+                }
+            }
+            archivoLectura.close();
+            ofstream archivoEscritura(rutaArchivoDatos);
+            archivoEscritura << contenidoArchivo;
+            archivoEscritura.close();
+
+            //cout << "Datos actualizados en el archivo exitosamente." <<endl;
         }
+        else {
+            //cerr << "Error al abrir el archivo para lectura." <<endl;
+        }
+    }
+
+    //extraer la informacion personal del txt
+    void extraerInformacionUsuario(string rutaArchivoDatos) {
+        ifstream archivoLectura(rutaArchivoDatos);
+        string contenidoArchivo;
+
+        if (!archivoLectura.is_open())
+        {
+            cout << "Error al abrir el archivo " << this->clienteAux->getDatosInicioSesion() << endl;
+            return;
+        }
+        string linea;
+        while (getline(archivoLectura, linea))
+        {
+            bool verificarNombre = linea.find(this->clienteAux->getNombre()) != string::npos;
+            bool verificarContra = linea.find(this->clienteAux->getContra()) != string::npos;
+            if (verificarContra && verificarNombre)
+            {
+                string nombre;
+                string apellido;
+                string contra;
+                string correoElectronico;
+                int numeroCelular;
+                string direccion;
+                char genero;
+                int DNI;
+                istringstream iss(linea);
+                iss >> nombre >> contra>>apellido>>correoElectronico>>numeroCelular>>direccion>>genero>>DNI;
+                this->clienteAux->setTodaInformacion(nombre, contra, apellido, correoElectronico,numeroCelular,direccion,genero,DNI);
+                return;
+            }
+        }
+        archivoLectura.close();
+        ofstream archivoEscritura(rutaArchivoDatos);
+        archivoEscritura << contenidoArchivo;
+        archivoEscritura.close();
     }
 
     void resultadosOpcionSeleccionada() {

@@ -45,8 +45,6 @@ public:
 		return nombreArchivoPropio;
 	}
 
-	void actualizarArchivos(){}
-
 	Lista<Producto> getProductos(string datosProductos = "DatosProductos.txt") {
 		Lista<Producto> auxList;
 		ifstream archivo(datosProductos);
@@ -72,7 +70,4 @@ public:
 		}
 		return auxList;
 	}
-
-
-
 };

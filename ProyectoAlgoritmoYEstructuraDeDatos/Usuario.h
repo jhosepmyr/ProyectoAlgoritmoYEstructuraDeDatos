@@ -18,6 +18,7 @@ protected:
     int DNI;
 
     string datosInicioSesion;//archivo donde se guarda las contrasenas y usuarios
+
     Files personal;
 
     char opcionUsuario;
@@ -29,11 +30,11 @@ public:
     Usuario(string _nombre, string _contra) : personal(_nombre, _contra) {
         this->nombre = _nombre;
         this->contra = _contra;
-        this->apellido = "";
-        this->correoElectronico = "";
+        this->apellido = "ninguno";
+        this->correoElectronico = "ninguno";
         this->numeroCelular = 0;
-        this->direccion = "";
-        this->genero = '-';
+        this->direccion = "ninguno";
+        this->genero = 'N';
         this->DNI = 0;
         this->productos = this->personal.getProductos();
         this->opcionUsuario = '0';
@@ -64,6 +65,17 @@ public:
         return this->DNI;
     }
 
+    void setTodaInformacion(string _nombre, string _contra, string _apellido, string _correo, int _num, string _direccion, char _genero, int _DNI) {
+        this->nombre = _nombre;
+        this->contra = _contra;
+        this->apellido = _apellido;
+        this->correoElectronico = _correo;
+        this->numeroCelular = _num;
+        this->direccion = _direccion;
+        this->genero = _genero;
+        this->DNI = _DNI;
+    }
+
     string getDatosInicioSesion() {
         return datosInicioSesion;
     }
@@ -71,11 +83,11 @@ public:
     void mostrarDatosPersonales() {
         cout << "INFORMACION PERSONAL" << endl;
         cout << "Nombre: " + this->nombre << endl;
-        if(this->apellido!="") cout << "Apellido: " + this->apellido << endl;
-        if(this->correoElectronico!="") cout << "CorreoElectronico: " + this->correoElectronico << endl;
+        if(this->apellido!="ninguno") cout << "Apellido: " + this->apellido << endl;
+        if(this->correoElectronico!="ninguno") cout << "CorreoElectronico: " + this->correoElectronico << endl;
         if(this->numeroCelular!=0) cout << "Numero de celular: " + to_string(this->numeroCelular) << endl;
-        if(this->direccion!="") cout << "Direccion: " + this->direccion << endl;
-        if(this->genero!='-') cout << "Genero: " + to_string(this->genero) << endl;
+        if(this->direccion!="ninguno") cout << "Direccion: " + this->direccion << endl;
+        if(this->genero!='N') cout << "Genero: " + to_string(this->genero) << endl;
         if(this->DNI!=0) cout << "DNI: " + to_string(this->DNI) << endl;
     }
 

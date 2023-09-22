@@ -1,12 +1,8 @@
 #pragma once
 #include <iostream>
-#include "Cliente.h"
-#include "Vendedor.h"
 #include "InterfazCliente.h"
 #include "InterfazVendedor.h"
-#include <fstream>
 using namespace std;
-using namespace System;
 
 class Login {
 private:
@@ -29,8 +25,7 @@ public:
         //uso de template,
         T* auxUsuario = new T(nombre, contra);
 
-
-        ifstream archivoLectura(auxUsuario->getDatosInicioSesion()); //llamada al archivo txt
+        ifstream archivoLectura(auxUsuario->getDatosInicioSesion());
 
         if (!archivoLectura.is_open()) {
             cout << "Error al abrir el archivo " << auxUsuario->getDatosInicioSesion() << endl;
@@ -40,8 +35,10 @@ public:
         string linea;
 
         while (getline(archivoLectura, linea)) {
+            bool verificarNombre = linea.find(nombre);
+            bool verificarContra = linea.find(contra);
             // Verifica si la línea contiene el nombre y la contraseña separados por un espacio
-            if (linea == nombre + " " + contra) {
+            if (verificarContra && verificarNombre) {
                 cout << "Inicio de sesion exitoso." << endl << endl;
                 cout << "Presiona ENTER para continuar";
                 system("pause>0");
@@ -63,6 +60,7 @@ public:
         delete auxUsuario;
         auxUsuario = nullptr;
         return;
+
     }
 
     // template registrarse, admite todos los tipos de usuario

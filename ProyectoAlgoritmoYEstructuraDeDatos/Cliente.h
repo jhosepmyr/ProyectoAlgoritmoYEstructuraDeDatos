@@ -1,6 +1,4 @@
 #pragma once
-#include <iostream>
-#include <fstream>
 #include "Usuario.h"
 #include "Pedido.h"
 
@@ -44,44 +42,4 @@ public:
     void mostrarPedido() {
         this->pedido.mostrarPila();
     }
-
-	/*void actualizarDatosSesion(string rutaArchivoDatos, Cliente persona) {
-		ifstream archivoLectura(rutaArchivoDatos);
-		string contenidoArchivo;
-		if (archivoLectura.is_open())
-		{
-			string linea;
-
-			while (getline(archivoLectura, linea))
-			{
-				bool verificarNombre = linea.find(persona.getNombre()) != string::npos;
-				bool verificarContra = linea.find(persona.getContra()) != string::npos;
-				if (verificarContra && verificarNombre)
-				{
-					string nuevaLinea = persona.getNombre() + " " +
-						persona.getContra() + " " +
-						persona.getApellido() + " " +
-						persona.getCorreoElectronico() + " " +
-						to_string(persona.getNumeroCelular()) + " " +
-						persona.getDireccion() + " " +
-						to_string(persona.getGenero()) + " " +
-						to_string(persona.getDNI());
-					contenidoArchivo += nuevaLinea + "\n";
-				}
-				else
-				{
-					contenidoArchivo += linea + "\n";
-				}
-			}
-			archivoLectura.close();
-			ofstream archivoEscritura(rutaArchivoDatos);
-			archivoEscritura << contenidoArchivo;
-			archivoEscritura.close();
-
-			//cout << "Datos actualizados en el archivo exitosamente." <<endl;
-		}
-		else {
-			//cerr << "Error al abrir el archivo para lectura." <<endl;
-		}
-	}*/
 };
