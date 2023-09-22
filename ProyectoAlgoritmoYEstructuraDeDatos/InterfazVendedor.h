@@ -50,7 +50,7 @@ public:
             break;
         }
         case '3': {
-
+            this->vendedorAux->mostrarMisProductos();
             this->opcion = '0';
             break;
         }
