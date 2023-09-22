@@ -12,6 +12,7 @@ public:
 
         this->vendedorAux = new Vendedor(_nombre, _contra);
         this->tipoUsuario = '2';
+        extraerInformacionUsuario("DatosSesionVendedores.txt");
     }
 
     void mostrarInterfaz() {
@@ -30,7 +31,7 @@ public:
             validarOpcion();
             system("cls");
             resultadosOpcionSeleccionada();
-            if (this->opcion == '5') actualizarDatosSesion("DatosSesionClientes.txt");
+            if (this->opcion == '5') actualizarDatosSesion("DatosSesionVendedores.txt");
             system("pause");
         } while (this->opcion != '5');
         this->vendedorAux = nullptr;
@@ -62,6 +63,42 @@ public:
             break;
         }
         }
+    }
+
+    void extraerInformacionUsuario(string rutaArchivoDatos) {
+        ifstream archivoLectura(rutaArchivoDatos);
+        string contenidoArchivo;
+
+        if (!archivoLectura.is_open())
+        {
+            cout << "Error al abrir el archivo " << this->vendedorAux->getDatosInicioSesion() << endl;
+            return;
+        }
+        string linea;
+        while (getline(archivoLectura, linea))
+        {
+            bool verificarNombre = linea.find(this->vendedorAux->getNombre()) != string::npos;
+            bool verificarContra = linea.find(this->vendedorAux->getContra()) != string::npos;
+            if (verificarContra && verificarNombre)
+            {
+                string nombre;
+                string apellido;
+                string contra;
+                string correoElectronico;
+                int numeroCelular;
+                string direccion;
+                char genero;
+                int DNI;
+                istringstream iss(linea);
+                iss >> nombre >> contra >> apellido >> correoElectronico >> numeroCelular >> direccion >> genero >> DNI;
+                this->vendedorAux->setTodaInformacion(nombre, contra, apellido, correoElectronico, numeroCelular, direccion, genero, DNI);
+                return;
+            }
+        }
+        archivoLectura.close();
+        ofstream archivoEscritura(rutaArchivoDatos);
+        archivoEscritura << contenidoArchivo;
+        archivoEscritura.close();
     }
 
     void actualizarDatosSesion(string rutaArchivoDatos) {

@@ -2,3 +2,4 @@ Arroz 18 comestible Juan123
 Leche 5 comestible Luis324
 Mesa 50 noComestible Joan1234
 Sillon 50 noComestible Lucas1212
+Tele 1350 noComestible Lucas1212
