@@ -45,7 +45,7 @@ public:
             break;
         }
         case '2': {
-
+            this->vendedorAux->actualizarDatosPersonales();
             this->opcion = '0';
             break;
         }
@@ -62,10 +62,3 @@ public:
         }
     }
 };
-
-
-/*void ventanaInventario() {
-    Console::Clear();
-    cout << "NUESTROS PRODUCTOS";
-    objInventario.listarProductos();
-}*/

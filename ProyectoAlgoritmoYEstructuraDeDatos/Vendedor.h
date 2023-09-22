@@ -6,11 +6,15 @@
 using namespace std;
 
 class Vendedor : public Usuario {
+    Lista<Producto> productosPropios;
 private:
     string nombreArchivoVendedorEspecifico; //implementar con el ID Ejem: vendedor10.txt
 public:
     Vendedor(string _nombre, string _contra) : Usuario(_nombre, _contra){
         this->datosInicioSesion = "DatosSesionVendedores.txt";
+
     }
-    
+    void mostrarMisProductos() {
+
+    }
 };

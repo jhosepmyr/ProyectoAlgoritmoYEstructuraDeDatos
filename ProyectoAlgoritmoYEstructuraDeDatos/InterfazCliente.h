@@ -39,34 +39,26 @@ public:
 
     void resultadosOpcionSeleccionada() {
         switch (this->opcion) {
-        case '1': {
-            this->clienteAux->mostrarDatosPersonales();
-            this->opcion = '0';
-            break;
-        }
-        case '2': {
-            this->clienteAux->actualizarDatosPersonales();
-            this->opcion = '0';
-            break;
-        }
-        case '3': {
-            this->clienteAux->mostrarProductos();
-            this->opcion = '0';
-            break;
-        }
-        case '4': {
-            this->clienteAux->mostrarPedido();
-            this->opcion = '0';
-            break;
-        }
-        case '5': {
-            this->clienteAux->ProductoMasCaro();
-            this->opcion = '0';
-            break;
-        }
-        case '6': {
-
-        }
+            case '1': {
+                this->clienteAux->mostrarDatosPersonales();
+                this->opcion = '0';
+                break;
+            }
+            case '2': {
+                this->clienteAux->actualizarDatosPersonales();
+                this->opcion = '0';
+                break;
+            }
+            case '3': {
+                this->clienteAux->mostrarProductos();
+                this->opcion = '0';
+                break;
+            }
+            case '4': {
+                this->clienteAux->mostrarPedido();
+                this->opcion = '0';
+                break;
+            }
         }
     }
 };
