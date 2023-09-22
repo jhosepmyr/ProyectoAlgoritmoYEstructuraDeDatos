@@ -109,7 +109,7 @@ public:
         {
             string linea;
             while (getline(archivoLectura, linea))
-            {
+            {v
                 bool verificarNombre = linea.find(this->vendedorAux->getNombre()) != string::npos;
                 bool verificarContra = linea.find(this->vendedorAux->getContra()) != string::npos;
                 if (verificarContra && verificarNombre)
