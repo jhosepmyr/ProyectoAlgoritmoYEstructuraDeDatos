@@ -23,6 +23,7 @@ protected:
     char opcionUsuario;
 
     Lista<Producto> productos;
+
 public:
     //Usuario() : nombre(""), contra(""), personal(){};
     Usuario(string _nombre, string _contra) : personal(_nombre, _contra) {
