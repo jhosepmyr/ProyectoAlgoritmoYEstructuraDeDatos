@@ -41,12 +41,28 @@ public:
     string getNombre() {
         return this->nombre;
     }
-    string getApellido() {
-        return this->apellido;
-    }
     string getContra() {
         return this->contra;
     }
+    string getApellido() {
+        return this->apellido;
+    }
+    string getCorreoElectronico() {
+        return this->correoElectronico;
+    }
+    int getNumeroCelular() {
+        return this->numeroCelular;
+    }
+    string getDireccion() {
+        return this->direccion;
+    }
+    char getGenero() {
+        return this->genero;
+    }
+    int getDNI() {
+        return this->DNI;
+    }
+
     string getDatosInicioSesion() {
         return datosInicioSesion;
     }

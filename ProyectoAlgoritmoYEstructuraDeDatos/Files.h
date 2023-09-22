@@ -45,8 +45,6 @@ public:
 		return nombreArchivoPropio;
 	}
 
-
-
 	void actualizarArchivos(){}
 
 	Lista<Producto> getProductos(string datosProductos = "DatosProductos.txt") {
@@ -75,7 +73,6 @@ public:
 		return auxList;
 	}
 
-	void actualizarDatosSesionClientes() {
 
-	}
+
 };

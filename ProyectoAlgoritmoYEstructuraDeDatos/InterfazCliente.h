@@ -7,6 +7,7 @@ using namespace std;
 class InterfazCliente : public Interfaz {
 private:
 	Cliente* clienteAux;
+    Files datosActualizados;
 
 public:
 	InterfazCliente(string _nombre, string _contra) {
@@ -29,6 +30,7 @@ public:
             validarOpcion();
             system("cls");
             resultadosOpcionSeleccionada();
+            actualizarDatosInformacionPersonal();
             system("pause");
         } while (this->opcion != '5');
         this->clienteAux = nullptr;
@@ -36,6 +38,13 @@ public:
 		system("pause>0");
 		return;
 	}
+
+    void actualizarDatosInformacionPersonal() {
+        if (this->opcion=='5')
+        {
+           // this->datosActualizados.actualizarDatosSesion("DatosSesionClientes.txt", this->clienteAux);
+        }
+    }
 
     void resultadosOpcionSeleccionada() {
         switch (this->opcion) {
