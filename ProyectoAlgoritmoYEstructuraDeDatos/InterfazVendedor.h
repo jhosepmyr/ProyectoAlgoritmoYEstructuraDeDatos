@@ -21,7 +21,7 @@ public:
             cout << "1. Informacion personal\n";
             cout << "2. Modificar informacion\n";
             cout << "3. Mis Productos\n";
-            cout << "4. Modificar productos\n";
+            cout << "4. Aniadir productos\n";
             cout << "5. Salir\n";
             cout << "Selecciona una opcion ingresando el numero\n\n";
             cout << "Opcion: ";
@@ -55,7 +55,7 @@ public:
             break;
         }
         case '4': {
-
+            this->vendedorAux->aniadirProducto();
             this->opcion = '0';
             break;
         }
