@@ -93,7 +93,7 @@ void Lista<T>::agregaPos(T elem, uint pos) {
 
 template <class T>
 void Lista<T>::agregaFinal(T elem) {
-    agregaPos(elem, lon); // ;)
+    agregaPos(elem, lon-1); // ;)
 }
 
 template <class T>

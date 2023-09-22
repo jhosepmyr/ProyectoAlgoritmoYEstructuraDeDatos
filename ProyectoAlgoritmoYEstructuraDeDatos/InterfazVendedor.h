@@ -58,7 +58,7 @@ public:
             break;
         }
         case '4': {
-
+            this->vendedorAux->aniadirProducto();
             this->opcion = '0';
             break;
         }
