@@ -15,23 +15,24 @@ public:
         setProductosPropios();// al momento de instanciar se obtiene la lista de productos del vendedor especifico
     }
     void setProductosPropios() { //elimina los productos que no son del vendedor que inica sesion
-        //this->productosPropios = this->productos; //primero la lista adquiere todos los productos
-        /*for (int i = 0; i < productosPropios.longitud(); i++) {
+        string auxID = this->nombre + this->contra;
+        this->productosPropios = this->productos; //primero la lista adquiere todos los productos
+        for (int i = 0; i < productosPropios.longitud(); i++) {
             if (productosPropios.obtenerPos(i).getIdentificador() != auxID) { //utiliza el id de producto (que es la username+id)
                 productosPropios.eliminaPos(i);
                 i--;
             }
-        }*/ 
-
+        }
+        /*
         string auxID = this->nombre + this->contra;
         for (int i = 0; i < productos.longitud(); i++) {
             if (productos.obtenerPos(i).getIdentificador() == auxID) { //utiliza el id de producto (que es la username+id)
                 productosPropios.agregaFinal(productos.obtenerPos(i));
             }
-        }
+        }*/
     }
     void mostrarMisProductos() {
-        //setProductosPropios();
+        setProductosPropios();
         productosPropios.MostrarDatosPROD(); //se obtiene la lista de productos del vendedor especifico
     }
     void aniadirProducto() {
@@ -47,8 +48,8 @@ public:
         cout << "Tipo (comestible | noComestible): "; cin >> tipo;
 
         productos.agregaFinal(Producto(Nombre, precio, tipo, this->nombre + this->contra)); //falta actualizar en doc 
-        productosPropios.agregaFinal(Producto(Nombre, precio, tipo, this->nombre + this->contra));
-        cout << "Carga de archivo exitosa. Press any key to continue....";
+        //productosPropios.agregaFinal(Producto(Nombre, precio, tipo, this->nombre + this->contra));
+        //cout << "Carga de archivo exitosa. Press any key to continue....";
         cin.get();
         cin.ignore();
     }
