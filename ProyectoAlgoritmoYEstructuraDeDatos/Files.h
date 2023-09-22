@@ -68,4 +68,28 @@ public:
 		}
 		return auxList;
 	}
+
+	void actualizarProductosTxt(Lista<Producto> productos, string datosProductos = "DatosProductos.txt") {
+		ifstream archivo(datosProductos);
+		if (!archivo.is_open()) {
+			cout << "Error al abrir el archivo " << endl;
+			return;
+		}
+		string contenidoArchivo;
+		string linea;
+		int n = 0;
+
+		while (n < productos.longitud()) {
+			string nuevaLinea = productos.obtenerPos(n).getNombre() + " " +
+								to_string(productos.obtenerPos(n).getPrecio()) + " " +
+								productos.obtenerPos(n).getTipo() + " " +
+								productos.obtenerPos(n).getIdentificador();
+			contenidoArchivo += nuevaLinea + "\n";
+			n++;
+		}
+		archivo.close();
+		ofstream archivoEscritura(datosProductos);
+		archivoEscritura << contenidoArchivo;
+		archivoEscritura.close();
+	}
 };

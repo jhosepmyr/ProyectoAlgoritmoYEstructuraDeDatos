@@ -32,7 +32,10 @@ public:
             validarOpcion();
             system("cls");
             resultadosOpcionSeleccionada();
-            if (this->opcion == '5') actualizarDatosSesion("DatosSesionVendedores.txt");
+            if (this->opcion == '5') { 
+                actualizarDatosSesion("DatosSesionVendedores.txt");
+                this->vendedorAux->actualizarDatosProductosTxt();
+            };
             system("pause");
         } while (this->opcion != '5');
         this->vendedorAux = nullptr;
@@ -88,7 +91,7 @@ public:
                 string correoElectronico;
                 int numeroCelular;
                 string direccion;
-                char genero;
+                string genero;
                 int DNI;
                 istringstream iss(linea);
                 iss >> nombre >> contra >> apellido >> correoElectronico >> numeroCelular >> direccion >> genero >> DNI;
@@ -105,39 +108,40 @@ public:
     void actualizarDatosSesion(string rutaArchivoDatos) {
         ifstream archivoLectura(rutaArchivoDatos);
         string contenidoArchivo;
-        if (archivoLectura.is_open())
-        {
-            string linea;
-            while (getline(archivoLectura, linea))
-            {
-                bool verificarNombre = linea.find(this->vendedorAux->getNombre()) != string::npos;
-                bool verificarContra = linea.find(this->vendedorAux->getContra()) != string::npos;
-                if (verificarContra && verificarNombre)
-                {
-                    string nuevaLinea = this->vendedorAux->getNombre() + " " +
-                        this->vendedorAux->getContra() + " " +
-                        this->vendedorAux->getApellido() + " " +
-                        this->vendedorAux->getCorreoElectronico() + " " +
-                        to_string(this->vendedorAux->getNumeroCelular()) + " " +
-                        this->vendedorAux->getDireccion() + " " +
-                        to_string(this->vendedorAux->getGenero()) + " " +
-                        to_string(this->vendedorAux->getDNI());
-                    contenidoArchivo += nuevaLinea + "\n";
-                }
-                else
-                {
-                    contenidoArchivo += linea + "\n";
-                }
-            }
-            archivoLectura.close();
-            ofstream archivoEscritura(rutaArchivoDatos);
-            archivoEscritura << contenidoArchivo;
-            archivoEscritura.close();
 
-            //cout << "Datos actualizados en el archivo exitosamente." <<endl;
+        if (!archivoLectura.is_open())
+        {
+            cout << "Error al abrir el archivo " << this->vendedorAux->getDatosInicioSesion() << endl;
+            return;
         }
-        else {
-            //cerr << "Error al abrir el archivo para lectura." <<endl;
+
+        string linea;
+        while (getline(archivoLectura, linea))
+        {
+            bool verificarNombre = linea.find(this->vendedorAux->getNombre()) != string::npos;
+            bool verificarContra = linea.find(this->vendedorAux->getContra()) != string::npos;
+            if (verificarContra && verificarNombre)
+            {
+                string nuevaLinea = this->vendedorAux->getNombre() + " " +
+                    this->vendedorAux->getContra() + " " +
+                    this->vendedorAux->getApellido() + " " +
+                    this->vendedorAux->getCorreoElectronico() + " " +
+                    to_string(this->vendedorAux->getNumeroCelular()) + " " +
+                    this->vendedorAux->getDireccion() + " " +
+                    this->vendedorAux->getGenero() + " " +
+                    to_string(this->vendedorAux->getDNI());
+                contenidoArchivo += nuevaLinea + "\n";
+            }
+            else
+            {
+                contenidoArchivo += linea + "\n";
+            }
         }
+        archivoLectura.close();
+        ofstream archivoEscritura(rutaArchivoDatos);
+        archivoEscritura << contenidoArchivo;
+        archivoEscritura.close();
+
+        //cout << "Datos actualizados en el archivo exitosamente." <<endl;
     }
 };

@@ -33,7 +33,10 @@ public:
             validarOpcion();
             system("cls");
             resultadosOpcionSeleccionada();
-            if (this->opcion == '5') actualizarDatosSesion("DatosSesionClientes.txt");
+            if (this->opcion == '5') { 
+                actualizarDatosSesion("DatosSesionClientes.txt");
+                this->clienteAux->actualizarDatosProductosTxt();
+            }
             system("pause");
         } while (this->opcion != '5');
         this->clienteAux = nullptr;
@@ -90,7 +93,7 @@ public:
                 string correoElectronico;
                 int numeroCelular;
                 string direccion;
-                char genero;
+                string genero;
                 int DNI;
                 istringstream iss(linea);
                 iss >> nombre >> contra >> apellido >> correoElectronico >> numeroCelular >> direccion >> genero >> DNI;
@@ -108,40 +111,40 @@ public:
     void actualizarDatosSesion(string rutaArchivoDatos) {
         ifstream archivoLectura(rutaArchivoDatos);
         string contenidoArchivo;
-        if (archivoLectura.is_open())
+        if (!archivoLectura.is_open())
         {
-            string linea;
-            while (getline(archivoLectura, linea))
-            {
-                bool verificarNombre = linea.find(this->clienteAux->getNombre()) != string::npos;
-                bool verificarContra = linea.find(this->clienteAux->getContra()) != string::npos;
-                if (verificarContra && verificarNombre)
-                {
-                    string nuevaLinea = this->clienteAux->getNombre() + " " +
-                        this->clienteAux->getContra() + " " +
-                        this->clienteAux->getApellido() + " " +
-                        this->clienteAux->getCorreoElectronico() + " " +
-                        to_string(this->clienteAux->getNumeroCelular()) + " " +
-                        this->clienteAux->getDireccion() + " " +
-                        to_string(this->clienteAux->getGenero()) + " " +
-                        to_string(this->clienteAux->getDNI());
-                    contenidoArchivo += nuevaLinea + "\n";
-                }
-                else
-                {
-                    contenidoArchivo += linea + "\n";
-                }
-            }
-            archivoLectura.close();
-            ofstream archivoEscritura(rutaArchivoDatos);
-            archivoEscritura << contenidoArchivo;
-            archivoEscritura.close();
+            cout << "Error al abrir el archivo " << endl;
+            return;
+        }
 
-            //cout << "Datos actualizados en el archivo exitosamente." <<endl;
+        string linea;
+        while (getline(archivoLectura, linea))
+        {
+            bool verificarNombre = linea.find(this->clienteAux->getNombre()) != string::npos;
+            bool verificarContra = linea.find(this->clienteAux->getContra()) != string::npos;
+            if (verificarContra && verificarNombre)
+            {
+                string nuevaLinea = this->clienteAux->getNombre() + " " +
+                    this->clienteAux->getContra() + " " +
+                    this->clienteAux->getApellido() + " " +
+                    this->clienteAux->getCorreoElectronico() + " " +
+                    to_string(this->clienteAux->getNumeroCelular()) + " " +
+                    this->clienteAux->getDireccion() + " " +
+                    this->clienteAux->getGenero() + " " +
+                    to_string(this->clienteAux->getDNI());
+                contenidoArchivo += nuevaLinea + "\n";
+            }
+            else
+            {
+                contenidoArchivo += linea + "\n";
+            }
         }
-        else {
-            //cerr << "Error al abrir el archivo para lectura." <<endl;
-        }
+        archivoLectura.close();
+        ofstream archivoEscritura(rutaArchivoDatos);
+        archivoEscritura << contenidoArchivo;
+        archivoEscritura.close();
+
+        //cout << "Datos actualizados en el archivo exitosamente." <<endl;
     }
 
 };

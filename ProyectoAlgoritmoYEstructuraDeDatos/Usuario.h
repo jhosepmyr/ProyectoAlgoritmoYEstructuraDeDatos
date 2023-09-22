@@ -14,7 +14,8 @@ protected:
     string correoElectronico;
     int numeroCelular;
     string direccion;
-    char genero;
+    string genero;
+    //char genero;
     int DNI;
 
     string datosInicioSesion;//archivo donde se guarda las contrasenas y usuarios
@@ -34,7 +35,7 @@ public:
         this->correoElectronico = "ninguno";
         this->numeroCelular = 0;
         this->direccion = "ninguno";
-        this->genero = 'N';
+        this->genero = "ninguno";
         this->DNI = 0;
         this->productos = this->personal.getProductos();
         this->opcionUsuario = '0';
@@ -58,14 +59,14 @@ public:
     string getDireccion() {
         return this->direccion;
     }
-    char getGenero() {
+    string getGenero() {
         return this->genero;
     }
     int getDNI() {
         return this->DNI;
     }
 
-    void setTodaInformacion(string _nombre, string _contra, string _apellido, string _correo, int _num, string _direccion, char _genero, int _DNI) {
+    void setTodaInformacion(string _nombre, string _contra, string _apellido, string _correo, int _num, string _direccion,string _genero, int _DNI) {
         this->nombre = _nombre;
         this->contra = _contra;
         this->apellido = _apellido;
@@ -87,7 +88,7 @@ public:
         if(this->correoElectronico!="ninguno") cout << "CorreoElectronico: " + this->correoElectronico << endl;
         if(this->numeroCelular!=0) cout << "Numero de celular: " + to_string(this->numeroCelular) << endl;
         if(this->direccion!="ninguno") cout << "Direccion: " + this->direccion << endl;
-        if(this->genero!='N') cout << "Genero: " + to_string(this->genero) << endl;
+        if(this->genero!= "ninguno") cout << "Genero: " + this->genero << endl;
         if(this->DNI!=0) cout << "DNI: " + to_string(this->DNI) << endl;
     }
 
@@ -117,7 +118,7 @@ public:
     void resultadosOpcionSeleccionada() {
         int opcionNumerica;
         string opcionString;
-        char opcionChar;
+        //char opcionChar;
         switch (this->opcionUsuario) {
             case '1': {
                 cout << "Actualizar apellido: "<<endl;
@@ -150,9 +151,8 @@ public:
             }
             case '5': {
                 cout << "Actualizar genero: " << endl;
-                cin >> opcionChar;
-                if (typeid(opcionChar) == typeid(char)) { this->genero = opcionChar; }
-                else { cout << "Valor no permitido" << endl; }
+                cin >> opcionString;
+                this->genero = opcionString;
                 this->opcionUsuario = '0';
                 break;
             }
@@ -165,6 +165,10 @@ public:
                 break;
             }
         }
+    }
+
+    void actualizarDatosProductosTxt() {
+        this->personal.actualizarProductosTxt(this->productos);
     }
 
     void ProductoMasCaro() {

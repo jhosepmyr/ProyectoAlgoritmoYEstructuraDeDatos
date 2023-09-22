@@ -1,5 +1,4 @@
 Juan 123
 Luis 324
 Joan 1234
-Lucas 1212
-Lucas 1212
+Lucas 1212 perez lucas@gmail.com 928384726 Lima masculino 23541244

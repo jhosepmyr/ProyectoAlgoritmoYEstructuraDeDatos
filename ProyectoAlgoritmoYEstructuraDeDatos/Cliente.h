@@ -40,6 +40,42 @@ public:
     }
 
     void mostrarPedido() {
-        this->pedido.mostrarPila();
+        this->pedido.mostrarListaProductos();
+        cout << "---------------------------" << endl;
+        system("pause");
+        confirmarPedido();
+    }
+
+    void confirmarPedido() {
+        system("cls");
+        char desicion = '0';
+        cout << endl << "El pago total por el pedido es: "<< to_string(this->pedido.getPrecioTotal());
+        cout << endl << "Confirmar pago(1:SI, 2: NO):"<<endl;
+        cin >> desicion;
+        if (desicion=='1')
+        {
+            restaurarPedido();
+            cout << endl << "GRACIAS POR SU COMPRA" << endl;
+        }
+        else
+        {
+            reactualizarProductosAlmacen();
+            this->pedido.eliminarProductos();
+            cout << endl << "ES UNA LASTIMA QUE NO PUDO COMPLETAR SU COMPRA" << endl;
+
+        }
+    }
+
+    void restaurarPedido() {
+        //funcion de crear txt de pedido por cad cliente
+        this->pedido.eliminarProductos();
+    }
+
+    void reactualizarProductosAlmacen() {
+        for (int i = 0; i < this->pedido.getCantidadProductosCarrito(); i++)
+        {
+            Producto auxProduc = this->pedido.getProductoPorPosicion(i);
+            this->productos.agregaFinal(auxProduc);
+        }
     }
 };
