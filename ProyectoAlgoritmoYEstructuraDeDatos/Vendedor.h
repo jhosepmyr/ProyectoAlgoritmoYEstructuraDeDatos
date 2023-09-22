@@ -12,17 +12,9 @@ private:
 public:
     Vendedor(string _nombre, string _contra) : Usuario(_nombre, _contra) {
         this->datosInicioSesion = "DatosSesionVendedores.txt";
-        //setProductosPropios();// al momento de instanciar se obtiene la lista de productos del vendedor especifico
+        getInformacionPersonalTxt();
     }
-    void setProductosPropios() { //elimina los productos que no son del vendedor que inica sesion
-        //this->productosPropios = this->productos; //primero la lista adquiere todos los productos
-        /*for (int i = 0; i < productosPropios.longitud(); i++) {
-            if (productosPropios.obtenerPos(i).getIdentificador() != auxID) { //utiliza el id de producto (que es la username+id)
-                productosPropios.eliminaPos(i);
-                i--;
-            }
-        }*/ 
-
+    void setProductosPropios() { 
         string auxID = this->nombre + this->contra;
         for (int i = 0; i < productos.longitud(); i++) {
             if (productos.obtenerPos(i).getIdentificador() == auxID) { //utiliza el id de producto (que es la username+id)
@@ -31,13 +23,13 @@ public:
             }
         }
     }
+
     void mostrarMisProductos() {
-        //setProductosPropios();
         system("cls");
         productosPropios.MostrarDatosPROD();
         system("pause");
-        //se obtiene la lista de productos del vendedor especifico
     }
+
     void aniadirProducto() {
         string Nombre;
         double precio;
@@ -51,11 +43,9 @@ public:
         cout << "Tipo (comestible | noComestible): "; cin >> tipo;
 
         Producto aux(Nombre, precio, tipo, this->nombre + this->contra);
-        //aux.mostrarDatos();
 
-        productos.agregaFinal(aux); //falta actualizar en doc 
+        productos.agregaFinal(aux);
         productosPropios.agregaFinal(aux);
-        //cout << "Carga de archivo exitosa. Press any key to continue....";
         cin.get();
         cin.ignore();
     }

@@ -13,12 +13,15 @@ public:
 void agregaraCarrito(Producto aux){
 	this->carritoCompras.agregaFinal(aux);
 }
+
 void mostrarListaProductos() {
 	this->carritoCompras.MostrarDatosPROD();
 }
+
 int getCantidadProductosCarrito() {
 	return this->carritoCompras.longitud();
 }
+
 int getPrecioTotal() {
 	this->precioTotal = 0;
 	for (int i = 0; i < this->carritoCompras.longitud(); i++)
@@ -38,6 +41,7 @@ void eliminarProductos() {
 string getIdPorProducto(int posi) {
 	return this->carritoCompras.obtenerPos(posi).getIdentificador();
 }
+
 Producto getProductoPorPosicion(int pos) {
 	return this->carritoCompras.obtenerPos(pos);
 }

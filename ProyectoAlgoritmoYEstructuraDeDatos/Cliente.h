@@ -12,6 +12,7 @@ private:
 public:
     Cliente(string _nombre, string _contra) : Usuario(_nombre, _contra) {
         this->datosInicioSesion = "DatosSesionClientes.txt";
+        getInformacionPersonalTxt();
     }
 
     void mostrarProductos() {

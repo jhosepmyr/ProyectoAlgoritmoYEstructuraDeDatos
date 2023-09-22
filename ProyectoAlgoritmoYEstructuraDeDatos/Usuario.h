@@ -41,6 +41,8 @@ public:
         this->opcionUsuario = '0';
     }
 
+    //GETTERS Y SETTERS
+
     string getNombre() {
         return this->nombre;
     }
@@ -65,8 +67,12 @@ public:
     int getDNI() {
         return this->DNI;
     }
+    string getDatosInicioSesion() {
+        return datosInicioSesion;
+    }
 
-    void setTodaInformacion(string _nombre, string _contra, string _apellido, string _correo, int _num, string _direccion,string _genero, int _DNI) {
+    //actualiza toda la informacion del archivo txt de datos de sesion
+    void setTodaInformacion(string _nombre, string _contra, string _apellido, string _correo, int _num, string _direccion, string _genero, int _DNI) {
         this->nombre = _nombre;
         this->contra = _contra;
         this->apellido = _apellido;
@@ -75,10 +81,6 @@ public:
         this->direccion = _direccion;
         this->genero = _genero;
         this->DNI = _DNI;
-    }
-
-    string getDatosInicioSesion() {
-        return datosInicioSesion;
     }
 
     void mostrarDatosPersonales() {
@@ -110,15 +112,12 @@ public:
             //validarOpcion();
             system("cls");
             resultadosOpcionSeleccionada();
-            //ActualizarDatos()---->del atributo File que actualize el archivo txt con los datos nuevos
-            system("pause");
         } while (this->opcionUsuario != '7');
     }
 
     void resultadosOpcionSeleccionada() {
         int opcionNumerica;
         string opcionString;
-        //char opcionChar;
         switch (this->opcionUsuario) {
             case '1': {
                 cout << "Actualizar apellido: "<<endl;
@@ -173,5 +172,81 @@ public:
 
     void ProductoMasCaro() {
         this->productos.buscarPRODMAYVALOR();
+    }
+
+    void getInformacionPersonalTxt() {
+
+        ifstream archivoLectura(this->datosInicioSesion);
+        string contenidoArchivo;
+
+        if (!archivoLectura.is_open())
+        {
+            cout << "Error al abrir el archivo " << this->getDatosInicioSesion() << endl;
+            return;
+        }
+        string linea;
+        while (getline(archivoLectura, linea))
+        {
+            bool verificarNombre = linea.find(this->nombre) != string::npos;
+            bool verificarContra = linea.find(this->contra) != string::npos;
+            if (verificarContra && verificarNombre)
+            {
+                string nombre;
+                string apellido;
+                string contra;
+                string correoElectronico;
+                int numeroCelular;
+                string direccion;
+                string genero;
+                int DNI;
+                istringstream iss(linea);
+                iss >> nombre >> contra >> apellido >> correoElectronico >> numeroCelular >> direccion >> genero >> DNI;
+                setTodaInformacion(nombre, contra, apellido, correoElectronico, numeroCelular, direccion, genero, DNI);
+                return;
+            }
+        }
+        archivoLectura.close();
+        ofstream archivoEscritura(this->datosInicioSesion);
+        archivoEscritura << contenidoArchivo;
+        archivoEscritura.close();
+    }
+
+    void actualizarDatosSesionATxt() {
+        ifstream archivoLectura(this->datosInicioSesion);
+        string contenidoArchivo;
+        if (!archivoLectura.is_open())
+        {
+            cout << "Error al abrir el archivo " << endl;
+            return;
+        }
+
+        string linea;
+        while (getline(archivoLectura, linea))
+        {
+            bool verificarNombre = linea.find(this->nombre) != string::npos;
+            bool verificarContra = linea.find(this->contra) != string::npos;
+            if (verificarContra && verificarNombre)
+            {
+                string nuevaLinea = this->nombre + " " +
+                    this->contra + " " +
+                    this->apellido + " " +
+                    this->correoElectronico + " " +
+                    to_string(this->numeroCelular) + " " +
+                    this->direccion + " " +
+                    this->genero + " " +
+                    to_string(this->DNI);
+                contenidoArchivo += nuevaLinea + "\n";
+            }
+            else
+            {
+                contenidoArchivo += linea + "\n";
+            }
+        }
+        archivoLectura.close();
+        ofstream archivoEscritura(this->datosInicioSesion);
+        archivoEscritura << contenidoArchivo;
+        archivoEscritura.close();
+
+        //cout << "Datos actualizados en el archivo exitosamente." <<endl;
     }
 };

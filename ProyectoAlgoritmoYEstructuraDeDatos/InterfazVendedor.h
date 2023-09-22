@@ -9,11 +9,9 @@ private:
     Vendedor* vendedorAux;
 public:
     InterfazVendedor(string _nombre, string _contra) {
-
         this->vendedorAux = new Vendedor(_nombre, _contra);
         this->vendedorAux->setProductosPropios();
         this->tipoUsuario = '2';
-        extraerInformacionUsuario("DatosSesionVendedores.txt");
     }
 
     void mostrarInterfaz() {
@@ -32,10 +30,6 @@ public:
             validarOpcion();
             system("cls");
             resultadosOpcionSeleccionada();
-            if (this->opcion == '5') { 
-                actualizarDatosSesion("DatosSesionVendedores.txt");
-                this->vendedorAux->actualizarDatosProductosTxt();
-            };
             system("pause");
         } while (this->opcion != '5');
         this->vendedorAux = nullptr;
@@ -66,82 +60,11 @@ public:
             this->opcion = '0';
             break;
         }
+        case '5': {
+            this->vendedorAux->actualizarDatosSesionATxt();
+            this->vendedorAux->actualizarDatosProductosTxt();
+            break;
         }
-    }
-
-    void extraerInformacionUsuario(string rutaArchivoDatos) {
-        ifstream archivoLectura(rutaArchivoDatos);
-        string contenidoArchivo;
-
-        if (!archivoLectura.is_open())
-        {
-            cout << "Error al abrir el archivo " << this->vendedorAux->getDatosInicioSesion() << endl;
-            return;
         }
-        string linea;
-        while (getline(archivoLectura, linea))
-        {
-            bool verificarNombre = linea.find(this->vendedorAux->getNombre()) != string::npos;
-            bool verificarContra = linea.find(this->vendedorAux->getContra()) != string::npos;
-            if (verificarContra && verificarNombre)
-            {
-                string nombre;
-                string apellido;
-                string contra;
-                string correoElectronico;
-                int numeroCelular;
-                string direccion;
-                string genero;
-                int DNI;
-                istringstream iss(linea);
-                iss >> nombre >> contra >> apellido >> correoElectronico >> numeroCelular >> direccion >> genero >> DNI;
-                this->vendedorAux->setTodaInformacion(nombre, contra, apellido, correoElectronico, numeroCelular, direccion, genero, DNI);
-                return;
-            }
-        }
-        archivoLectura.close();
-        ofstream archivoEscritura(rutaArchivoDatos);
-        archivoEscritura << contenidoArchivo;
-        archivoEscritura.close();
-    }
-
-    void actualizarDatosSesion(string rutaArchivoDatos) {
-        ifstream archivoLectura(rutaArchivoDatos);
-        string contenidoArchivo;
-
-        if (!archivoLectura.is_open())
-        {
-            cout << "Error al abrir el archivo " << this->vendedorAux->getDatosInicioSesion() << endl;
-            return;
-        }
-
-        string linea;
-        while (getline(archivoLectura, linea))
-        {
-            bool verificarNombre = linea.find(this->vendedorAux->getNombre()) != string::npos;
-            bool verificarContra = linea.find(this->vendedorAux->getContra()) != string::npos;
-            if (verificarContra && verificarNombre)
-            {
-                string nuevaLinea = this->vendedorAux->getNombre() + " " +
-                    this->vendedorAux->getContra() + " " +
-                    this->vendedorAux->getApellido() + " " +
-                    this->vendedorAux->getCorreoElectronico() + " " +
-                    to_string(this->vendedorAux->getNumeroCelular()) + " " +
-                    this->vendedorAux->getDireccion() + " " +
-                    this->vendedorAux->getGenero() + " " +
-                    to_string(this->vendedorAux->getDNI());
-                contenidoArchivo += nuevaLinea + "\n";
-            }
-            else
-            {
-                contenidoArchivo += linea + "\n";
-            }
-        }
-        archivoLectura.close();
-        ofstream archivoEscritura(rutaArchivoDatos);
-        archivoEscritura << contenidoArchivo;
-        archivoEscritura.close();
-
-        //cout << "Datos actualizados en el archivo exitosamente." <<endl;
     }
 };

@@ -20,6 +20,7 @@ public:
 		this->apellidoUsuario = apellido;
 	}
 
+	//getNombreArchivoPropio-> no se utiliza en nada por ahora
 	string getNombreArchivoPropio() {
 		// Ruta relativa desde la ubicación del archivo Files.h hasta la carpeta de Archivos
 		string nombreArchivoPropio = "InformacionUsuarios/" + this->nombreUsuario + this->apellidoUsuario + ".txt";
