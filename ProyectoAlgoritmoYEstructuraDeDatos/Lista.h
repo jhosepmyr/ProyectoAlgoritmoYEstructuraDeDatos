@@ -1,6 +1,6 @@
 #pragma once
 #include <functional>
-
+#include "Cola.h"
 using namespace std;
 
 typedef unsigned int uint;
@@ -11,7 +11,6 @@ class Lista {
     typedef function<int(T, T)> Comp;
     Nodo* ini;
     uint    lon; // número de elementos en la lista
-
     //Comp    comparar; // lambda de criterio de comparación
 
 public:
@@ -40,6 +39,7 @@ public:
     T       obtenerFinal();
     T     buscarporID(string ID);
     void     eliminarporID(string ID);
+    T rECURSIV(Nodo* aux, string ID);
 };
 
 template <class T>
@@ -192,11 +192,13 @@ void Lista<T>::MostrarDatosPROD() {
 template<class T>
 void Lista<T>::buscarPRODMAYVALOR() {
     Nodo* aux = ini;
+    Cola<T>colaaux;
     Producto *arr=new Producto[lon];
     for (int i = 0; i < lon; i++) {
         arr[i] = aux->elem;
         aux = aux->sig;
     }
+
     auto ordIntercambio = [](Producto a[], int n)
         {
             for (int i = 0; i < n - 1; i++) {
@@ -208,19 +210,27 @@ void Lista<T>::buscarPRODMAYVALOR() {
             }
         };
     ordIntercambio(arr, lon);
-    arr[lon - 1].mostrarDatos();
+    
+    for (int i = lon - 1; i >= 0; i--) {
+        colaaux.enqueue(arr[i]);
+    }
+
+    colaaux.mostrardatos();
 
 }
+
+
 
 template <class T>
 T Lista<T>::buscarporID(string ID) {
     Nodo *aux = ini;
-    while (aux != nullptr) {
+    /*while (aux != nullptr) {
         if (aux->elem.getIdentificador()==ID) {
             return aux->elem;
         }
         aux = aux->sig;
-    }
+    }*/
+    return rECURSIV(aux, ID);
 }
 
 
@@ -245,9 +255,10 @@ void Lista<T>::eliminarporID(string ID) {
     cout << "\nSe no se ha encontrado el producto con el identificador brindado" << endl;
 }
 
-/*Producto rECURSIVO(Nodo *aux, string ID) {
-    if (aux->elem.getIdentificador()==ID) {
-            return aux->elem;
-        }
-    else  if(aux!=nullptr) return rECURSIVO(aux = aux->sig, ID);
-}*/
+template <class T>
+T Lista<T>::rECURSIV(Nodo* aux, string ID) {
+    if (aux->elem.getIdentificador() == ID) {
+        return aux->elem;
+    }
+    else  if (aux != nullptr) return rECURSIV(aux = aux->sig, ID);
+}
