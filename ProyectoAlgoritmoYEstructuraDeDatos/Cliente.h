@@ -13,6 +13,7 @@ public:
     Cliente(string _nombre, string _contra) : Usuario(_nombre, _contra) {
         this->datosInicioSesion = "DatosSesionClientes.txt";
         getInformacionPersonalTxt();
+        this->pedidos = cargarPedidos();
     }
 
     void mostrarProductos() {
@@ -55,6 +56,11 @@ public:
         cin >> desicion;
         if (desicion=='1')
         {
+            static int numPedido = 1;
+            string nombrePedido = this->nombre+this->contra+to_string(numPedido);
+            this->pedido.setNombreArchivoPedido(nombrePedido);
+            agregarPedido(this->pedido);
+            numPedido++;
             restaurarPedido();
             cout << endl << "GRACIAS POR SU COMPRA" << endl;
         }
@@ -68,7 +74,7 @@ public:
     }
 
     void restaurarPedido() {
-        //funcion de crear txt de pedido por cad cliente
+        this->pedido.setNombreArchivoPedido("");
         this->pedido.eliminarProductos();
     }
 
@@ -78,5 +84,54 @@ public:
             Producto auxProduc = this->pedido.getProductoPorPosicion(i);
             this->productos.agregaFinal(auxProduc);
         }
+    }
+
+        // Función para agregar un Pedido al archivo (creando el archivo si no existe)
+    void agregarPedido(Pedido pedido) {
+        string rutaClientepedido = this->personal.getNombreArchivoPropio();
+        // Abre el archivo en modo append
+        ofstream archivoSalida(rutaClientepedido, ios_base::app); 
+        if (archivoSalida.is_open()) {
+            archivoSalida << pedido.getNombreArchivo() <<endl;
+            for (int i = 0; i < pedido.getCantidadProductosCarrito(); i++)
+            {
+                archivoSalida << pedido.getProductoPorPosicion(i).getNombre() << ' ' << pedido.getProductoPorPosicion(i).getPrecio()<<' '<< pedido.getProductoPorPosicion(i).getTipo()<<' '<< pedido.getProductoPorPosicion(i).getIdentificador() << endl;
+            }
+            archivoSalida.close();
+            //cout << "Pedido agregado al archivo." << endl;
+        }
+    }
+
+    Pila<Pedido> cargarPedidos() {
+        string rutaClientepedidos = this->personal.getNombreArchivoPropio();
+        ifstream archivoEntrada(rutaClientepedidos);
+        string nombreCliente;
+        Pila<Pedido> pedidos;
+        if (archivoEntrada.is_open())
+        {
+            string linea;
+            while (getline(archivoEntrada, linea)) {
+                Pedido pedido;
+                pedido.setNombreArchivoPedido(linea);// El primer dato de la línea es el nombre del cliente
+                while (getline(archivoEntrada, linea) && !linea.empty()) {
+                    istringstream iss(linea);
+                    string nombreProducto;
+                    float precio;
+                    string tipo;
+                    string id;
+                    iss >> nombreProducto >> precio>>tipo>>id;
+                    Producto auxProduct(nombreProducto, precio, tipo, id);
+                    pedido.agregaraCarrito(auxProduct);
+                }
+                pedidos.push(pedido);
+                pedido.eliminarProductos();
+            }
+        }
+        return pedidos;
+    }
+
+    void mostrarPedidos() {
+        Pila<Pedido> auxPedidos = this->pedidos;
+        auxPedidos.pop().mostrarListaProductos();
     }
 };

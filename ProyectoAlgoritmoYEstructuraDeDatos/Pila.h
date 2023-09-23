@@ -16,6 +16,7 @@ public:
 	T pop();
 	bool estaVacia();
 	void mostrarDATOS();
+	
 };
 
 template <class T>
@@ -27,13 +28,13 @@ void Pila<T>::push(T v) {
 
 template <class T>
 T Pila<T>::pop() {
-	if (estaVacia()) return nullptr; //ERROR PILA VACIA
-	else {
+	if (!estaVacia())
+	{
 		T elemento = tope->dato;
 		tope = tope->siguiente;
 		return elemento;
+		lon--;
 	}
-	lon--;
 }
 
 template<class T>
@@ -49,11 +50,12 @@ void Pila<T>::mostrarDATOS() {
 		int i = 0;
 		while (i<lon ) {
 			T elemento = topeaux->dato;
-			topeaux->dato.mostrarDatos();
+			topeaux->dato.mostrarListaProductos();
 			topeaux = topeaux->siguiente;
 			i++;
 		}
 	}
-
 }
+
+
 

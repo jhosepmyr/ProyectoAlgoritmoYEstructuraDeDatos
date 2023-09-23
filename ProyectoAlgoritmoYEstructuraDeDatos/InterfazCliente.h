@@ -25,15 +25,16 @@ public:
             cout << "2. Modificar informacion\n";
             cout << "3. Mostrar Productos\n";
             cout << "4. Mi carrito de compras\n";
-            cout << "5. Cerrar sesion\n";
+            cout << "5. Historial de pedidos\n";
+            cout << "6. Cerrar sesion\n";
             cout << "Selecciona una opcion ingresando el numero\n\n";
             cout << "Opcion: ";
             cin >> this->opcion;
-            validarOpcion();
+            //validarOpcion();
             system("cls");
             resultadosOpcionSeleccionada();
             system("pause");
-        } while (this->opcion != '5');
+        } while (this->opcion != '6');
         this->clienteAux = nullptr;
         cout << "\nSESION CERRADA\n";
 		system("pause>0");
@@ -63,6 +64,11 @@ public:
             break;
         }
         case '5': {
+            this->clienteAux->mostrarPedidos();
+            this->opcion = '0';
+            break;
+        }
+        case '6': {
             this->clienteAux->actualizarDatosSesionATxt();
             this->clienteAux->actualizarDatosProductosTxt();
             break;
