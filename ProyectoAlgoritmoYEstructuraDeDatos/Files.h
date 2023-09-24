@@ -77,15 +77,17 @@ public:
 			return;
 		}
 		string contenidoArchivo;
-		string linea;
 		int n = 0;
 
+		auto createLine = [](Producto producto) {
+			return producto.getNombre() + " " +
+				to_string(producto.getPrecio()) + " " +
+				producto.getTipo() + " " +
+				producto.getIdentificador();
+		};
+
 		while (n < productos.longitud()) {
-			string nuevaLinea = productos.obtenerPos(n).getNombre() + " " +
-								to_string(productos.obtenerPos(n).getPrecio()) + " " +
-								productos.obtenerPos(n).getTipo() + " " +
-								productos.obtenerPos(n).getIdentificador();
-			contenidoArchivo += nuevaLinea + "\n";
+			contenidoArchivo += createLine(productos.obtenerPos(n)) + "\n";
 			n++;
 		}
 		archivo.close();

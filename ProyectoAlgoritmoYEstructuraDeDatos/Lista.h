@@ -232,8 +232,6 @@ void Lista<T>::mostrarProdsDeMayoraMenorPrecio() {
 
 }
 
-
-
 template <class T>
 T Lista<T>::buscarporID(string ID) {
     Nodo *aux = ini;
@@ -245,7 +243,6 @@ T Lista<T>::buscarporID(string ID) {
     }*/
     return rECURSIV(aux, ID);
 }
-
 
 template <class T>
 void Lista<T>::eliminarporID(string ID) {

@@ -1,4 +1,3 @@
-Sillon 50.000000 noComestible Juan123
 Tele 1350.000000 noComestible Luis324
 Limon 14.000000 comestible Lucas1212
 Limon 14.000000 comestible Joan1234
