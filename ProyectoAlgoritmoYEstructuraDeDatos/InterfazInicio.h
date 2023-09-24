@@ -11,9 +11,9 @@ private:
 public:
     InterfazInicio() {}
     void ventanaInicio() {
-        //Console::SetCursorPosition(0, 8);
+        Console::SetCursorPosition(0, 8);
         cout << endl;
-        /*cout << R"(
+        cout << R"(
          _______  __    __  .______       __    __    
         /  _____||  |  |  | |   _  \     |  |  |  |   
        |  |  __  |  |  |  | |  |_)  |    |  |  |  |   
@@ -26,10 +26,9 @@ public:
            \   \    |   __   | |  |  |  | |   ___/ 
        .----)   |   |  |  |  | |  `--'  | |  |     
        |_______/    |__|  |__|  \______/  | _|                               
-)";*/
-        cout << "guru shop";
-        //Console::ForegroundColor = ConsoleColor::Blue;
-        //Console::SetCursorPosition(14, 22); 
+)";
+        Console::ForegroundColor = ConsoleColor::Blue;
+        Console::SetCursorPosition(14, 22); 
         cout << endl;
         cout << "Presiona ENTER para continuar";
         cout << endl;
