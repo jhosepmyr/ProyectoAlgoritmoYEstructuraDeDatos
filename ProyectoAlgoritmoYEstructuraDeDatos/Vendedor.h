@@ -31,9 +31,7 @@ public:
     }
 
     void opcionesMisProductos() {
-        do {
-            system("cls");
-            this->opcionUsuario = '0';
+        auto MENU = []() {
             cout << "MODIFICACION DE MIS PRODUCTOS " << endl;
             cout << "1. Agrega un nuevo producto\n";
             cout << "2. Modificar un producto\n";
@@ -41,6 +39,11 @@ public:
             cout << "4. Salir\n";
             cout << "Selecciona una opcion ingresando el numero\n\n";
             cout << "Opcion: ";
+            };
+        do {
+            system("cls");
+            this->opcionUsuario = '0';
+            MENU();
             cin >> this->opcionUsuario;
             //validarOpcion();
             system("cls");
