@@ -16,6 +16,8 @@ public:
 	T pop();
 	bool estaVacia();
 	void mostrarDATOS();
+	Nodo<T>* getTope();
+	void mostrarTodosLosPedidos(Pila<T> pedidos);
 	
 };
 
@@ -54,6 +56,23 @@ void Pila<T>::mostrarDATOS() {
 			topeaux = topeaux->siguiente;
 			i++;
 		}
+	}
+}
+
+template<class T>
+Nodo<T>* Pila<T>::getTope() {
+	return tope;
+}
+
+template<class T>
+void Pila<T>::mostrarTodosLosPedidos(Pila<T> pedidos) { //uso de recursividad
+	if (!pedidos.estaVacia()) {
+		Nodo <T>* pedidoActual = tope;
+		pedidoActual->dato.mostrarListaProductos();
+		pedidos.pop();
+		mostrarTodosLosPedidos(pedidos);
+		//pedidos.push(pedidoActual); // Restaurar el pedido en la pila después de mostrarlo (ver si es necesario)
+		delete pedidoActual;
 	}
 }
 

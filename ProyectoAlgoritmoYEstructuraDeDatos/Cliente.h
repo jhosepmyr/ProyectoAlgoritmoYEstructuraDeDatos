@@ -130,8 +130,15 @@ public:
         return pedidos;
     }
 
-    void mostrarPedidos() {
+    /*void mostrarPedidos() {
         Pila<Pedido> auxPedidos = this->pedidos;
         auxPedidos.pop().mostrarListaProductos();
+    }*/
+
+    void mostrarPedidos() {
+        Pila<Pedido> auxPedidos = this->pedidos;
+        auxPedidos.mostrarTodosLosPedidos(auxPedidos);
     }
+
+
 };
