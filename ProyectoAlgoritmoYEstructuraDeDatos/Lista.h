@@ -270,7 +270,7 @@ T Lista<T>::loopdeBusquedaDATO(Nodo* aux, string ID) {
     if (aux->elem.getIdentificador() == ID) {
         return aux->elem;
     }
-    else  if (aux != nullptr) return rECURSIV(aux = aux->sig, ID);
+    else  if (aux != nullptr) return loopdeBusquedaDATO(aux = aux->sig, ID);
 }
 
 template <class T>
