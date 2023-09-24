@@ -30,20 +30,20 @@ public:
     void    eliminaInicial();
     void    eliminaPos(uint pos);
     void    eliminaFinal();
-    void    MostrarDatosPROD();
-    void    MostrarDatosPRODLinea();
-    void    mostrarProdsDeMayoraMenorPrecio();
 
     T       obtenerInicial();
     T       obtenerPos(uint pos);
     T       obtenerFinal();
+
+    void    MostrarDatosPROD();
+    void    MostrarDatosPRODLinea();
+
     T     buscarporID(string ID);
     void     eliminarporID(string ID);
     T loopdeBusquedaDATO(Nodo* aux, string ID);
 
     void ordenarPorPrecioAscendente();
     void ordenarPorPrecioDescendente();
-
     void desordenamientoShuffle();
 
 };
@@ -184,7 +184,7 @@ T Lista<T>::obtenerFinal() {
 }
 
 
-//METODOS EXTRA
+//MOSTRADO DE PRODUCTOS
 
 template<class T>
 void Lista<T>::MostrarDatosPROD() {
@@ -204,35 +204,7 @@ void Lista<T>::MostrarDatosPRODLinea() {
     }
 }
 
-template<class T>
-void Lista<T>::mostrarProdsDeMayoraMenorPrecio() {
-    Nodo* aux = ini;
-    Cola<T>colaaux;
-    Producto *arr=new Producto[lon];
-    for (int i = 0; i < lon; i++) {
-        arr[i] = aux->elem;
-        aux = aux->sig;
-    }
-
-    auto ordIntercambio = [](Producto a[], int n)
-        {
-            for (int i = 0; i < n - 1; i++) {
-                for (int k = i + 1; k < n; k++) {
-                    if (a[i].getPrecio() > a[k].getPrecio()) {
-                        swap(a[i], a[k]);
-                    }
-                }
-            }
-        };
-
-    ordIntercambio(arr, lon);
-    for (int i = lon - 1; i >= 0; i--) {
-        colaaux.enqueue(arr[i]);
-    }
-
-    colaaux.mostrardatos();
-
-}
+//BUSQUEDA DE PRODUCTOS
 
 template <class T>
 T Lista<T>::buscarporID(string ID) {
@@ -275,52 +247,39 @@ T Lista<T>::loopdeBusquedaDATO(Nodo* aux, string ID) {
     else  if (aux != nullptr) return loopdeBusquedaDATO(aux = aux->sig, ID);
 }
 
+//ORDENAMIENTOS O FILTRADOS
+
 template <class T>
 void Lista<T>::ordenarPorPrecioAscendente() {
     Nodo* aux = ini;
-    Cola<T>colaAux;
-    T* arr = new T[lon];
+    Cola<T>colaaux;
+    Producto* arr = new Producto[lon];
     for (int i = 0; i < lon; i++) {
         arr[i] = aux->elem;
         aux = aux->sig;
     }
-    delete aux;
 
+    auto ordIntercambio = [](Producto a[], int n)
+    {
+        for (int i = 0; i < n - 1; i++) {
+            for (int k = i + 1; k < n; k++) {
+                if (a[i].getPrecio() > a[k].getPrecio()) {
+                    swap(a[i], a[k]);
+                }
+            }
+        }
+    };
+
+    ordIntercambio(arr, lon);
     for (int i = lon - 1; i >= 0; i--) {
-        colaAux.enqueue(arr[i]);
+        colaaux.enqueue(arr[i]);
     }
-    //función lambda para comparar los productos por precio de menor a mayor.
-    auto comparadorPorPrecio = [](T a, T b) {
-        return a.getPrecio() < b.getPrecio();
-        };
 
-    // Ordena la cola de productos por precio utilizando el comparador.
-    colaAux.ordenarPorPrecio(comparadorPorPrecio);
-    colaAux.mostrardatos();
+    colaaux.mostrardatos();
 }
 
 template <class T>
 void Lista<T>::ordenarPorPrecioDescendente() {
-    //Nodo* aux = ini;
-    //Cola<T>colaAux;
-    //T* arr = new T[lon];
-    //for (int i = 0; i < lon; i++) {
-    //    arr[i] = aux->elem;
-    //    aux = aux->sig;
-    //}
-    //delete aux;
-
-    //for (int i = lon - 1; i >= 0; i--) {
-    //    colaAux.enqueue(arr[i]);
-    //}
-    ////función lambda para comparar los productos por precio de mayor a menor.
-    //auto comparadorPorPrecio = [](T a, T b) {
-    //    return a.getPrecio() > b.getPrecio();
-    //    };
-
-    //// Ordena la cola de productos por precio utilizando el comparador.
-    //colaAux.ordenarPorPrecio(comparadorPorPrecio);
-    //colaAux.mostrardatos();
     Nodo* aux = ini;
     Cola<T>colaaux;
     Producto* arr = new Producto[lon];

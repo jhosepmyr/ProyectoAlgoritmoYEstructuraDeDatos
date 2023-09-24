@@ -25,8 +25,7 @@ public:
             cout << "3. Mostrar Productos\n";
             cout << "4. Mi carrito de compras\n";
             cout << "5. Historial de pedidos\n";
-            cout << "6. Mostrar productos del mas caro al mas barato\n";
-            cout << "7. Cerrar sesion\n";
+            cout << "6. Cerrar sesion\n";
             cout << "Selecciona una opcion ingresando el numero\n\n";
             cout << "Opcion: ";
             cin >> this->opcion;
@@ -34,7 +33,7 @@ public:
             system("cls");
             resultadosOpcionSeleccionada();
             system("pause");
-            if (this->opcion > 7 || this->opcion < 1) { return MenuCliente(); }
+            if (this->opcion > 6 || this->opcion < 1) { return MenuCliente(); }
             else return 0;
     }
 
@@ -94,11 +93,6 @@ public:
         }
 
         case '6': {
-            this->clienteAux->ProductoMasCaro();
-            this->opcion = '0';
-            break;
-        }
-        case '7': {
             this->clienteAux->actualizarDatosSesionATxt();
             this->clienteAux->actualizarDatosProductosTxt();
             break;

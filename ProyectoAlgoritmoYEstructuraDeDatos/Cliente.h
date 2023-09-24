@@ -32,11 +32,11 @@ public:
             switch (opc)
             {
             case '1': {
-                this->productos.ordenarPorPrecioAscendente();
+                this->productos.ordenarPorPrecioDescendente();
                 break;
             }
             case '2': {
-                this->productos.ordenarPorPrecioDescendente();
+                this->productos.ordenarPorPrecioAscendente();
                 break;
             }
             default:
