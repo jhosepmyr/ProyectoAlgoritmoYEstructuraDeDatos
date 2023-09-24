@@ -250,7 +250,7 @@ void Lista<T>::eliminarporID(string ID) {
     int pos = 0;
     bool encontrado = false;
     while (aux != nullptr && !encontrado) {
-        if (aux->elem.getIdentificador() == ID) {
+        if (aux->elem.getNombre() == ID) {
             eliminaPos(pos);
             cout << "\nSe ha eliminado el producto correctamente" << endl;
             encontrado = true;
@@ -267,7 +267,7 @@ void Lista<T>::eliminarporID(string ID) {
 
 template <class T>
 T Lista<T>::loopdeBusquedaDATO(Nodo* aux, string ID) {
-    if (aux->elem.getIdentificador() == ID) {
+    if (aux->elem.getNombre() == ID) {
         return aux->elem;
     }
     else  if (aux != nullptr) return loopdeBusquedaDATO(aux = aux->sig, ID);
