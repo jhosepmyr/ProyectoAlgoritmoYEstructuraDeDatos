@@ -16,6 +16,7 @@ public:
 	Nodo<T>* getTope();
 	void mostrarTodosLosPedidos();
 	void mostrarDatosPila();
+
 };
 
 template <class T>
