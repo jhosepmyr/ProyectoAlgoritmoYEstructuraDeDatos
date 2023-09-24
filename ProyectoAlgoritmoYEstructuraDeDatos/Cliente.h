@@ -22,7 +22,27 @@ public:
         {
             system("cls");
             //muestra producto actualizados
-            this->productos.MostrarDatosPROD();
+            cout << endl << "Filtrado para los productos:";
+            cout << endl << "1.Menor a mayor precio";
+            cout << endl << "2.Mayor a menor precio";
+            cout << endl << "3.Ninguno de los anteriores";
+            cout << endl;
+            cin >> opc;
+            system("cls");
+            switch (opc)
+            {
+            case '1': {
+                this->productos.ordenarPorPrecioAscendente();
+                break;
+            }
+            case '2': {
+                this->productos.ordenarPorPrecioDescendente();
+                break;
+            }
+            default:
+                this->productos.desordenamientoShuffle();
+                break;
+            }
             cout << endl << "Desea agregar algun elemento al carrito(1:SI, 2: NO):";
             cin >> opc;
             if (opc == '1') {

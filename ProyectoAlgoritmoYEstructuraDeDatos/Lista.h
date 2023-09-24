@@ -301,26 +301,54 @@ void Lista<T>::ordenarPorPrecioAscendente() {
 
 template <class T>
 void Lista<T>::ordenarPorPrecioDescendente() {
+    //Nodo* aux = ini;
+    //Cola<T>colaAux;
+    //T* arr = new T[lon];
+    //for (int i = 0; i < lon; i++) {
+    //    arr[i] = aux->elem;
+    //    aux = aux->sig;
+    //}
+    //delete aux;
+
+    //for (int i = lon - 1; i >= 0; i--) {
+    //    colaAux.enqueue(arr[i]);
+    //}
+    ////función lambda para comparar los productos por precio de mayor a menor.
+    //auto comparadorPorPrecio = [](T a, T b) {
+    //    return a.getPrecio() > b.getPrecio();
+    //    };
+
+    //// Ordena la cola de productos por precio utilizando el comparador.
+    //colaAux.ordenarPorPrecio(comparadorPorPrecio);
+    //colaAux.mostrardatos();
     Nodo* aux = ini;
-    Cola<T>colaAux;
-    T* arr = new T[lon];
+    Cola<T>colaaux;
+    Producto* arr = new Producto[lon];
     for (int i = 0; i < lon; i++) {
         arr[i] = aux->elem;
         aux = aux->sig;
     }
-    delete aux;
 
-    for (int i = lon - 1; i >= 0; i--) {
-        colaAux.enqueue(arr[i]);
-    }
-    //función lambda para comparar los productos por precio de mayor a menor.
-    auto comparadorPorPrecio = [](T a, T b) {
-        return a.getPrecio() > b.getPrecio();
-        };
+    auto ordBurbujaModificado = [](Producto a[], int n) {
+        bool ordenado;
+        for (int i = 0; i < n - 1; i++) {
+            ordenado = true;
+            for (int j = 0; j < n - (i + 1); j++) {
+                if (a[j].getPrecio() > a[j + 1].getPrecio()) {
+                    swap(a[j], a[j + 1]);
+                    ordenado = false;
+                }
+            }
+            if (ordenado)break;
+        }
+    };
 
-    // Ordena la cola de productos por precio utilizando el comparador.
-    colaAux.ordenarPorPrecio(comparadorPorPrecio);
-    colaAux.mostrardatos();
+    ordBurbujaModificado(arr, lon);
+    for (int i = 0; i < lon; i++) {
+        colaaux.enqueue(arr[i]);
+    };
+
+    colaaux.mostrardatos();
 }
 
 template <class T>
