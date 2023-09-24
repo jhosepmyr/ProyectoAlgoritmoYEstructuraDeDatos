@@ -24,6 +24,9 @@ public:
 		cout << "\nPrecio: " << this->precio;
 		cout << "\nTipo: " << this->tipo;
 	}
+	void mostrarDatosLinea() {
+		cout << "Nombre: " << this->Nombre << ", Precio: " << this->precio << ", Tipo: " << this->tipo << ", ID: " << this->identificador<<endl;
+	}
 	void setNombre(string nombre) {
 		this->Nombre = nombre;
 	}

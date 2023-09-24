@@ -32,6 +32,7 @@ public:
     void    eliminaPos(uint pos);
     void    eliminaFinal();
     void    MostrarDatosPROD();
+    void    MostrarDatosPRODLinea();
     void    buscarPRODMAYVALOR();
 
     T       obtenerInicial();
@@ -189,6 +190,15 @@ void Lista<T>::MostrarDatosPROD() {
     Nodo* aux = ini;
     for (int i = 0; i < lon; i++) {
         aux->elem.mostrarDatos();
+        aux = aux->sig;
+    }
+}
+
+template<class T>
+void Lista<T>::MostrarDatosPRODLinea() {
+    Nodo* aux = ini;
+    for (int i = 0; i < lon; i++) {
+        aux->elem.mostrarDatosLinea();
         aux = aux->sig;
     }
 }

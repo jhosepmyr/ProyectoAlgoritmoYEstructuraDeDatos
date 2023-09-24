@@ -101,6 +101,9 @@
     <ClInclude Include="Nodo.h">
       <Filter>Archivos de encabezado\EstructurasTemplates</Filter>
     </ClInclude>
+    <ClInclude Include="Cola.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProyectoAlgoritmoYEstructuraDeDatos.cpp">
@@ -126,9 +129,6 @@
       <Filter>Archivos de encabezado\Archivos</Filter>
     </Text>
     <Text Include="DatosProductos.txt">
-      <Filter>Archivos de encabezado\Archivos</Filter>
-    </Text>
-    <Text Include="DatosCarritosCompras.txt">
       <Filter>Archivos de encabezado\Archivos</Filter>
     </Text>
   </ItemGroup>

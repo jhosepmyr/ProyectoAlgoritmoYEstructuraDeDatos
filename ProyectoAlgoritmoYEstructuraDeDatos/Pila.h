@@ -17,7 +17,7 @@ public:
 	bool estaVacia();
 	void mostrarDATOS();
 	Nodo<T>* getTope();
-	void mostrarTodosLosPedidos(Pila<T> pedidos);
+	void mostrarTodosLosPedidos();
 	
 };
 
@@ -65,14 +65,10 @@ Nodo<T>* Pila<T>::getTope() {
 }
 
 template<class T>
-void Pila<T>::mostrarTodosLosPedidos(Pila<T> pedidos) { //uso de recursividad
-	if (!pedidos.estaVacia()) {
-		Nodo <T>* pedidoActual = tope;
-		pedidoActual->dato.mostrarListaProductos();
-		pedidos.pop();
-		mostrarTodosLosPedidos(pedidos);
-		//pedidos.push(pedidoActual); // Restaurar el pedido en la pila después de mostrarlo (ver si es necesario)
-		delete pedidoActual;
+void Pila<T>::mostrarTodosLosPedidos() { //uso de recursividad
+	while (!estaVacia()) {
+		Pedido aux = this->pop();
+		aux.mostrarListaProductos();
 	}
 }
 

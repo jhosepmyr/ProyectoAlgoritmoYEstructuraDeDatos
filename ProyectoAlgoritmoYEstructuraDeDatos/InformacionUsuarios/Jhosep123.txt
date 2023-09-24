@@ -1,4 +1,5 @@
-Jhosep1231
-Limon 14 comestible Lucas1212
-Jhosep1231
-Sillon 50 noComestible Juan123
+NombrePedido1|{Papa;2;comestible;123}{Limon;4;comestible;4334}|
+NombrePedido2|{Tele;1454;noComestible;2423}|
+NombrePedido3|{Sillon;1412;noComestible;4232}{Mesa;23;noComestible;1213}{Silla;10;noComestible;124}|
+Pedido20|{arroz;11;comestible;1212}{camote;12;comestible;6123}{manzana;2;comestible;23}|
+Pedido20|{arroz;11;comestible;1212}{camote;12;comestible;6123}{manzana;2;comestible;23}|

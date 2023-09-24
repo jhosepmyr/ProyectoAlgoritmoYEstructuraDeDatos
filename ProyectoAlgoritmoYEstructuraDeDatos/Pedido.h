@@ -5,16 +5,16 @@ using namespace std;
 
 class Pedido {
 private:
-	string nombreArchivoPedido;
+	string nombrePedido;
 	Lista<Producto> carritoCompras;
 	int precioTotal;
 public:
-	string getNombreArchivo() {
-		return this->nombreArchivoPedido;
+	string getNombrePedido() {
+		return this->nombrePedido;
 	}
 
-	void setNombreArchivoPedido(string _nombre) {
-		this->nombreArchivoPedido = _nombre;
+	void setNombrePedido(string _nombre) {
+		this->nombrePedido = _nombre;
 	}
 
 	void agregaraCarrito(Producto aux){
@@ -22,10 +22,10 @@ public:
 	}
 
 	void mostrarListaProductos() {
-		cout << "\n---------------------------------\n";
-		cout << this->nombreArchivoPedido<<endl;
-		this->carritoCompras.MostrarDatosPROD();
-		cout << "\n---------------------------------\n";
+		cout << "*********************************\n";
+		cout << this->nombrePedido<<endl;
+		this->carritoCompras.MostrarDatosPRODLinea();
+		cout << "*********************************\n";
 	}
 
 	int getCantidadProductosCarrito() {

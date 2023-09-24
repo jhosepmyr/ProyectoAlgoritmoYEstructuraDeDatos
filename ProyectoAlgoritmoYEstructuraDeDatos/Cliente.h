@@ -58,7 +58,7 @@ public:
         {
             static int numPedido = 1;
             string nombrePedido = this->nombre+this->contra+to_string(numPedido);
-            this->pedido.setNombreArchivoPedido(nombrePedido);
+            this->pedido.setNombrePedido(nombrePedido);
             agregarPedido(this->pedido);
             numPedido++;
             restaurarPedido();
@@ -74,7 +74,7 @@ public:
     }
 
     void restaurarPedido() {
-        this->pedido.setNombreArchivoPedido("");
+        this->pedido.setNombrePedido("");
         this->pedido.eliminarProductos();
     }
 
@@ -86,47 +86,78 @@ public:
         }
     }
 
+    string formatoProducto(Producto product) {
+        ostringstream ss;
+        ss << "{" << product.getNombre() << ";" << product.getPrecio() << ";" << product.getTipo() << ";" << product.getIdentificador()<<"}";
+        return ss.str();
+    }
+
         // Función para agregar un Pedido al archivo (creando el archivo si no existe)
     void agregarPedido(Pedido pedido) {
         string rutaClientepedido = this->personal.getNombreArchivoPropio();
         // Abre el archivo en modo append
         ofstream archivoSalida(rutaClientepedido, ios_base::app); 
         if (archivoSalida.is_open()) {
-            archivoSalida << pedido.getNombreArchivo() <<endl;
+            archivoSalida << "\n" << pedido.getNombrePedido() << "|";
             for (int i = 0; i < pedido.getCantidadProductosCarrito(); i++)
             {
-                archivoSalida << pedido.getProductoPorPosicion(i).getNombre() << ' ' << pedido.getProductoPorPosicion(i).getPrecio()<<' '<< pedido.getProductoPorPosicion(i).getTipo()<<' '<< pedido.getProductoPorPosicion(i).getIdentificador() << endl;
+                archivoSalida << formatoProducto(pedido.getProductoPorPosicion(i));
             }
+            archivoSalida << "|";
+
             archivoSalida.close();
-            //cout << "Pedido agregado al archivo." << endl;
         }
     }
 
     Pila<Pedido> cargarPedidos() {
+        Pila<Pedido> pedidos;
         string rutaClientepedidos = this->personal.getNombreArchivoPropio();
         ifstream archivoEntrada(rutaClientepedidos);
-        string nombreCliente;
-        Pila<Pedido> pedidos;
-        if (archivoEntrada.is_open())
+
+        if (!archivoEntrada.is_open())
         {
-            string linea;
-            while (getline(archivoEntrada, linea)) {
-                Pedido pedido;
-                pedido.setNombreArchivoPedido(linea);// El primer dato de la línea es el nombre del cliente
-                while (getline(archivoEntrada, linea) && !linea.empty()) {
-                    istringstream iss(linea);
-                    string nombreProducto;
-                    float precio;
-                    string tipo;
-                    string id;
-                    iss >> nombreProducto >> precio>>tipo>>id;
-                    Producto auxProduct(nombreProducto, precio, tipo, id);
-                    pedido.agregaraCarrito(auxProduct);
-                }
-                pedidos.push(pedido);
-                pedido.eliminarProductos();
-            }
+            cerr << "Error al abrir el archivo: " << rutaClientepedidos << endl;
+            return pedidos;
         }
+
+        string linea;
+        while (getline(archivoEntrada, linea)) {
+            istringstream ss(linea);
+            string nombrePedido;
+            getline(ss, nombrePedido, '|');
+
+            Pedido pedido;
+            pedido.setNombrePedido(nombrePedido);
+
+            string productosData;
+            getline(ss, productosData, '|');
+
+            istringstream productosStream(productosData);
+            string productoInfo;
+            while (getline(productosStream, productoInfo, '}')) {
+                if (!productoInfo.empty()) {
+                    // Eliminamos el carácter '{' inicial
+                    productoInfo.erase(productoInfo.begin());
+
+                    // Dividimos los datos del producto utilizando ';'
+                    istringstream productoInfoStream(productoInfo);
+                    string nombre;
+                    double precio;
+                    string tipo;
+                    string identificador;
+
+                    getline(productoInfoStream, nombre, ';');
+                    productoInfoStream >> precio;
+                    getline(productoInfoStream, tipo, ';');
+                    productoInfoStream >> identificador;
+
+                    Producto producto(nombre, precio, tipo, identificador);
+                    pedido.agregaraCarrito(producto);
+                }
+            }
+            pedidos.push(pedido);
+        }
+        archivoEntrada.close();
         return pedidos;
     }
 
@@ -137,7 +168,7 @@ public:
 
     void mostrarPedidos() {
         Pila<Pedido> auxPedidos = this->pedidos;
-        auxPedidos.mostrarTodosLosPedidos(auxPedidos);
+        auxPedidos.mostrarTodosLosPedidos();
     }
 
 
