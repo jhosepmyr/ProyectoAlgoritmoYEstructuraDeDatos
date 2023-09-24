@@ -44,6 +44,8 @@ public:
     void ordenarPorPrecioAscendente();
     void ordenarPorPrecioDescendente();
 
+    void desordenamientoShuffle();
+
 };
 
 template <class T>
@@ -318,5 +320,24 @@ void Lista<T>::ordenarPorPrecioDescendente() {
 
     // Ordena la cola de productos por precio utilizando el comparador.
     colaAux.ordenarPorPrecio(comparadorPorPrecio);
+    colaAux.mostrardatos();
+}
+
+template <class T>
+void Lista<T>::desordenamientoShuffle() {
+    Nodo* aux = ini;
+    Cola<T>colaAux;
+    T* arr = new T[lon];
+    for (int i = 0; i < lon; i++) {
+        arr[i] = aux->elem;
+        aux = aux->sig;
+    }
+    delete aux;
+    for (int i = lon - 1; i > 0; i--)
+    {
+        int j = (rand() % (i + 1));
+        swap(arr[j], arr[i]);
+        colaAux.enqueue(arr[i]);
+    }
     colaAux.mostrardatos();
 }
