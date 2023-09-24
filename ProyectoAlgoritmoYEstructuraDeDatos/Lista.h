@@ -39,7 +39,7 @@ public:
     T       obtenerFinal();
     T     buscarporID(string ID);
     void     eliminarporID(string ID);
-    T rECURSIV(Nodo* aux, string ID);
+    T loopdeBusquedaDATO(Nodo* aux, string ID);
 
     void ordenarPorPrecioAscendente();
     void ordenarPorPrecioDescendente();
@@ -241,7 +241,7 @@ T Lista<T>::buscarporID(string ID) {
         }
         aux = aux->sig;
     }*/
-    return rECURSIV(aux, ID);
+    return loopdeBusquedaDATO(aux, ID);
 }
 
 template <class T>
@@ -266,7 +266,7 @@ void Lista<T>::eliminarporID(string ID) {
 }
 
 template <class T>
-T Lista<T>::rECURSIV(Nodo* aux, string ID) {
+T Lista<T>::loopdeBusquedaDATO(Nodo* aux, string ID) {
     if (aux->elem.getIdentificador() == ID) {
         return aux->elem;
     }
