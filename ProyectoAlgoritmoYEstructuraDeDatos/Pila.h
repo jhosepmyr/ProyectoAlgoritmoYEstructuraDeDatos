@@ -15,7 +15,7 @@ public:
 	bool estaVacia();
 	Nodo<T>* getTope();
 	void mostrarTodosLosPedidos();
-	
+	void mostrarDatosPila()
 };
 
 template <class T>
@@ -47,9 +47,18 @@ Nodo<T>* Pila<T>::getTope() {
 template<class T>
 void Pila<T>::mostrarTodosLosPedidos() {
 	while (!estaVacia()) {
-		Pedido aux = this->pop();
+		T aux = this->pop();
 		aux.mostrarListaProductos();
 	}
+}
+
+template<class T>
+void Pila<T>::mostrarDatosPila() {
+	T aux = pop();
+	if (estaVacia()) return;
+	aux.mostrarListaProductos();
+	delete aux;
+	mostrarDatosPila();
 }
 
 

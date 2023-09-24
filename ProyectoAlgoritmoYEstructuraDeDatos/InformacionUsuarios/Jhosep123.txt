@@ -7,3 +7,4 @@ Jhosep1231|{Limon;14;comestible;Joan1234}{Pera;1;comestible;Joan1234}|
 Jhosep1231|{Limon;14;comestible;Lucas1212}|
 Jhosep1231|{Sillon;50;noComestible;Juan123}{Tele;1350;noComestible;Luis324}|
 Jhosep1231|{Sillon;50;noComestible;Juan123}|
+Jhosep1231|{Tele;1350;noComestible;Luis324}|
