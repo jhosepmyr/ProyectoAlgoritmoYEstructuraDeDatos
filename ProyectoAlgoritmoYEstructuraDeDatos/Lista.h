@@ -32,7 +32,7 @@ public:
     void    eliminaFinal();
     void    MostrarDatosPROD();
     void    MostrarDatosPRODLinea();
-    void    buscarPRODMAYVALOR();
+    void    mostrarProdsDeMayoraMenorPrecio();
 
     T       obtenerInicial();
     T       obtenerPos(uint pos);
@@ -41,8 +41,8 @@ public:
     void     eliminarporID(string ID);
     T rECURSIV(Nodo* aux, string ID);
 
-    void Lista<T>::ordenarPorPrecioAscendente();
-    void Lista<T>::ordenarPorPrecioDescendente();
+    void ordenarPorPrecioAscendente();
+    void ordenarPorPrecioDescendente();
 
 };
 
@@ -203,7 +203,7 @@ void Lista<T>::MostrarDatosPRODLinea() {
 }
 
 template<class T>
-void Lista<T>::buscarPRODMAYVALOR() {
+void Lista<T>::mostrarProdsDeMayoraMenorPrecio() {
     Nodo* aux = ini;
     Cola<T>colaaux;
     Producto *arr=new Producto[lon];
@@ -222,8 +222,8 @@ void Lista<T>::buscarPRODMAYVALOR() {
                 }
             }
         };
+
     ordIntercambio(arr, lon);
-    
     for (int i = lon - 1; i >= 0; i--) {
         colaaux.enqueue(arr[i]);
     }
