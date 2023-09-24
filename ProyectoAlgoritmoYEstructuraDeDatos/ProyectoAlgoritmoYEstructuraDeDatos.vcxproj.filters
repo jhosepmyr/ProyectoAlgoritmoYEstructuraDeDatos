@@ -34,6 +34,9 @@
     <Filter Include="Archivos de encabezado\Entidades\Usuarios">
       <UniqueIdentifier>{17132cd8-1cf2-4671-8582-3444fe11fefe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Recursividad">
+      <UniqueIdentifier>{4eb2709a-0f17-4402-851f-9e79fbbb523d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="Cola.h">
       <Filter>Archivos de encabezado\EstructurasTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="Recursividad.h">
+      <Filter>Archivos de encabezado\Recursividad</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

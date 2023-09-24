@@ -143,6 +143,7 @@
     <ClInclude Include="Pedido.h" />
     <ClInclude Include="Pila.h" />
     <ClInclude Include="Producto.h" />
+    <ClInclude Include="Recursividad.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Usuario.h" />
     <ClInclude Include="Vendedor.h" />
