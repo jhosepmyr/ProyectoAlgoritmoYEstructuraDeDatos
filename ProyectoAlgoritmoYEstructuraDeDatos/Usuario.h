@@ -171,7 +171,7 @@ public:
     }
 
     void ProductoMasCaro() {
-        this->productos.buscarPRODMAYVALOR();
+        this->productos.ordenarPorPrecioAscendente();
     }
 
     void getInformacionPersonalTxt() {

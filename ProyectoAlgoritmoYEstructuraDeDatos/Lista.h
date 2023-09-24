@@ -40,6 +40,10 @@ public:
     T     buscarporID(string ID);
     void     eliminarporID(string ID);
     T rECURSIV(Nodo* aux, string ID);
+
+    void Lista<T>::ordenarPorPrecioAscendente();
+    void Lista<T>::ordenarPorPrecioDescendente();
+
 };
 
 template <class T>
@@ -261,4 +265,52 @@ T Lista<T>::rECURSIV(Nodo* aux, string ID) {
         return aux->elem;
     }
     else  if (aux != nullptr) return rECURSIV(aux = aux->sig, ID);
+}
+
+template <class T>
+void Lista<T>::ordenarPorPrecioAscendente() {
+    Nodo* aux = ini;
+    Cola<T>colaAux;
+    T* arr = new T[lon];
+    for (int i = 0; i < lon; i++) {
+        arr[i] = aux->elem;
+        aux = aux->sig;
+    }
+    delete aux;
+
+    for (int i = lon - 1; i >= 0; i--) {
+        colaAux.enqueue(arr[i]);
+    }
+    //función lambda para comparar los productos por precio de menor a mayor.
+    auto comparadorPorPrecio = [](T a, T b) {
+        return a.getPrecio() < b.getPrecio();
+        };
+
+    // Ordena la cola de productos por precio utilizando el comparador.
+    colaAux.ordenarPorPrecio(comparadorPorPrecio);
+    colaAux.mostrardatos();
+}
+
+template <class T>
+void Lista<T>::ordenarPorPrecioDescendente() {
+    Nodo* aux = ini;
+    Cola<T>colaAux;
+    T* arr = new T[lon];
+    for (int i = 0; i < lon; i++) {
+        arr[i] = aux->elem;
+        aux = aux->sig;
+    }
+    delete aux;
+
+    for (int i = lon - 1; i >= 0; i--) {
+        colaAux.enqueue(arr[i]);
+    }
+    //función lambda para comparar los productos por precio de mayor a menor.
+    auto comparadorPorPrecio = [](T a, T b) {
+        return a.getPrecio() > b.getPrecio();
+        };
+
+    // Ordena la cola de productos por precio utilizando el comparador.
+    colaAux.ordenarPorPrecio(comparadorPorPrecio);
+    colaAux.mostrardatos();
 }
