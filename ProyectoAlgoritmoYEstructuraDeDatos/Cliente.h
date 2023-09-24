@@ -142,16 +142,16 @@ public:
                     // Dividimos los datos del producto utilizando ';'
                     istringstream productoInfoStream(productoInfo);
                     string nombre;
-                    double precio;
+                    string precio;
                     string tipo;
                     string identificador;
 
                     getline(productoInfoStream, nombre, ';');
-                    productoInfoStream >> precio;
+                    getline(productoInfoStream, precio, ';');
                     getline(productoInfoStream, tipo, ';');
-                    productoInfoStream >> identificador;
+                    getline(productoInfoStream, identificador, ';');
 
-                    Producto producto(nombre, precio, tipo, identificador);
+                    Producto producto(nombre, stof(precio), tipo, identificador);
                     pedido.agregaraCarrito(producto);
                 }
             }
@@ -160,11 +160,6 @@ public:
         archivoEntrada.close();
         return pedidos;
     }
-
-    /*void mostrarPedidos() {
-        Pila<Pedido> auxPedidos = this->pedidos;
-        auxPedidos.pop().mostrarListaProductos();
-    }*/
 
     void mostrarPedidos() {
         Pila<Pedido> auxPedidos = this->pedidos;

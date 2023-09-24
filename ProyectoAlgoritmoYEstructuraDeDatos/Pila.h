@@ -65,7 +65,7 @@ Nodo<T>* Pila<T>::getTope() {
 }
 
 template<class T>
-void Pila<T>::mostrarTodosLosPedidos() { //uso de recursividad
+void Pila<T>::mostrarTodosLosPedidos() {
 	while (!estaVacia()) {
 		Pedido aux = this->pop();
 		aux.mostrarListaProductos();
