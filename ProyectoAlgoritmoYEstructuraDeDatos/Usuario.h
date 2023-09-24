@@ -12,31 +12,27 @@ protected:
     string apellido;
     string contra;
     string correoElectronico;
-    int numeroCelular;
+    string numeroCelular;
     string direccion;
     string genero;
-    //char genero;
-    int DNI;
+    string DNI;
 
     string datosInicioSesion;//archivo donde se guarda las contrasenas y usuarios
-
     Files personal;
-
     char opcionUsuario;
 
     Lista<Producto> productos;
 
 public:
-    //Usuario() : nombre(""), contra(""), personal(){};
     Usuario(string _nombre, string _contra) : personal(_nombre, _contra) {
         this->nombre = _nombre;
         this->contra = _contra;
         this->apellido = "ninguno";
         this->correoElectronico = "ninguno";
-        this->numeroCelular = 0;
+        this->numeroCelular = "ninguno";
         this->direccion = "ninguno";
         this->genero = "ninguno";
-        this->DNI = 0;
+        this->DNI = "ninguno";
         this->productos = this->personal.getProductos();
         this->opcionUsuario = '0';
     }
@@ -55,7 +51,7 @@ public:
     string getCorreoElectronico() {
         return this->correoElectronico;
     }
-    int getNumeroCelular() {
+    string getNumeroCelular() {
         return this->numeroCelular;
     }
     string getDireccion() {
@@ -64,7 +60,7 @@ public:
     string getGenero() {
         return this->genero;
     }
-    int getDNI() {
+    string getDNI() {
         return this->DNI;
     }
     string getDatosInicioSesion() {
@@ -72,7 +68,7 @@ public:
     }
 
     //actualiza toda la informacion del archivo txt de datos de sesion
-    void setTodaInformacion(string _nombre, string _contra, string _apellido, string _correo, int _num, string _direccion, string _genero, int _DNI) {
+    void setTodaInformacion(string _nombre, string _contra, string _apellido, string _correo, string _num, string _direccion, string _genero, string _DNI) {
         this->nombre = _nombre;
         this->contra = _contra;
         this->apellido = _apellido;
@@ -88,10 +84,10 @@ public:
         cout << "Nombre: " + this->nombre << endl;
         if(this->apellido!="ninguno") cout << "Apellido: " + this->apellido << endl;
         if(this->correoElectronico!="ninguno") cout << "CorreoElectronico: " + this->correoElectronico << endl;
-        if(this->numeroCelular!=0) cout << "Numero de celular: " + to_string(this->numeroCelular) << endl;
+        if(this->numeroCelular!= "ninguno") cout << "Numero de celular: " + this->numeroCelular << endl;
         if(this->direccion!="ninguno") cout << "Direccion: " + this->direccion << endl;
         if(this->genero!= "ninguno") cout << "Genero: " + this->genero << endl;
-        if(this->DNI!=0) cout << "DNI: " + to_string(this->DNI) << endl;
+        if(this->DNI!= "ninguno") cout << "DNI: " + this->DNI << endl;
     }
 
     void actualizarDatosPersonales() {
@@ -116,7 +112,7 @@ public:
     }
 
     void resultadosOpcionSeleccionada() {
-        int opcionNumerica;
+        //int opcionNumerica;
         string opcionString;
         switch (this->opcionUsuario) {
             case '1': {
@@ -135,9 +131,8 @@ public:
             }
             case '3': {
                 cout << "Actualizar numero de celular: " << endl;
-                cin >> opcionNumerica;
-                if (typeid(opcionNumerica) == typeid(int)) { this->numeroCelular = opcionNumerica; }
-                else { cout << "Valor no permitido" << endl; }
+                cin >> opcionString;
+                this->numeroCelular = opcionString;
                 this->opcionUsuario = '0';
                 break;
             }
@@ -157,21 +152,18 @@ public:
             }
             case '6': {
                 cout << "Actualizar DNI: " << endl;
-                cin >> opcionNumerica;
-                if (typeid(opcionNumerica) == typeid(int)) { this->DNI = opcionNumerica; }
-                else { cout << "Valor no permitido" << endl; }
+                cin >> opcionString;
+                this->DNI = opcionString;
                 this->opcionUsuario = '0';
                 break;
             }
         }
     }
 
+    //Modificacion y obtencion de datos
+
     void actualizarDatosProductosTxt() {
         this->personal.actualizarProductosTxt(this->productos);
-    }
-
-    void ProductoMasCaro() {
-        this->productos.ordenarPorPrecioAscendente();
     }
 
     void getInformacionPersonalTxt() {
@@ -194,10 +186,10 @@ public:
                 string apellido;
                 string contra;
                 string correoElectronico;
-                int numeroCelular;
+                string numeroCelular;
                 string direccion;
                 string genero;
-                int DNI;
+                string DNI;
                 istringstream iss(linea);
                 iss >> nombre >> contra >> apellido >> correoElectronico >> numeroCelular >> direccion >> genero >> DNI;
                 setTodaInformacion(nombre, contra, apellido, correoElectronico, numeroCelular, direccion, genero, DNI);
@@ -227,10 +219,10 @@ public:
                     this->contra + " " +
                     this->apellido + " " +
                     this->correoElectronico + " " +
-                    to_string(this->numeroCelular) + " " +
+                    this->numeroCelular + " " +
                     this->direccion + " " +
                     this->genero + " " +
-                    to_string(this->DNI);
+                    this->DNI;
                 contenidoArchivo += nuevaLinea + "\n";
             }
             else
@@ -242,5 +234,11 @@ public:
         ofstream archivoEscritura(this->datosInicioSesion);
         archivoEscritura << contenidoArchivo;
         archivoEscritura.close();
+    }
+
+    //EXTRA
+
+    void ProductoMasCaro() {
+        this->productos.ordenarPorPrecioAscendente();
     }
 };
