@@ -81,13 +81,19 @@ public:
 
     void mostrarDatosPersonales() {
         cout << "INFORMACION PERSONAL" << endl;
-        cout << "Nombre: " + this->nombre << endl;
-        if(this->apellido!="ninguno") cout << "Apellido: " + this->apellido << endl;
-        if(this->correoElectronico!="ninguno") cout << "CorreoElectronico: " + this->correoElectronico << endl;
-        if(this->numeroCelular!= "ninguno") cout << "Numero de celular: " + this->numeroCelular << endl;
-        if(this->direccion!="ninguno") cout << "Direccion: " + this->direccion << endl;
-        if(this->genero!= "ninguno") cout << "Genero: " + this->genero << endl;
-        if(this->DNI!= "ninguno") cout << "DNI: " + this->DNI << endl;
+        auto mostrarDato = [this](const string& label, const string& dato) {
+            if (dato != "ninguno") {
+                cout << label << ": " << dato << endl;
+            }
+        };
+
+        mostrarDato("Nombre", this->nombre);
+        mostrarDato("Apellido", this->apellido);
+        mostrarDato("CorreoElectronico", this->correoElectronico);
+        mostrarDato("Numero de celular", this->numeroCelular);
+        mostrarDato("Direccion", this->direccion);
+        mostrarDato("Genero", this->genero);
+        mostrarDato("DNI", this->DNI);
     }
 
     void actualizarDatosPersonales() {

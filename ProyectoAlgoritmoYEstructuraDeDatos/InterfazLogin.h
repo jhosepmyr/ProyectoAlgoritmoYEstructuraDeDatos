@@ -26,7 +26,8 @@ public:
             cout << "5. Salir\n";
             cout << "Selecciona una opcion ingresando el numero\n\n";
             cout << "Opcion: ";
-            cin >> this->opcion;       
+            cin >> this->opcion;      
+           
             if (this->opcion == '1' || this->opcion == '2')
             {
                 cout << "Tipo de Usuario (Cliente: 1, Vendedor: 2):\n ";

@@ -77,12 +77,6 @@
     <ClInclude Include="InterfazVendedor.h">
       <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
     </ClInclude>
-    <ClInclude Include="InterfazPago.h">
-      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
-    </ClInclude>
-    <ClInclude Include="InterfazInventario.h">
-      <Filter>Archivos de encabezado\Entidades\Interfazes</Filter>
-    </ClInclude>
     <ClInclude Include="Usuario.h">
       <Filter>Archivos de encabezado\Entidades\Usuarios</Filter>
     </ClInclude>
