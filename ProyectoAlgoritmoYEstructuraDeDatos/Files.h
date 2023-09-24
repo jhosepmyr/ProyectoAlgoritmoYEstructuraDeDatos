@@ -29,7 +29,7 @@ public:
 
 		if (archivoEntrada.is_open()) {
 			archivoEntrada.close();
-			cout << "El archivo existe." << endl;
+			//cout << "El archivo existe." << endl;
 		}
 		else {
 			// El archivo no existe, crearlo
@@ -37,7 +37,7 @@ public:
 
 			if (archivoSalida.is_open()) {
 				archivoSalida.close();
-				cout << "El archivo no existía y ha sido creado." << endl;
+				//cout << "El archivo no existía y ha sido creado." << endl;
 			}
 			else {
 				cout << "Error al crear el archivo." << endl;
