@@ -69,14 +69,20 @@ public:
 
     //actualiza toda la informacion del archivo txt de datos de sesion
     void setTodaInformacion(string _nombre, string _contra, string _apellido, string _correo, string _num, string _direccion, string _genero, string _DNI) {
-        this->nombre = _nombre;
-        this->contra = _contra;
-        this->apellido = _apellido;
-        this->correoElectronico = _correo;
-        this->numeroCelular = _num;
-        this->direccion = _direccion;
-        this->genero = _genero;
-        this->DNI = _DNI;
+        // Utilización de funciones lambda para actualizar los miembros
+        auto updateMember = [](string& member, const string& value) {
+            if (value != "ninguno") {
+                member = value;
+            }
+        };
+        updateMember(this->nombre, _nombre);
+        updateMember(this->contra, _contra);
+        updateMember(this->apellido, _apellido);
+        updateMember(this->correoElectronico, _correo);
+        updateMember(this->numeroCelular, _num);
+        updateMember(this->direccion, _direccion);
+        updateMember(this->genero, _genero);
+        updateMember(this->DNI, _DNI);
     }
 
     void mostrarDatosPersonales() {
