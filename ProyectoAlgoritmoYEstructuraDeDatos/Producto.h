@@ -25,8 +25,11 @@ public:
 		cout << "\nTipo: " << this->tipo;
 	}
 	void mostrarDatosLinea() {
-
-		cout << "Nombre: " << this->Nombre << ", Precio: " << this->precio << ", Tipo: " << this->tipo << ", ID: " << this->identificador<<endl;
+		// Utilizar una función lambda para formatear la salida
+		auto formatLine = [this]() {
+			cout << "Nombre: " << this->Nombre << ", Precio: " << this->precio << ", Tipo: " << this->tipo << ", ID: " << this->identificador << endl;
+		};
+		formatLine();
 	}
 	void setNombre(string nombre) {
 		this->Nombre = nombre;

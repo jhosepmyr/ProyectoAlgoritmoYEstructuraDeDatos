@@ -52,14 +52,14 @@ public:
 		if (archivo.is_open()) {
 			string linea;
 			while (getline(archivo, linea)) {
-				string nombre, tipo, identificador;
-				float precio;
-				// Utiliza algún método de procesamiento de cadena para separar los valores
-				// de la línea, por ejemplo, asumiendo que los valores están separados por espacios:
-				istringstream iss(linea);
-				iss >> nombre >> precio >> tipo >> identificador;
-				// Crea un nuevo objeto Producto y agrégalo al vector
-				Producto product(nombre, precio, tipo, identificador);
+				auto parseLine = [&]() {
+					istringstream iss(linea);
+					string nombre, tipo, identificador;
+					double precio;
+					iss >> nombre >> precio >> tipo >> identificador;
+					return Producto(nombre, precio, tipo, identificador);
+				};
+				Producto product = parseLine();
 				auxList.agregaFinal(product);
 			}
 			archivo.close();
