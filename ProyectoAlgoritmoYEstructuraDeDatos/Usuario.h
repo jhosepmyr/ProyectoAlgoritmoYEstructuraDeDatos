@@ -113,57 +113,35 @@ public:
             cin >> this->opcionUsuario;
             //validarOpcion();
             system("cls");
-            resultadosOpcionSeleccionada();
-        } while (this->opcionUsuario != '7');
-    }
 
-    void resultadosOpcionSeleccionada() {
-        //int opcionNumerica;
-        string opcionString;
-        switch (this->opcionUsuario) {
-            case '1': {
-                cout << "Actualizar apellido: "<<endl;
-                cin >> opcionString;
-                this->apellido = opcionString;
+            // Función lambda para actualizar datos
+            auto actualizarDato = [this](string& dato, const string& label) {
+                cout << "Actualizar " << label << ": " << endl;
+                cin >> dato;
                 this->opcionUsuario = '0';
+            };
+            switch (this->opcionUsuario) {
+            case '1':
+                actualizarDato(this->apellido, "apellido");
+                break;
+            case '2':
+                actualizarDato(this->correoElectronico, "correo electronico");
+                break;
+            case '3':
+                actualizarDato(this->numeroCelular, "numero de celular");
+                break;
+            case '4':
+                actualizarDato(this->direccion, "direccion");
+                break;
+            case '5':
+                actualizarDato(this->genero, "genero");
+                break;
+            case '6':
+                actualizarDato(this->DNI, "DNI");
                 break;
             }
-            case '2': {
-                cout << "Actualizar correo electronico: " << endl;
-                cin >> opcionString;
-                this->correoElectronico = opcionString;
-                this->opcionUsuario = '0';
-                break;
-            }
-            case '3': {
-                cout << "Actualizar numero de celular: " << endl;
-                cin >> opcionString;
-                this->numeroCelular = opcionString;
-                this->opcionUsuario = '0';
-                break;
-            }
-            case '4': {
-                cout << "Actualizar direccion: " << endl;
-                cin >> opcionString;
-                this->direccion = opcionString;
-                this->opcionUsuario = '0';
-                break;
-            }
-            case '5': {
-                cout << "Actualizar genero: " << endl;
-                cin >> opcionString;
-                this->genero = opcionString;
-                this->opcionUsuario = '0';
-                break;
-            }
-            case '6': {
-                cout << "Actualizar DNI: " << endl;
-                cin >> opcionString;
-                this->DNI = opcionString;
-                this->opcionUsuario = '0';
-                break;
-            }
-        }
+
+        } while (this->opcionUsuario != '7');
     }
 
     //Modificacion y obtencion de datos
