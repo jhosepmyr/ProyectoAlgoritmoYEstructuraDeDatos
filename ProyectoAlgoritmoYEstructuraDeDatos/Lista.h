@@ -10,8 +10,7 @@ class Lista {
     struct Nodo;
     typedef function<int(T, T)> Comp;
     Nodo* ini;
-    uint    lon; // número de elementos en la lista
-    //Comp    comparar; // lambda de criterio de comparación
+    uint    lon;
 
 public:
     Lista() : ini(nullptr), lon(0) { };

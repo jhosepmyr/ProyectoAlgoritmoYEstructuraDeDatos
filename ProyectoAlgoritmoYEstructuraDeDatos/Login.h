@@ -6,112 +6,125 @@ using namespace std;
 
 class Login {
 private:
-
 public:
 	Login(){}
-    // función con template para Login
+    // función con template para iniciar sesión
+
     template <typename T, class tipoInterfaz>
     void iniciarSesion() {
         string nombre, contra;
-        cout << "INICIO DE SESIÓN"<<endl;
-        cout << "Nombre: "<<endl;
+        cout << "INICIO DE SESIÓN" << endl;
+        cout << "Nombre: ";
         cin >> nombre;
-        cout << endl;
-        cout << "Contraseña: " << endl;
-        cout << endl;
+        cout << "Contraseña: ";
         cin >> contra;
-        cout << endl;
 
         //uso de template,
         T* auxUsuario = new T(nombre, contra);
 
         ifstream archivoLectura(auxUsuario->getDatosInicioSesion());
-
+        
         if (!archivoLectura.is_open()) {
             cout << "Error al abrir el archivo " << auxUsuario->getDatosInicioSesion() << endl;
             return;
         }
 
         string linea;
+        bool credencialesCorrectas = false;
 
         while (getline(archivoLectura, linea)) {
-            bool verificarNombre = linea.find(nombre);
-            bool verificarContra = linea.find(contra);
-            // Verifica si la línea contiene el nombre y la contraseña separados por un espacio
-            if (verificarContra && verificarNombre) {
-                cout << "Inicio de sesion exitoso." << endl << endl;
-                cout << "Presiona ENTER para continuar";
-                system("pause>0");
-                system("cls");
-                tipoInterfaz* auxInterfazUsuario= new tipoInterfaz(nombre, contra);
-                auxInterfazUsuario->mostrarInterfaz();
-                //auxUsuario
-                delete auxUsuario;
-                auxUsuario = nullptr;
-                return;
+            // Separar la línea en nombre de usuario y contraseña
+            istringstream iss(linea);
+            string storedNombre, storedContra;
+            if (iss >> storedNombre >> storedContra) {
+                if (nombre == storedNombre && contra == storedContra) {
+                    credencialesCorrectas = true;
+                    break;
+                }
             }
         }
-        archivoLectura.close(); //cierra archivo
 
-        cout << "Inicio de sesion fallido. Nombre o contraseña incorrectos." << endl;
+        archivoLectura.close();
+
+        if (credencialesCorrectas) {
+            cout << "Inicio de sesión exitoso." << endl;
+            tipoInterfaz* auxInterfazUsuario = new tipoInterfaz(nombre, contra);
+            auxInterfazUsuario->mostrarInterfaz();
+            delete auxInterfazUsuario;
+        }
+        else {
+            cout << "Inicio de sesión fallido. Nombre o contraseña incorrectos." << endl;
+        }
+
         cout << "Presiona ENTER para volver";
         system("pause>0");
         system("cls");
-        delete auxUsuario;
-        auxUsuario = nullptr;
-        return;
-
     }
 
-    // template registrarse, admite todos los tipos de usuario
+    // template para registrarse, admite todos los tipos de usuario
     template <typename T>
     void registrarse() {
         system("cls");
         string nombre, contra;
-        cout << "REGISTRO DE NUEVO USUARIO"<<endl;
-        cout << "Nombre: "<<endl;
+        cout << "REGISTRO DE NUEVO USUARIO" << endl;
+        cout << "Nombre: ";
         cin >> nombre;
-        cout << endl;
-        cout << "Contraseña: " << endl;
+        cout << "Contraseña: ";
         cin >> contra;
-        cout << endl;
 
-        //uso del template
         T* auxUsuario = new T(nombre, contra);
 
-        ofstream archivoEscritura(auxUsuario->getDatosInicioSesion(), ios::app); // Abre el archivo en modo de escritura
-        ifstream archivoLectura(auxUsuario->getDatosInicioSesion()); //abre archivo en modo lectura
-
-        if (!archivoEscritura.is_open()) {
-            cout << "Error al abrir el archivo " << auxUsuario->getDatosInicioSesion() << endl;
-            return;
+        if (verificarUsuarioExistente(nombre, contra, auxUsuario->getDatosInicioSesion())) {
+            cout << "Registro fallido: Nombre de usuario ocupado en el sistema" << endl;
+        }
+        else {
+            agregarNuevoUsuario(nombre, contra, auxUsuario->getDatosInicioSesion());
         }
 
-        string linea;
-        while (getline(archivoLectura, linea)) { 
-            //para validar que no haya un usuario con el mismo nombre
-            // Verifica si la línea contiene el nombre y la contraseña separados por un espacio
-            if (linea == nombre + " " + contra) {
-                cout << "Registro fallido: Nombre de usuario ocupado en el sistema";
-                system("pause>0");
-                delete auxUsuario;
-                auxUsuario = nullptr;
-                system("cls");
-                return;
-            }
-
-        }
-        // Escribe los datos del nuevo usuario en una sola línea
-        archivoEscritura << nombre << " " << contra <<endl;
-        cout << endl;
-        archivoEscritura.close();
-
-        cout << "Registro exitoso." << endl << endl;
         cout << "Presiona ENTER para volver";
         system("pause>0");
         system("cls");
-
-        delete auxUsuario;
-        auxUsuario = nullptr;
     }
+
+    bool verificarUsuarioExistente(string nombreUsuario, string contraUsuario,string archivo) {
+        ifstream archivoLectura(archivo);
+
+        if (!archivoLectura.is_open()) {
+            cout << "Error al abrir el archivo " << archivo << endl;
+            return false;
+        }
+
+        string linea;
+
+        while (getline(archivoLectura, linea)) {
+            // Separar la línea en nombre de usuario y contraseña
+            istringstream iss(linea);
+            string storedNombre, storedContra;
+            if (iss >> storedNombre >> storedContra) {
+                if (nombreUsuario == storedNombre && contraUsuario == storedContra) {
+                    archivoLectura.close();
+                    return true; // El usuario ya existe en el sistema
+                }
+            }
+        }
+
+        archivoLectura.close();
+        return false; // El usuario no existe
+    }
+    
+    void agregarNuevoUsuario(string nombre, string contra,string archivo) {
+        // Abre el archivo en modo de escritura sin agregar
+        ofstream archivoEscritura(archivo, ios_base::app);
+
+        if (!archivoEscritura.is_open()) {
+            cout << "Error al abrir el archivo " << archivo << endl;
+            return;
+        }
+        // Escribe los datos del nuevo usuario al final del archivo
+        archivoEscritura << nombre << " " << contra << endl;
+        archivoEscritura.close();
+
+        cout << "Registro exitoso." << endl;
+    }
+
  };

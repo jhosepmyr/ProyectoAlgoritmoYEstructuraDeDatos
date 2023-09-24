@@ -102,7 +102,7 @@
       <Filter>Archivos de encabezado\EstructurasTemplates</Filter>
     </ClInclude>
     <ClInclude Include="Cola.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\EstructurasTemplates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,13 +122,13 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="DatosSesionVendedores.txt">
-      <Filter>Archivos de encabezado\Archivos</Filter>
-    </Text>
     <Text Include="DatosSesionClientes.txt">
       <Filter>Archivos de encabezado\Archivos</Filter>
     </Text>
     <Text Include="DatosProductos.txt">
+      <Filter>Archivos de encabezado\Archivos</Filter>
+    </Text>
+    <Text Include="DatosSesionVendedores.txt">
       <Filter>Archivos de encabezado\Archivos</Filter>
     </Text>
   </ItemGroup>

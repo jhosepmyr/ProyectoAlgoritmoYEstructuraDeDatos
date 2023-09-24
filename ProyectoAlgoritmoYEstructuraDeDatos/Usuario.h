@@ -177,7 +177,6 @@ public:
     void getInformacionPersonalTxt() {
 
         ifstream archivoLectura(this->datosInicioSesion);
-        string contenidoArchivo;
 
         if (!archivoLectura.is_open())
         {
@@ -206,9 +205,6 @@ public:
             }
         }
         archivoLectura.close();
-        ofstream archivoEscritura(this->datosInicioSesion);
-        archivoEscritura << contenidoArchivo;
-        archivoEscritura.close();
     }
 
     void actualizarDatosSesionATxt() {
@@ -246,7 +242,5 @@ public:
         ofstream archivoEscritura(this->datosInicioSesion);
         archivoEscritura << contenidoArchivo;
         archivoEscritura.close();
-
-        //cout << "Datos actualizados en el archivo exitosamente." <<endl;
     }
 };

@@ -165,6 +165,4 @@ public:
         Pila<Pedido> auxPedidos = this->pedidos;
         auxPedidos.mostrarTodosLosPedidos();
     }
-
-
 };

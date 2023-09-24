@@ -1,11 +1,2 @@
-Luis 123 Perez luis@gmail.com 98735282 Lima masculino 287374
-Pedro 123 Chave jorge@gmail.com 12334342 Lima masculino 1231231
-Juan 987
-Jhosep 123 Gutierrez jhose@gmail.com 992238550 Postes masculino 4263894
-Peter 12344 Garcia  -1596843008   -1355817696
-Juan 123
-Elmer 123456
-Jose Martinez
-Jorge 123456
-Marcelo 123
-Irvin 123 
+Pedro 123   -591777936   -150100192
+Lucas 123123
