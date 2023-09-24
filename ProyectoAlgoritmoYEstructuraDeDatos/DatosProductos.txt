@@ -1,6 +1,6 @@
 Tele 1350.000000 noComestible Luis324
-Limon 14.000000 comestible Lucas1212
-Limon 14.000000 comestible Joan1234
+Limon Verde 14.000000 comestible Lucas1212
+Limon Amarillo 14.000000 comestible Joan1234
 PC 1350.000000 noComestible Juan123
 Microondas 350.000000 noComestible Luis324
 Lavadora 1433.000000 noCcomestible Lucas1212
