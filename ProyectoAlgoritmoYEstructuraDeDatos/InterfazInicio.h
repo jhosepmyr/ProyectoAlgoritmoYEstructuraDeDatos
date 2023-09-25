@@ -9,10 +9,12 @@ class InterfazInicio : public Interfaz {
 private:
     InterfazLogin* interfazLogin;
 public:
-    InterfazInicio() {}
+    InterfazInicio() {
+        interfazLogin = new InterfazLogin();
+    }
     void ventanaInicio() {
         Console::SetCursorPosition(0, 8);
-        cout << endl;
+        Console::ForegroundColor = ConsoleColor::White;
         cout << R"(
          _______  __    __  .______       __    __    
         /  _____||  |  |  | |   _  \     |  |  |  |   
@@ -28,11 +30,9 @@ public:
        |_______/    |__|  |__|  \______/  | _|                               
 )";
         Console::ForegroundColor = ConsoleColor::Blue;
-        Console::SetCursorPosition(14, 22); 
-        cout << endl;
+        Console::SetCursorPosition(14, 22);
         cout << "Presiona ENTER para continuar";
-        cout << endl;
-        system("pause>0");
+        cin.get();
         system("cls");
     }
     void iniciarLogin() {
