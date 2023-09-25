@@ -1,7 +1,100 @@
-Tele 1350.000000 noComestible Luis324
-Limon 14.000000 comestible Lucas1212
-Limon 14.000000 comestible Joan1234
-PC 1350.000000 noComestible Juan123
-Microondas 350.000000 noComestible Luis324
-Lavadora 1433.000000 noCcomestible Lucas1212
-Pera 1.000000 comestible Joan1234
+Televisor 1350 noComestible Luis 324
+Limón 14 comestible Lucas 1212
+Lavadora 1433 noComestible Joan 1234
+PC 1350 noComestible Juan 123
+Microondas 350 noComestible Tito 133
+Pera 123 comestible Lucero 113
+Mesa 400 noComestible Julio 12341
+Refrigerador 750 noComestible Mario 3892
+Toaster 50 noComestible Carla 765
+Impresora 200 noComestible Laura 456
+Silla 75 noComestible Carlos 890
+Secadora 650 noComestible Sofia 234
+Auriculares 80 noComestible Manuel 987
+Cámara 300 noComestible Ana 567
+Teclado 40 noComestible Pedro 678
+Ratón 25 noComestible Elena 345
+Tostadora 35 noComestible Miguel 123
+Estufa 420 noComestible Marta 876
+Altavoces 90 noComestible Diego 678
+Ventilador 60 noComestible Paula 234
+Guitarra 300 noComestible Sergio 456
+Reloj 150 noComestible Adriana 567
+Libro 15 noComestible Rafael 345
+Mochila 50 noComestible Diana 123
+Camiseta 20 noComestible Fernando 678
+Pantalones 30 noComestible Elena 345
+Zapatos 40 noComestible Luisa 234
+Bolso 25 noComestible Alberto 123
+Gafas 70 noComestible Clara 567
+Sombrero 15 noComestible Manuel 345
+Bufanda 10 noComestible Carla 123
+Guantes 8 noComestible Juan 678
+Bufanda 10 noComestible Sofia 234
+Maleta 55 noComestible David 345
+Lámpara 45 noComestible Patricia 567
+Botellas 5 noComestible Laura 789
+Cuadro 90 noComestible Javier 234
+Teléfono 250 noComestible Marta 123
+Portátil 700 noComestible Carmen 456
+Bolígrafo 2 noComestible Marcos 567
+Tablet 180 noComestible Irene 345
+Cuaderno 5 noComestible Pablo 678
+Cepillo 3 noComestible Carla 123
+Espejo 30 noComestible Luisa 234
+Vaso 2 comestible Diego 345
+Taza 4 comestible Paula 567
+Platos 6 comestible Sonia 234
+Cuchillo 7 comestible Pedro 345
+Tenedor 5 comestible Elena 567
+Cuchara 5 comestible Manuel 234
+Sartén 20 noComestible Carmen 123
+Olla 18 noComestible Javier 567
+Tostadora 35 noComestible Laura 123
+Mantel 12 noComestible Patricia 789
+Vajilla 25 comestible Marcos 567
+Candelabro 40 noComestible Ana 345
+Cojín 8 noComestible Sofia 567
+Alfombra 30 noComestible Carlos 123
+Lámpara 45 noComestible Carmen 567
+Cortinas 20 noComestible Isabel 234
+Cuadro 90 noComestible Manuel 567
+Flores 5 comestible Beatriz 123
+Jabón 2 comestible Raúl 456
+Champú 4 comestible Elena 567
+Pasta dental 3 comestible Laura 234
+Cepillo de dientes 2 comestible Pedro 567
+Toallas 6 comestible Sonia 234
+Papel higiénico 1 comestible Carla 567
+Champú 4 comestible Carmen 234
+Gel de ducha 3 comestible Sergio 567
+Cepillo de pelo 5 comestible Ana 234
+Peine 2 comestible Laura 567
+Ropa interior 7 comestible Marcos 234
+Calcetines 3 comestible Claudia 567
+Zapatillas 8 comestible Marta 234
+Bufanda 10 noComestible Javier 567
+Sombrero 15 noComestible Irene 234
+Guantes 8 noComestible Paula 567
+Mochila 50 noComestible Roberto 234
+Maleta 55 noComestible Carla 567
+Botas 25 noComestible Miguel 234
+Zapatillas 20 noComestible Laura 567
+Chanclas 10 noComestible Daniel 234
+Corbata 12 noComestible Paula 567
+Calcetines 3 noComestible Marta 234
+Bufanda 10 noComestible Carmen 567
+Pañuelo 5 noComestible Jorge 234
+Guantes 8 noComestible Laura 567
+Bolso 25 noComestible Sonia 234
+Gorra 10 noComestible Manuel 567
+Gafas de sol 15 noComestible Lucia 234
+Reloj 20 noComestible Diego 567
+Pendientes 5 noComestible Patricia 234
+Collar 8 noComestible Laura 567
+Anillo 7 noComestible Sergio 234
+Pulsera 6 noComestible Elena 567
+Perfume 40 noComestible Marta 234
+Loción 18 noComestible Manuel 567
+Cremas 15 noComestible Carla 234
+Maquillaje 25 noComestible Lucia 567
