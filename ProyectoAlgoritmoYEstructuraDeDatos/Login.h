@@ -13,10 +13,14 @@ public:
     template <typename T, class tipoInterfaz>
     void iniciarSesion() {
         string nombre, contra;
-        cout << "INICIO DE SESIÓN" << endl;
+        Console::ForegroundColor = ConsoleColor::Blue;
+        Console::SetCursorPosition(21, 28);
+        cout << "INICIO DE SESION";
+        Console::SetCursorPosition(20, 30);
         cout << "Nombre: ";
         cin >> nombre;
-        cout << "Contraseña: ";
+        Console::SetCursorPosition(20, 32);
+        cout << "Contrasenia: ";
         cin >> contra;
 
         //uso de template,
@@ -47,15 +51,18 @@ public:
         archivoLectura.close();
 
         if (credencialesCorrectas) {
-            cout << "Inicio de sesión exitoso." << endl;
+            cout << "Inicio de sesion exitoso." << endl;
             tipoInterfaz* auxInterfazUsuario = new tipoInterfaz(nombre, contra);
             auxInterfazUsuario->mostrarInterfaz();
             delete auxInterfazUsuario;
         }
         else {
-            cout << "Inicio de sesión fallido. Nombre o contraseña incorrectos." << endl;
+            Console::ForegroundColor = ConsoleColor::Red;
+            Console::SetCursorPosition(1, 34);
+            cout << "Inicio de sesión fallido. Nombre o contrasenia incorrectos." << endl;
         }
-
+        Console::SetCursorPosition(14, 35);
+        Console::ForegroundColor = ConsoleColor::Blue;
         cout << "Presiona ENTER para volver";
         system("pause>0");
         system("cls");
@@ -64,26 +71,31 @@ public:
     // template para registrarse, admite todos los tipos de usuario
     template <typename T>
     void registrarse() {
-        system("cls");
         string nombre, contra;
-        cout << "REGISTRO DE NUEVO USUARIO" << endl;
+        Console::ForegroundColor = ConsoleColor::Blue;
+        Console::SetCursorPosition(16, 28);
+        cout << "REGISTRO DE NUEVO USUARIO";
+        Console::SetCursorPosition(20, 30);
         cout << "Nombre: ";
         cin >> nombre;
-        cout << "Contraseña: ";
+        Console::SetCursorPosition(20, 32);
+        cout << "Contrasenia: ";
         cin >> contra;
 
         T* auxUsuario = new T(nombre, contra);
 
         if (verificarUsuarioExistente(nombre, contra, auxUsuario->getDatosInicioSesion())) {
+            Console::ForegroundColor = ConsoleColor::Red;
+            Console::SetCursorPosition(1, 34);
             cout << "Registro fallido: Nombre de usuario ocupado en el sistema" << endl;
         }
         else {
             agregarNuevoUsuario(nombre, contra, auxUsuario->getDatosInicioSesion());
         }
-
+        Console::SetCursorPosition(14, 35);
+        Console::ForegroundColor = ConsoleColor::Blue;
         cout << "Presiona ENTER para volver";
         system("pause>0");
-        system("cls");
     }
 
     bool verificarUsuarioExistente(string nombreUsuario, string contraUsuario,string archivo) {
@@ -124,6 +136,8 @@ public:
         archivoEscritura << nombre << " " << contra << endl;
         archivoEscritura.close();
 
+        Console::SetCursorPosition(18, 34);
+        Console::ForegroundColor = ConsoleColor::Green;
         cout << "Registro exitoso." << endl;
     }
 

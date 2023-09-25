@@ -61,12 +61,11 @@ public:
                 cin >> this->tipoUsuario;
             }
             validarOpcion();
-            system("cls");
             resultadosOpcionSeleccionada();
-            system("pause");
+            system("pause>0");
         } while (this->opcion!= '5');
 
-        Console::SetCursorPosition(5, 20);
+        Console::SetCursorPosition(20, 30);
         cout << "REGRESE PRONTO\n";
     }
    
@@ -96,12 +95,36 @@ public:
                 break;
             }
             case '3': {
-                cout << "informacion mostrada" << endl;
+                cout << endl;
+                Console::ForegroundColor = ConsoleColor::Green;
+                cout << "\t\t    Funcionamiento" << endl;
+                cout << "   Guru Shop es una aplicacion de gestion de ventas\n";
+                cout << "  que utiliza una estructura orientada a objetos con\n"; 
+                cout << "  clases como Cliente, Vendedor y Pedido. Hace uso de\n";
+                cout << " estructuras de datos como Listas, Colas y Pilas, junto\n"; 
+                cout << "  con plantillas, funciones lambda y recursividad para\n";
+                cout << " optimizar las operaciones.Su objetivo es ofrecer a los\n";
+                cout << "  usuarios la capacidad de explorar productos, realizar\n";
+                cout << " pedidos y administrar transacciones de manera eficiente.";
+                Console::SetCursorPosition(14, 35);
+                Console::ForegroundColor = ConsoleColor::Blue;
+                cout << "Presiona ENTER para volver";
                 this->opcion = '0';
                 break;
             }
             case '4': {
-                cout << "los duenos son:" << endl;
+                Console::ForegroundColor = ConsoleColor::Green;
+                Console::SetCursorPosition(21, 26);
+                cout << "Los duenios son:";
+                Console::SetCursorPosition(20, 28);
+                cout << "Jhosepmyr Orlando";
+                Console::SetCursorPosition(24, 30);
+                cout << "Elmer Riva";
+                Console::SetCursorPosition(22, 32);
+                cout << "Jose Martinez";
+                Console::SetCursorPosition(14, 34);
+                Console::ForegroundColor = ConsoleColor::Blue;
+                cout << "Presiona ENTER para volver";
                 this->opcion = '0';
                 break;
             }
