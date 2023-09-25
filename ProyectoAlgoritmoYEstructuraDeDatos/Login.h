@@ -65,7 +65,6 @@ public:
         Console::ForegroundColor = ConsoleColor::Blue;
         cout << "Presiona ENTER para volver";
         system("pause>0");
-        system("cls");
     }
 
     // template para registrarse, admite todos los tipos de usuario
@@ -95,7 +94,6 @@ public:
         Console::SetCursorPosition(14, 35);
         Console::ForegroundColor = ConsoleColor::Blue;
         cout << "Presiona ENTER para volver";
-        system("pause>0");
     }
 
     bool verificarUsuarioExistente(string nombreUsuario, string contraUsuario,string archivo) {

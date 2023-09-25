@@ -9,7 +9,6 @@ Refrigerador 750.000000 noComestible Mario
 Toaster 50.000000 noComestible Carla
 Impresora 200.000000 noComestible Laura
 Silla 75.000000 noComestible Carlos
-Secadora 650.000000 noComestible Sofia
 Auriculares 80.000000 noComestible Manuel
 Cámara 300.000000 noComestible Ana
 Teclado 40.000000 noComestible Pedro
@@ -98,3 +97,4 @@ Loción 2.000000 comestible Elena
 Cremas 5.000000 comestible Manuel
 Perfume 4.000000 comestible Carmen
 Maquillaje 3.000000 comestible Sofia
+Secadora 650.000000 noComestible Sofia

@@ -47,7 +47,8 @@ public:
             cin >> opc;
             if (opc == '1') {
                 string identificadorAux = "";
-                cout << "Elija el producto que desea agregar al carrito(INGRESE EL ID):";
+                cout << "Elija el producto que desea agregar al carrito:\n";
+                cout << "(INGRESE EL NOMBRE): ";
                 cin >> identificadorAux;
                 //se busca de la lista de productos por identificar y lo retorna
                 Producto productoAux = this->productos.buscarporID(identificadorAux);

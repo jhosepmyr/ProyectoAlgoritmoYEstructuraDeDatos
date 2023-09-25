@@ -1,5 +1,4 @@
 #pragma once
-#include "Interfaz.h"
 #include "InterfazLogin.h"
 
 using namespace System;
