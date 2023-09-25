@@ -30,10 +30,7 @@ Gafas 70 noComestible Clara 567
 Sombrero 15 noComestible Manuel 345
 Bufanda 10 noComestible Carla 123
 Guantes 8 noComestible Juan 678
-Bufanda 10 noComestible Sofia 234
 Maleta 55 noComestible David 345
-Lámpara 45 noComestible Patricia 567
-Botellas 5 noComestible Laura 789
 Cuadro 90 noComestible Javier 234
 Teléfono 250 noComestible Marta 123
 Portátil 700 noComestible Carmen 456
@@ -52,32 +49,28 @@ Sartén 20 noComestible Carmen 123
 Olla 18 noComestible Javier 567
 Tostadora 35 noComestible Laura 123
 Mantel 12 noComestible Patricia 789
-Vajilla 25 comestible Marcos 567
 Candelabro 40 noComestible Ana 345
 Cojín 8 noComestible Sofia 567
 Alfombra 30 noComestible Carlos 123
-Lámpara 45 noComestible Carmen 567
 Cortinas 20 noComestible Isabel 234
 Cuadro 90 noComestible Manuel 567
 Flores 5 comestible Beatriz 123
 Jabón 2 comestible Raúl 456
 Champú 4 comestible Elena 567
-Pasta dental 3 comestible Laura 234
-Cepillo de dientes 2 comestible Pedro 567
+Pasta 3 comestible Laura 234
+Cepillo 2 comestible Pedro 567
 Toallas 6 comestible Sonia 234
-Papel higiénico 1 comestible Carla 567
+Papel 1 comestible Carla 567
 Champú 4 comestible Carmen 234
-Gel de ducha 3 comestible Sergio 567
-Cepillo de pelo 5 comestible Ana 234
+Gel 3 comestible Sergio 567
+Cepillo 5 comestible Ana 234
 Peine 2 comestible Laura 567
-Ropa interior 7 comestible Marcos 234
+Ropa 7 comestible Marcos 234
 Calcetines 3 comestible Claudia 567
 Zapatillas 8 comestible Marta 234
 Bufanda 10 noComestible Javier 567
 Sombrero 15 noComestible Irene 234
 Guantes 8 noComestible Paula 567
-Mochila 50 noComestible Roberto 234
-Maleta 55 noComestible Carla 567
 Botas 25 noComestible Miguel 234
 Zapatillas 20 noComestible Laura 567
 Chanclas 10 noComestible Daniel 234
@@ -88,7 +81,7 @@ Pañuelo 5 noComestible Jorge 234
 Guantes 8 noComestible Laura 567
 Bolso 25 noComestible Sonia 234
 Gorra 10 noComestible Manuel 567
-Gafas de sol 15 noComestible Lucia 234
+Gafas 15 noComestible Lucia 234
 Reloj 20 noComestible Diego 567
 Pendientes 5 noComestible Patricia 234
 Collar 8 noComestible Laura 567
@@ -98,3 +91,10 @@ Perfume 40 noComestible Marta 234
 Loción 18 noComestible Manuel 567
 Cremas 15 noComestible Carla 234
 Maquillaje 25 noComestible Lucia 567
+Jabón 2 comestible Roberto 234
+Toalla 4 comestible Carmen 567
+Champú 3 comestible Luis 234
+Loción 2 comestible Elena 567
+Cremas 5 comestible Manuel 234
+Perfume 4 comestible Carmen 567
+Maquillaje 3 comestible Sofia 234
