@@ -18,3 +18,12 @@ void Pila<T>::mostrarDatosPila() {
 	mostrarDatosPila();
 }*/
 
+//En la clase Cola
+/*
+template<class T>
+void Cola<T>::mostrardatos() {
+	if (inicio == fin) return;
+	dequeue();
+	mostrardatos();
+}*/
+
