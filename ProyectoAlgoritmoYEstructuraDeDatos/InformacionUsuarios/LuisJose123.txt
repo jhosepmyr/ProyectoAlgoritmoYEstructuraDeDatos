@@ -1,0 +1,5 @@
+Pedido1|{Carro;4;nocomestible;321}{Carne;2;comestible;739}|
+Pedido2|{Carroza;3;noComestible;976}{MousePad;4;noComestible;545}|
+Pedido3|{MesaGamer;5;noComestible;111}{Panadol;2;noComestible;222}|
+Pedido4|{Pera;3;comestible;255}{Minutero;4;nocomestible;6666}{Blueberries;1;comestible;677}|
+Pedido5|{Polaroid;4;noComestible;1511}

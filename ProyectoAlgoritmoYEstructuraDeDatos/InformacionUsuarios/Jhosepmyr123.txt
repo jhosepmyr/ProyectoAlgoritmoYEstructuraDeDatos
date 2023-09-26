@@ -1,0 +1,7 @@
+Pedido1|{Limon;14;comestible;Joan1234}{Pera;1;comestible;Joan4534}|
+Pedido2|{Limon;14;comestible;Lucas1212}|
+Pedido3|{Sillon;50;noComestible;Juan1236}{Tele;1350;noComestible;Luis324}|
+Pedido4|{Sillon;50;noComestible;Juan12352}|
+Pedido5|{PC;1350;noComestible;Juan123}|
+Pedido6|{Vaso;2;comestible;Diego234}{PC;1350;noComestible;Juan123}|
+Pedido7|{Candelabro;40;noComestible;Ana45456}{Secadora;650;noComestible;Sofia234}|
