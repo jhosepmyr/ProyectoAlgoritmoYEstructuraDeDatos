@@ -50,7 +50,7 @@ public:
             //validarOpcion();
             resultadosOpcionSeleccionada();
             system("pause>0");
-            if (this->opcion > 6 || this->opcion < 1) { return MenuCliente(); }
+            if (this->opcion > 1 && this->opcion < 6) { return MenuCliente(); }
             else return 0;
     }
 

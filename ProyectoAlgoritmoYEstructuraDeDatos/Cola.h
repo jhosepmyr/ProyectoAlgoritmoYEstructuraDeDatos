@@ -19,9 +19,6 @@ public:
 	void dequeue();
 	bool esVacia();
 	void mostrardatos();
-
-	void ordenarPorPrecio(function<bool(const T&, const T&)> comparador);
-
 };
 
 template<class T>
@@ -63,33 +60,6 @@ template<class T>
 void Cola<T>::mostrardatos() {
 	while (inicio != fin) {
 		dequeue();
-	}
-}
-
-template<class T>
-void Cola<T>::ordenarPorPrecio(function<bool(const T&, const T&)> comparador) { //usando metodo de ordenamiento por selección
-	if (inicio == nullptr || inicio == fin) { //vacía o tiene un solo elemento
-		return;
-	}
-
-	Nodo<T>* actual = inicio;
-	while (actual != nullptr) {
-		Nodo<T>* minimo = actual;
-		Nodo<T>* siguiente = actual->siguiente;
-
-		while (siguiente != nullptr) {
-			if (comparador(siguiente->dato, minimo->dato)) {
-				minimo = siguiente;
-			}
-			siguiente = siguiente->siguiente;
-		}
-
-		// Intercambia los datos de actual y minimo.
-		T temp = actual->dato;
-		actual->dato = minimo->dato;
-		minimo->dato = temp;
-
-		actual = actual->siguiente;
 	}
 }
 

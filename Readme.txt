@@ -11,6 +11,8 @@ Tareas:
 Debugeador
 Autovaluracion:
 20
+
+
 Integrante:
 Riva Rodriguez, Elmer Augusto (u202220829)
 Tareas:
@@ -25,6 +27,8 @@ Tareas:
 Debugeador
 Autovaloracion:
 20
+
+
 Integrante:
 Martinez Valdivia, Jose Luis (u202213989)
 Tareas:
