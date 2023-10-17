@@ -130,6 +130,8 @@
     <ClInclude Include="Cliente.h" />
     <ClInclude Include="Cola.h" />
     <ClInclude Include="Files.h" />
+    <ClInclude Include="HashEntidad.h" />
+    <ClInclude Include="HashTable.h" />
     <ClInclude Include="Interfaz.h" />
     <ClInclude Include="InterfazCliente.h" />
     <ClInclude Include="InterfazInicio.h" />
