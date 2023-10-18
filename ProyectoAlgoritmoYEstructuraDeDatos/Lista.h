@@ -259,18 +259,75 @@ void Lista<T>::ordenarPorPrecioAscendente() {
         aux = aux->sig;
     }
 
-    auto ordIntercambio = [](Producto a[], int n)
-    {
-        for (int i = 0; i < n - 1; i++) {
-            for (int k = i + 1; k < n; k++) {
-                if (a[i].getPrecio() > a[k].getPrecio()) {
-                    swap(a[i], a[k]);
-                }
+    auto partition = [](Producto* arr, int start, int end) {
+
+        int pivot = arr[start].getPrecio();
+
+        int count = 0;
+        for (int i = start + 1; i <= end; i++) {
+            if (arr[i].getPrecio() <= pivot)
+                count++;
+        }
+
+        // Giving pivot element its correct position
+        int pivotIndex = start + count;
+        swap(arr[pivotIndex], arr[start]);
+
+        // Sorting left and right parts of the pivot element
+        int i = start, j = end;
+
+        while (i < pivotIndex && j > pivotIndex) {
+
+            while (arr[i].getPrecio() <= pivot) {
+                i++;
+            }
+
+            while (arr[j].getPrecio() > pivot) {
+                j--;
+            }
+
+            if (i < pivotIndex && j > pivotIndex) {
+                swap(arr[i++], arr[j--]);
             }
         }
+
+        return pivotIndex;
     };
 
-    ordIntercambio(arr, lon);
+    auto quickSort = [&](Producto* arr, int start, int end, auto&& quickSort)
+        {
+
+            // base case
+            if (start >= end)
+                return;
+
+            // partitioning the array
+            int p = partition(arr, start, end);
+
+            // Sorting the left part
+            quickSort(arr, start, p - 1, quickSort);
+
+            // Sorting the right part
+            quickSort(arr, p + 1, end, quickSort);
+        };
+
+
+
+
+    //auto ordIntercambio = [](Producto a[], int n)
+    //    {
+    //        for (int i = 0; i < n - 1; i++) {
+    //            for (int k = i + 1; k < n; k++) {
+    //                if (a[i].getPrecio() > a[k].getPrecio()) {
+    //                    swap(a[i], a[k]);
+    //                }
+    //            }
+    //        }
+    //    };
+
+    //ordIntercambio(arr, lon);
+    quickSort(arr, 0, lon-1, quickSort);
+
     for (int i = lon - 1; i >= 0; i--) {
         colaaux.enqueue(arr[i]);
     }
