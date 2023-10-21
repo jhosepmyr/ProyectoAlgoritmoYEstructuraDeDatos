@@ -7,6 +7,7 @@ using namespace std;
 using namespace System;
 int main()
 {
+    Console::CursorVisible = false;
     Console::SetWindowSize(60,40);
     InterfazInicio* sistema = new InterfazInicio();
     sistema->ventanaInicio();

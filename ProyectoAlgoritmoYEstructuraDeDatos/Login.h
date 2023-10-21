@@ -61,7 +61,7 @@ public:
         else {
             Console::ForegroundColor = ConsoleColor::Red;
             Console::SetCursorPosition(1, 34);
-            cout << "Inicio de sesión fallido. Nombre o contrasenia incorrectos." << endl;
+            cout << "Inicio de sesion fallido. Nombre o contrasenia incorrectos." << endl;
         }
         Console::SetCursorPosition(14, 35);
         Console::ForegroundColor = ConsoleColor::Blue;

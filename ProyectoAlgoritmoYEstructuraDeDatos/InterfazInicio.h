@@ -1,6 +1,5 @@
 #pragma once
 #include "InterfazLogin.h"
-
 using namespace System;
 using namespace std;
 
@@ -14,6 +13,7 @@ public:
     void ventanaInicio() {
         Console::SetCursorPosition(0, 8);
         Console::ForegroundColor = ConsoleColor::White;
+ 
         cout << R"(
          _______  __    __  .______       __    __    
         /  _____||  |  |  | |   _  \     |  |  |  |   
