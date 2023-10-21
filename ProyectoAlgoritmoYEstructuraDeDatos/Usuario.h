@@ -16,6 +16,7 @@ protected:
     string direccion;
     string genero;
     string DNI;
+    string ID;
 
     string datosInicioSesion;//archivo donde se guarda las contrasenas y usuarios
     Files personal;
@@ -35,6 +36,7 @@ public:
         this->DNI = "ninguno";
         this->productos = this->personal.getProductos();
         this->opcionUsuario = '0';
+        this->ID = "ninguno";
     }
 
     //GETTERS Y SETTERS
@@ -66,9 +68,15 @@ public:
     string getDatosInicioSesion() {
         return datosInicioSesion;
     }
+    void setID(string _ID) {
+        ID = _ID;
+    }
+    string getID() {
+        return this->ID;
+    }
 
     //actualiza toda la informacion del archivo txt de datos de sesion
-    void setTodaInformacion(string _nombre, string _contra, string _apellido, string _correo, string _num, string _direccion, string _genero, string _DNI) {
+    void setTodaInformacion(string _nombre, string _contra,string _id, string _apellido, string _correo, string _num, string _direccion, string _genero, string _DNI) {
         // Utilización de funciones lambda para actualizar los miembros
         auto updateMember = [](string& member, const string& value) {
             if (value != "ninguno") {
@@ -77,6 +85,7 @@ public:
         };
         updateMember(this->nombre, _nombre);
         updateMember(this->contra, _contra);
+        updateMember(this->ID, _id);
         updateMember(this->apellido, _apellido);
         updateMember(this->correoElectronico, _correo);
         updateMember(this->numeroCelular, _num);
@@ -93,13 +102,14 @@ public:
             }
         };
 
-        mostrarDato("Nombre", this->nombre);
-        mostrarDato("Apellido", this->apellido);
-        mostrarDato("CorreoElectronico", this->correoElectronico);
-        mostrarDato("Numero de celular", this->numeroCelular);
-        mostrarDato("Direccion", this->direccion);
-        mostrarDato("Genero", this->genero);
-        mostrarDato("DNI", this->DNI);
+        mostrarDato("Nombre: ", this->nombre);
+        mostrarDato("Apellido: ", this->apellido);
+        mostrarDato("ID: ", this->ID);
+        mostrarDato("CorreoElectronico: ", this->correoElectronico);
+        mostrarDato("Numero de celular: ", this->numeroCelular);
+        mostrarDato("Direccion: ", this->direccion);
+        mostrarDato("Genero: ", this->genero);
+        mostrarDato("DNI: ", this->DNI);
     }
 
     void actualizarDatosPersonales() {
@@ -107,7 +117,8 @@ public:
             system("cls");
             this->opcionUsuario = '0';
             cout << "CONFIGURACION DE PERFIL"<< endl;
-            cout << "1.Apellido:\n";
+            cout << "0.Nombre\n";
+            cout << "1.Apellido\n";
             cout << "2.Correo electronico\n";
             cout << "3.Numero de celular\n";
             cout << "4.Direccion\n";
@@ -123,10 +134,15 @@ public:
             // Función lambda para actualizar datos
             auto actualizarDato = [this](string& dato, const string& label) {
                 cout << "Actualizar " << label << ": " << endl;
-                cin >> dato;
+                string newDato;
+                cin >> newDato;
+                dato = newDato;
                 this->opcionUsuario = '0';
             };
             switch (this->opcionUsuario) {
+            case '0':
+                actualizarDato(this->nombre, "nombre");
+                break;
             case '1':
                 actualizarDato(this->apellido, "apellido");
                 break;
@@ -175,14 +191,15 @@ public:
                 string nombre;
                 string apellido;
                 string contra;
+                string id;
                 string correoElectronico;
                 string numeroCelular;
                 string direccion;
                 string genero;
                 string DNI;
                 istringstream iss(linea);
-                iss >> nombre >> contra >> apellido >> correoElectronico >> numeroCelular >> direccion >> genero >> DNI;
-                setTodaInformacion(nombre, contra, apellido, correoElectronico, numeroCelular, direccion, genero, DNI);
+                iss >> nombre >> contra>> id >> apellido >> correoElectronico >> numeroCelular >> direccion >> genero >> DNI;
+                setTodaInformacion(nombre, contra,id, apellido, correoElectronico, numeroCelular, direccion, genero, DNI);
                 return;
             }
         }
@@ -207,6 +224,7 @@ public:
             {
                 string nuevaLinea = this->nombre + " " +
                     this->contra + " " +
+                    this->ID + " " +
                     this->apellido + " " +
                     this->correoElectronico + " " +
                     this->numeroCelular + " " +

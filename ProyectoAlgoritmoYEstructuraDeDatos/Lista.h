@@ -1,6 +1,8 @@
 #pragma once
 #include <functional>
 #include "Cola.h"
+#include <random>
+
 using namespace std;
 
 typedef unsigned int uint;
@@ -38,12 +40,19 @@ public:
     void    MostrarDatosPROD();
     void    MostrarDatosPRODLinea();
 
-    T     buscarporID(string ID);
+    T     buscarporID(string ID, int tipo);
     void     eliminarporID(string ID);
-    T loopdeBusquedaDATO(Nodo* aux, string ID);
+    T loopdeBusquedaDATO(Nodo* aux, string ID, int tipo);
 
-    void ordenarPorPrecioAscendente();
+    void MergeSort(int ini, int fin);
+    void Merge(int ini, int mitad, int fin);
     void ordenarPorPrecioDescendente();
+
+    T QuickSelect(int p, int r, int k);
+    int Particion(int p, int r);
+    void ordenarPorPrecioAscendente();
+    void intercambiar(int i, int j);
+    
     void desordenamientoShuffle();
 
 };
@@ -207,7 +216,7 @@ void Lista<T>::MostrarDatosPRODLinea() {
 //BUSQUEDA DE PRODUCTOS
 
 template <class T>
-T Lista<T>::buscarporID(string ID) {
+T Lista<T>::buscarporID(string ID, int tipo) {
     Nodo *aux = ini;
     /*while (aux != nullptr) {
         if (aux->elem.getIdentificador()==ID) {
@@ -215,218 +224,171 @@ T Lista<T>::buscarporID(string ID) {
         }
         aux = aux->sig;
     }*/
-    return loopdeBusquedaDATO(aux, ID);
+    return loopdeBusquedaDATO(aux, ID, tipo);
 }
 
 template <class T>
 void Lista<T>::eliminarporID(string ID) {
-    Nodo* aux = ini;
-    int pos = 0;
-    bool encontrado = false;
-    while (aux != nullptr && !encontrado) {
-        if (aux->elem.getNombre() == ID) {
-            eliminaPos(pos);
+    Nodo* actual = ini;
+    Nodo* anterior = nullptr;
+
+    while (actual != nullptr) {
+
+        if (actual->elem.getIdentificador() == ID) {
+            if (anterior == nullptr) {
+                ini = actual->sig;
+            }
+            else {
+                anterior->sig = actual->sig;
+            }
+            delete actual;
             cout << "\nSe ha eliminado el producto correctamente" << endl;
-            encontrado = true;
-            break;
+            lon--;
+            return;
         }
-        else
-        {
-            pos++;
-            aux = aux->sig;
-        }
+
+        anterior = actual;
+        actual = actual->sig;
     }
-    cout << "\nSe no se ha encontrado el producto con el identificador brindado" << endl;
+
+    cout << "\nNo se ha encontrado el producto con el identificador brindado" << endl;
 }
 
 template <class T>
-T Lista<T>::loopdeBusquedaDATO(Nodo* aux, string ID) {
-    if (aux->elem.getNombre() == ID) {
+T Lista<T>::loopdeBusquedaDATO(Nodo* aux, string ID, int tipo) {
+    bool encontrado = (tipo == 1) ? (aux->elem.getIdentificador() == ID) : (aux->elem.getCodigoVendedor() == ID);
+    if (encontrado) {
         return aux->elem;
     }
-    else  if (aux != nullptr) return loopdeBusquedaDATO(aux = aux->sig, ID);
+    else  if (aux != nullptr) return loopdeBusquedaDATO(aux = aux->sig, ID, tipo);
 }
 
 //ORDENAMIENTOS O FILTRADOS
 
-template <class T>
-void Lista<T>::ordenarPorPrecioAscendente() {
-    Nodo* aux = ini;
-    Cola<T>colaaux;
-    Producto* arr = new Producto[lon];
-    for (int i = 0; i < lon; i++) {
-        arr[i] = aux->elem;
-        aux = aux->sig;
+template<class T>
+void Lista<T>::Merge(int ini, int mitad, int fin) {
+    int n1 = mitad - ini + 1;
+    int n2 = fin - mitad;
+
+    Lista<T> L;
+    Lista<T> R;
+
+    // Copia datos a listas temporales L y R
+    for (int i = 0; i < n1; i++) {
+        L.agregaFinal(obtenerPos(ini + i));
+    }
+    for (int j = 0; j < n2; j++) {
+        R.agregaFinal(obtenerPos(mitad + 1 + j));
     }
 
-    auto partition = [](Producto* arr, int start, int end) {
+    int i = 0, j = 0, k = ini;
 
-        int pivot = arr[start].getPrecio();
-
-        int count = 0;
-        for (int i = start + 1; i <= end; i++) {
-            if (arr[i].getPrecio() <= pivot)
-                count++;
+    // Combina las dos listas temporales en la lista original
+    while (i < n1 && j < n2) {
+        if (L.obtenerPos(i).getPrecio() >= R.obtenerPos(j).getPrecio()) {
+            modificarPos(L.obtenerPos(i), k);
+            i++;
         }
-
-        // Giving pivot element its correct position
-        int pivotIndex = start + count;
-        swap(arr[pivotIndex], arr[start]);
-
-        // Sorting left and right parts of the pivot element
-        int i = start, j = end;
-
-        while (i < pivotIndex && j > pivotIndex) {
-
-            while (arr[i].getPrecio() <= pivot) {
-                i++;
-            }
-
-            while (arr[j].getPrecio() > pivot) {
-                j--;
-            }
-
-            if (i < pivotIndex && j > pivotIndex) {
-                swap(arr[i++], arr[j--]);
-            }
+        else {
+            modificarPos(R.obtenerPos(j), k);
+            j++;
         }
-
-        return pivotIndex;
-    };
-
-    auto quickSort = [&](Producto* arr, int start, int end, auto&& quickSort)
-        {
-
-            // base case
-            if (start >= end)
-                return;
-
-            // partitioning the array
-            int p = partition(arr, start, end);
-
-            // Sorting the left part
-            quickSort(arr, start, p - 1, quickSort);
-
-            // Sorting the right part
-            quickSort(arr, p + 1, end, quickSort);
-        };
-
-
-
-
-    //auto ordIntercambio = [](Producto a[], int n)
-    //    {
-    //        for (int i = 0; i < n - 1; i++) {
-    //            for (int k = i + 1; k < n; k++) {
-    //                if (a[i].getPrecio() > a[k].getPrecio()) {
-    //                    swap(a[i], a[k]);
-    //                }
-    //            }
-    //        }
-    //    };
-
-    //ordIntercambio(arr, lon);
-    quickSort(arr, 0, lon-1, quickSort);
-
-    for (int i = lon - 1; i >= 0; i--) {
-        colaaux.enqueue(arr[i]);
+        k++;
     }
 
-    colaaux.mostrardatos();
+    // Copia los elementos restantes de L y R, si los hay
+    while (i < n1) {
+        modificarPos(L.obtenerPos(i), k);
+        i++;
+        k++;
+    }
+    while (j < n2) {
+        modificarPos(R.obtenerPos(j), k);
+        j++;
+        k++;
+    }
 }
 
-template <class T>
+template<class T>
+void Lista<T>::MergeSort(int ini, int fin) {
+    if (ini < fin) {
+        int mitad = ini + (fin - ini) / 2;
+
+        MergeSort(ini, mitad);
+        MergeSort(mitad + 1, fin);
+
+        Merge(ini, mitad, fin);
+    }
+}
+
+template<class T>
 void Lista<T>::ordenarPorPrecioDescendente() {
-    Nodo* aux = ini;
-    Cola<T>colaaux;
-    Producto* arr = new Producto[lon];
-    for (int i = 0; i < lon; i++) {
-        arr[i] = aux->elem;
-        aux = aux->sig;
+    int n = longitud();
+    if (n > 1) {
+        MergeSort(0, n - 1);
     }
-
-    auto Merge = [&](Producto* A1, Producto* A2, Producto* A, int n) {
-        int i = 0, j = 0, k = 0;
-        int mitad = n / 2;
-        while (i < mitad && j < n - mitad) {
-            if (A1[i].getPrecio() < A2[j].getPrecio()) {
-                A[k] = A1[i];
-                i++; k++;
-            }
-            else {
-                A[k] = A2[j];
-                j++; k++;
-            }
-        }
-        while (i < mitad) {
-            A[k] = A1[i];
-            i++; k++;
-        }
-        while (j < n - mitad) {
-            A[k] = A2[j];
-            j++; k++;
-        }
-        };
-
-
-    auto mergeSort = [&](Producto* A, int n, auto mergeSort)->void{
-        if (n > 1) {
-            int mitad = n / 2;
-            Producto* A1 = new Producto[mitad];
-            Producto* A2 = new Producto[n - mitad];
-
-            for (int i = 0; i < mitad; i++) {
-                A1[i] = A[i];
-            }
-            for (int i = mitad; i < n; i++) {
-                A2[i - mitad] = A[i];
-            }
-            mergeSort(A1, mitad, mergeSort);
-            mergeSort(A2, n - mitad, mergeSort);
-            Merge(A1, A2, A, n);
-        };
-        };
-
-
-
-    /*auto ordBurbujaModificado = [](Producto a[], int n) {
-        bool ordenado;
-        for (int i = 0; i < n - 1; i++) {
-            ordenado = true;
-            for (int j = 0; j < n - (i + 1); j++) {
-                if (a[j].getPrecio() > a[j + 1].getPrecio()) {
-                    swap(a[j], a[j + 1]);
-                    ordenado = false;
-                }
-            }
-            if (ordenado)break;
-        }
-    };*/
-
-    //ordBurbujaModificado(arr, lon);
-    mergeSort(arr, lon, mergeSort);
-    for (int i = 0; i < lon; i++) {
-        colaaux.enqueue(arr[i]);
-    };
-
-    colaaux.mostrardatos();
 }
+
+
+
+template <typename T>
+int Lista<T>::Particion(int p, int r) {
+    T x = obtenerPos(r); // El pivote
+    int i = p - 1; // Índice de los menores
+    for (int j = p; j < r; j++) {
+        if (obtenerPos(j).getPrecio() <= x.getPrecio()) {
+            i++;
+            intercambiar(i, j); // Utiliza una función para intercambiar elementos
+        }
+    }
+    intercambiar(i + 1, r); // Utiliza una función para intercambiar elementos
+    return i + 1;
+}
+
+template <typename T>
+T Lista<T>::QuickSelect(int p, int r, int k) {
+    if (p == r) {
+        return obtenerPos(p);
+    }
+    // Índice del pivote con A ordenado Izq(Menores) Der(Mayores) al pivote
+    int q = Particion(p, r);
+    int l = q - p + 1; // Número de elementos del subarreglo donde se encuentra el k-ésimo elemento
+    if (k == l) {
+        return obtenerPos(q);
+    }
+    else if (k < l) {
+        return QuickSelect(p, q - 1, k);
+    }
+    else {
+        return QuickSelect(q + 1, r, k - l);
+    }
+}
+
+template <typename T>
+void Lista<T>::ordenarPorPrecioAscendente() {
+    int n = longitud();
+    if (n <= 1) {
+        return;
+    }
+    QuickSelect(0, n - 1, n - 1);
+}
+
+template <typename T>
+void Lista<T>::intercambiar(int i, int j) {
+    T temp = obtenerPos(i);
+    modificarPos(obtenerPos(j), i);
+    modificarPos(temp, j);
+}
+
 
 template <class T>
 void Lista<T>::desordenamientoShuffle() {
-    Nodo* aux = ini;
-    Cola<T>colaAux;
-    T* arr = new T[lon];
-    for (int i = 0; i < lon; i++) {
-        arr[i] = aux->elem;
-        aux = aux->sig;
+    random_device rd;
+    mt19937 generator(rd());
+
+    for (int i = longitud() - 1; i > 0; --i) {
+        uniform_int_distribution<int> distribution(0, i);
+        int j = distribution(generator);
+        intercambiar(i, j);
     }
-    delete aux;
-    for (int i = lon - 1; i > 0; i--)
-    {
-        int j = (rand() % (i + 1));
-        swap(arr[j], arr[i]);
-        colaAux.enqueue(arr[i]);
-    }
-    colaAux.mostrardatos();
 }

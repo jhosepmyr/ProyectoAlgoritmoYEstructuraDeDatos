@@ -9,16 +9,20 @@ protected:
 	double precio;
 	string tipo;
 	string identificador;//"nombrevendedor+sucontrasena" UNICO NO SE CAMBIA
+	string codigoVendedor;
 public:
 	Producto() {};
-	Producto(string _nombre, double _precio, string _tipo, string _identificador) {
+	Producto(string _nombre, int _precio, string _tipo, string _identificador, string _codigoVendedor) {
 		this->Nombre = _nombre;
 		this->precio = _precio;
 		this->tipo = _tipo;
 		this->identificador = _identificador;
+		this->codigoVendedor = _codigoVendedor;
+
 	}
 	void mostrarDatos() {
 		cout << "\n---------------------------";
+		cout << "\nCodigo Vendedor: " << this->codigoVendedor;
 		cout << "\nID: " << this->identificador;
 		cout << "\nNombre: " << this->Nombre;
 		cout << "\nPrecio: " << this->precio;
@@ -27,7 +31,7 @@ public:
 	void mostrarDatosLinea() {
 		// Utilizar una función lambda para formatear la salida
 		auto formatLine = [this]() {
-			cout << "Nombre: " << this->Nombre << ", Precio: " << this->precio << ", Tipo: " << this->tipo << ", ID: " << this->identificador << endl;
+			cout << "Nombre: " << this->Nombre << ", Precio: " << this->precio << ", Tipo: " << this->tipo << ", ID: " << this->identificador << ", Codigo Vendedor: " << this->codigoVendedor << endl;
 		};
 		formatLine();
 	}
@@ -37,7 +41,7 @@ public:
 	string getNombre() {
 		return this->Nombre;
 	}
-	void setPrecio(float precio) {
+	void setPrecio(int precio) {
 		this->precio = precio;
 	}
 	double getPrecio() {
@@ -51,6 +55,9 @@ public:
 	}
 	string getIdentificador() {
 		return this->identificador;
+	}
+	string getCodigoVendedor() {
+		return this->codigoVendedor;
 	}
 
 };

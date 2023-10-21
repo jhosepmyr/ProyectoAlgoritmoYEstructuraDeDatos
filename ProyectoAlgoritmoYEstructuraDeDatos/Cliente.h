@@ -33,14 +33,17 @@ public:
             {
             case '1': {
                 this->productos.ordenarPorPrecioDescendente();
+                this->productos.MostrarDatosPROD();
                 break;
             }
             case '2': {
                 this->productos.ordenarPorPrecioAscendente();
+                this->productos.MostrarDatosPROD();
                 break;
             }
             default:
                 this->productos.desordenamientoShuffle();
+                this->productos.MostrarDatosPROD();
                 break;
             }
             cout << endl << "Desea agregar algun elemento al carrito(1:SI, 2: NO):";
@@ -48,10 +51,10 @@ public:
             if (opc == '1') {
                 string identificadorAux = "";
                 cout << "Elija el producto que desea agregar al carrito:\n";
-                cout << "(INGRESE EL NOMBRE): ";
+                cout << "(INGRESE EL ID): ";
                 cin >> identificadorAux;
                 //se busca de la lista de productos por identificar y lo retorna
-                Producto productoAux = this->productos.buscarporID(identificadorAux);
+                Producto productoAux = this->productos.buscarporID(identificadorAux,1);
                 //el producto retornado se agrega al unico pedido
                 this->pedido.agregaraCarrito(productoAux);
                 //el pedido se agrega a la pila pedidos
@@ -109,7 +112,7 @@ public:
 
     string formatoProducto(Producto product) {
         ostringstream ss;
-        ss << "{" << product.getNombre() << ";" << product.getPrecio() << ";" << product.getTipo() << ";" << product.getIdentificador()<<"}";
+        ss << "{" << product.getNombre() << ";" << product.getPrecio() << ";" << product.getTipo() << ";" << product.getIdentificador()<<";" << product.getCodigoVendedor() << "}";
         return ss.str();
     }
 
@@ -166,13 +169,15 @@ public:
                     string precio;
                     string tipo;
                     string identificador;
+                    string codigoVendedor;
 
                     getline(productoInfoStream, nombre, ';');
                     getline(productoInfoStream, precio, ';');
                     getline(productoInfoStream, tipo, ';');
                     getline(productoInfoStream, identificador, ';');
+                    getline(productoInfoStream, codigoVendedor, ';');
 
-                    Producto producto(nombre, stof(precio), tipo, identificador);
+                    Producto producto(nombre, stof(precio), tipo, identificador, codigoVendedor);
                     pedido.agregaraCarrito(producto);
                 }
             }
@@ -184,6 +189,6 @@ public:
 
     void mostrarPedidos() {
         Pila<Pedido> auxPedidos = this->pedidos;
-        auxPedidos.mostrarTodosLosPedidos();
+        auxPedidos.mostrarDatosPila();
     }
 };

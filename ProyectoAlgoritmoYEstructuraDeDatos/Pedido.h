@@ -42,7 +42,7 @@ public:
 	}
 
 	void eliminarProductos() {
-		for (int i = 0; i < this->carritoCompras.longitud(); i++)
+		for (int i = 0; i < this->carritoCompras.longitud()+1; i++)
 		{
 			this->carritoCompras.eliminaInicial();
 		}

@@ -2,6 +2,8 @@
 #include <iostream>
 #include "InterfazCliente.h"
 #include "InterfazVendedor.h"
+#include <random>
+#include <set>
 using namespace std;
 
 class Login {
@@ -67,6 +69,41 @@ public:
         system("pause>0");
     }
 
+    bool existeIDEnArchivo(const string& id, const string& rutaTxt) {
+        ifstream archivo(rutaTxt);
+        string linea;
+        while (getline(archivo, linea)) {
+            // Parsear la línea para obtener el ID (asumiendo el formato "nombre contrasena ID")
+            string token;
+            istringstream ss(linea);
+            ss >> token >> token >> token;  // Saltar nombre y contraseña
+            if (token == id) {
+                archivo.close();
+                return true;
+            }
+        }
+        archivo.close();
+        return false;
+    }
+
+    string generarIDUnico(const string& nombreUsuario, const string& rutaTxt) {
+        set<string> IDsExistentes;
+        random_device rd;
+        mt19937 generator(rd());
+        uniform_int_distribution<int> distribution(100000, 999999);
+
+        while (true) {
+            int num = distribution(generator);
+            string nuevoID = to_string(num);
+
+            // Verificar que el nuevo ID no se repita en el archivo TXT
+            if (!existeIDEnArchivo(nuevoID, rutaTxt)) {
+                return nuevoID;
+            }
+        }
+    }
+
+
     // template para registrarse, admite todos los tipos de usuario
     template <typename T>
     void registrarse() {
@@ -83,13 +120,17 @@ public:
 
         T* auxUsuario = new T(nombre, contra);
 
+        // Generar un nuevo ID único
+        string nuevoID = generarIDUnico(auxUsuario->getNombre(), auxUsuario->getDatosInicioSesion());
+        auxUsuario->setID(nuevoID);
+
         if (verificarUsuarioExistente(nombre, contra, auxUsuario->getDatosInicioSesion())) {
             Console::ForegroundColor = ConsoleColor::Red;
             Console::SetCursorPosition(1, 34);
             cout << "Registro fallido: Nombre de usuario ocupado en el sistema" << endl;
         }
         else {
-            agregarNuevoUsuario(nombre, contra, auxUsuario->getDatosInicioSesion());
+            agregarNuevoUsuario(nombre, contra,auxUsuario->getID(), auxUsuario->getDatosInicioSesion());
         }
         Console::SetCursorPosition(14, 35);
         Console::ForegroundColor = ConsoleColor::Blue;
@@ -122,7 +163,7 @@ public:
         return false; // El usuario no existe
     }
     
-    void agregarNuevoUsuario(string nombre, string contra,string archivo) {
+    void agregarNuevoUsuario(string nombre, string contra, string Id,string archivo) {
         // Abre el archivo en modo de escritura sin agregar
         ofstream archivoEscritura(archivo, ios_base::app);
 
@@ -131,7 +172,7 @@ public:
             return;
         }
         // Escribe los datos del nuevo usuario al final del archivo
-        archivoEscritura << nombre << " " << contra << endl;
+        archivoEscritura << nombre << " " << contra << " " << Id << endl;
         archivoEscritura.close();
 
         Console::SetCursorPosition(18, 34);

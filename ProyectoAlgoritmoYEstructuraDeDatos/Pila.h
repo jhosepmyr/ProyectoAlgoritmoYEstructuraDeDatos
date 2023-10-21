@@ -56,8 +56,8 @@ void Pila<T>::mostrarTodosLosPedidos() {
 template<class T>
 void Pila<T>::mostrarDatosPila() {
 	T aux = pop();
-	if (estaVacia()) return;
 	aux.mostrarListaProductos();
+	if (estaVacia()) return;
 	mostrarDatosPila();
 }
 

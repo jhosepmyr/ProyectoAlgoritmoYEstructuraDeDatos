@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include "Usuario.h"
+#include <random>
+#include <set>
 
 using namespace std;
 
@@ -13,11 +15,51 @@ public:
         this->datosInicioSesion = "DatosSesionVendedores.txt";
         getInformacionPersonalTxt();
     }
+    // Generar un ID aleatorio de 7 cifras alfanuméricas sin repeticiones
+    string generarIDUnico() {
+        string caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        random_device rd;
+        mt19937 generator(rd());
+        uniform_int_distribution<int> distribution(0, caracteres.size() - 1);
+        set<string> IDsExistentes;
+
+        while (true) {
+            string nuevoID;
+            for (int i = 0; i < 7; i++) {
+                nuevoID += caracteres[distribution(generator)];
+            }
+
+            // Verificar que el nuevo ID no se repita en el archivo TXT
+            if (!existeIDEnArchivo(nuevoID, "DatosProductos.txt")) {
+                return nuevoID;
+            }
+        }
+    }
+    // Verificar que el ID no se repita en el archivo de productos
+    bool existeIDEnArchivo(const string& id, const string& rutaTxt) {
+        ifstream archivo(rutaTxt);
+        string linea;
+        while (getline(archivo, linea)) {
+            // Parsear la línea para obtener el ID (asumiendo el formato "nombre precio tipo idUnico codigoVendedor")
+            string token;
+            istringstream ss(linea);
+            ss >> token >> token >> token >> token;  // Saltar nombre, precio y tipo
+            if (token == id) {
+                archivo.close();
+                return true;
+            }
+        }
+        archivo.close();
+        return false;
+    }
+
 
     void setProductosPropios() {
-        string auxID = this->nombre + this->contra;
+        //string auxID = this->nombre + this->contra;
+        string auxID = this->ID;
         for (int i = 0; i < productos.longitud(); i++) {
-            if (productos.obtenerPos(i).getIdentificador() == auxID) { //utiliza el id de producto (que es la username+id)
+            string codigoProducto = productos.obtenerPos(i).getCodigoVendedor();
+            if (codigoProducto == auxID) {
                 Producto aux = productos.obtenerPos(i);
                 productosPropios.agregaFinal(aux);
             }
@@ -58,15 +100,14 @@ public:
         string Nombre;
         double precio;
         string tipo;
-        string identificador;
+        string identificador = generarIDUnico();
         system("cls");
         cout << "Ingresar datos de producto.\n";
-
         cout << "Nombre: "; cin >> Nombre;
         cout << "Precio: "; cin >> precio;
         cout << "Tipo (comestible | noComestible): "; cin >> tipo;
 
-        Producto aux(Nombre, precio, tipo, this->nombre + this->contra);
+        Producto aux(Nombre, precio, tipo, identificador, this->ID);
 
         productos.agregaFinal(aux);
         productosPropios.agregaFinal(aux);
@@ -92,13 +133,13 @@ public:
         cout << "ID:"; cin >> id;
         cout << "\nIngresar el nuevo nombre\n";
         cin >> nombre;
-        this->productosPropios.buscarporID(id).setNombre(nombre);
+        this->productosPropios.buscarporID(id,2).setNombre(nombre);
         cout << "\nIngresar el nuevo precio\n";
         cin >> precio;
-        this->productosPropios.buscarporID(id).setPrecio(precio);
+        this->productosPropios.buscarporID(id,2).setPrecio(precio);
         cout << "\nIngresar el nuevo tipo\n";
         cin >> tipo;
-        this->productosPropios.buscarporID(id).setTipo(tipo);
+        this->productosPropios.buscarporID(id,2).setTipo(tipo);
     }
 
     void modificacionMisProductos() {

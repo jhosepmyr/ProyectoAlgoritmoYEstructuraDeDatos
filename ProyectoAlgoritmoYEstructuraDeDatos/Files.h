@@ -54,10 +54,10 @@ public:
 			while (getline(archivo, linea)) {
 				auto parseLine = [&]() {
 					istringstream iss(linea);
-					string nombre, tipo, identificador;
-					double precio;
-					iss >> nombre >> precio >> tipo >> identificador;
-					return Producto(nombre, precio, tipo, identificador);
+					string nombre, tipo, identificador, codigoVendedor;
+					int precio;
+					iss >> nombre >> precio >> tipo >> identificador >> codigoVendedor;
+					return Producto(nombre, precio, tipo, identificador, codigoVendedor);
 				};
 				Producto product = parseLine();
 				auxList.agregaFinal(product);
@@ -71,28 +71,25 @@ public:
 	}
 
 	void actualizarProductosTxt(Lista<Producto> productos, string datosProductos = "DatosProductos.txt") {
-		ifstream archivo(datosProductos);
-		if (!archivo.is_open()) {
+		ofstream archivoEscritura(datosProductos);
+		if (!archivoEscritura.is_open()) {
 			cout << "Error al abrir el archivo " << endl;
 			return;
 		}
-		string contenidoArchivo;
-		int n = 0;
 
 		auto createLine = [](Producto producto) {
 			return producto.getNombre() + " " +
-				to_string(producto.getPrecio()) + " " +
+				to_string(static_cast<int>(producto.getPrecio())) + " " +
 				producto.getTipo() + " " +
-				producto.getIdentificador();
+				producto.getIdentificador() + " " +
+				producto.getCodigoVendedor();
 		};
 
-		while (n < productos.longitud()) {
-			contenidoArchivo += createLine(productos.obtenerPos(n)) + "\n";
-			n++;
+		for (int n = 0; n < productos.longitud(); ++n) {
+			// Escribir la línea en el nuevo formato
+			archivoEscritura << createLine(productos.obtenerPos(n)) << endl;
 		}
-		archivo.close();
-		ofstream archivoEscritura(datosProductos);
-		archivoEscritura << contenidoArchivo;
+
 		archivoEscritura.close();
 	}
 };
