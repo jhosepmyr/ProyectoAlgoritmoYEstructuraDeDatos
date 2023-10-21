@@ -4,3 +4,5 @@ Jhosepmyr1231|{Diamante;1234;noComestible;jsdjsd;272064}|
 Jhosepmyr1231|{Diamante;1234;noComestible;jsdjsd;272064}{Oro;123;noComestible;gpKesDu;272064}|
 Jhosepmyr1231|{Oro;123;noComestible;gpKesDu;272064}|
 Jhosepmyr1231|{Oro;123;noComestible;gpKesDu;272064}|
+Jhosepmyr1231|{Laptop;5000;noComestible;F6kAcMI;987653}{Diamante;1234;noComestible;jsdjsd;272064}|
+Jhosepmyr1231|{Diamante;1234;noComestible;jsdjsd;272064}{Oro;123;noComestible;gpKesDu;272064}|

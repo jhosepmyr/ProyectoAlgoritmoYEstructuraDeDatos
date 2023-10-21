@@ -189,6 +189,13 @@ public:
 
     void mostrarPedidos() {
         Pila<Pedido> auxPedidos = this->pedidos;
-        auxPedidos.mostrarDatosPila();
+
+        if (auxPedidos.estaVacia()) {
+            cout << "No hay pedidos registrados." << endl;
+        }
+        else {
+            cout << "Pedidos registrados:" << endl;
+            auxPedidos.mostrarDatosPila();
+        }
     }
 };
