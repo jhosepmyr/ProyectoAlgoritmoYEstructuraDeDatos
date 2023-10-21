@@ -46,6 +46,7 @@ public:
             cin >> this->opcion;
             validarOpcion();
             resultadosOpcionSeleccionada();
+            system("pause>0");
         } while (this->opcion != '5');
         this->vendedorAux = nullptr;
         Console::SetCursorPosition(20, 29);

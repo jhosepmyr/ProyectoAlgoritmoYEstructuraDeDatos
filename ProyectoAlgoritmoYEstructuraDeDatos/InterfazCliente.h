@@ -49,7 +49,7 @@ public:
             cin >> this->opcion;
             //validarOpcion();
             resultadosOpcionSeleccionada();
-            system("pause>0");
+
             if (this->opcion!='6') { return MenuCliente(); }
             else return 0;
     }
@@ -68,6 +68,7 @@ public:
         switch (this->opcion) {
         case '1': {
             this->clienteAux->mostrarDatosPersonales();
+            system("pause>0");
             this->opcion = '0';
             break;
         }
