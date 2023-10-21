@@ -3,6 +3,7 @@
 #include <string>
 #include "InterfazInicio.h"
 #include "InterfazLogin.h"
+#include "Usuario.h"
 using namespace std;
 using namespace System;
 int main()
@@ -12,7 +13,6 @@ int main()
     InterfazInicio* sistema = new InterfazInicio();
     sistema->ventanaInicio();
     sistema->iniciarLogin();
-
     system("pause>0");
     return 0;
 }

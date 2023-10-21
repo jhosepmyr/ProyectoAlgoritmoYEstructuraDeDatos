@@ -95,45 +95,81 @@ public:
     }
 
     void mostrarDatosPersonales() {
+        for (int x = 2; x <= 57; x++) {//dibuja la linea 
+            Console::SetCursorPosition(x, 5); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+        }
+        for (int x = 2; x <= 57; x++) { //dibuja la linea 
+            Console::SetCursorPosition(x, 32); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+        }
+
+        Console::SetCursorPosition(19, 5); Console::ForegroundColor = ConsoleColor::White;
         cout << "INFORMACION PERSONAL" << endl;
         auto mostrarDato = [this](const string& label, const string& dato) {
             if (dato != "ninguno") {
-                cout << label << ": " << dato << endl;
+                cout << label << dato << endl;
             }
         };
-
+        Console::SetCursorPosition(2, 9);
         mostrarDato("Nombre: ", this->nombre);
+        Console::SetCursorPosition(2, 11);
         mostrarDato("Apellido: ", this->apellido);
+        Console::SetCursorPosition(2, 13);
         mostrarDato("ID: ", this->ID);
+        Console::SetCursorPosition(2, 15);
         mostrarDato("CorreoElectronico: ", this->correoElectronico);
+        Console::SetCursorPosition(2, 18);
         mostrarDato("Numero de celular: ", this->numeroCelular);
+        Console::SetCursorPosition(2, 20);
         mostrarDato("Direccion: ", this->direccion);
+        Console::SetCursorPosition(2, 22);
         mostrarDato("Genero: ", this->genero);
+        Console::SetCursorPosition(2, 24);
         mostrarDato("DNI: ", this->DNI);
+
+        Console::SetCursorPosition(16, 28); Console::ForegroundColor = ConsoleColor::Cyan;
+        cout << "Presiona ENTER para volver";
     }
 
     void actualizarDatosPersonales() {
         do {
             system("cls");
+            for (int x = 2; x <= 57; x++) {//dibuja la linea 
+                Console::SetCursorPosition(x, 5); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+            }
+            for (int x = 2; x <= 57; x++) { //dibuja la linea 
+                Console::SetCursorPosition(x, 32); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+            }
+
             this->opcionUsuario = '0';
+            Console::SetCursorPosition(19, 5); Console::ForegroundColor = ConsoleColor::White;
             cout << "CONFIGURACION DE PERFIL"<< endl;
+            Console::SetCursorPosition(2, 7);
             cout << "0.Nombre\n";
+            Console::SetCursorPosition(2, 9);
             cout << "1.Apellido\n";
+            Console::SetCursorPosition(2, 11);
             cout << "2.Correo electronico\n";
+            Console::SetCursorPosition(2, 13);
             cout << "3.Numero de celular\n";
+            Console::SetCursorPosition(2, 15);
             cout << "4.Direccion\n";
+            Console::SetCursorPosition(2, 17);
             cout << "5.Genero\n";
+            Console::SetCursorPosition(2, 19);
             cout << "6.DNI\n";
+            Console::SetCursorPosition(2, 21);
             cout << "7.Salir\n";
+            Console::SetCursorPosition(2, 23);
             cout << "Selecciona una opcion ingresando el numero\n\n";
+            Console::SetCursorPosition(2, 25);
             cout << "Opcion: ";
             cin >> this->opcionUsuario;
             //validarOpcion();
-            system("cls");
+            Console::SetCursorPosition(2, 27); Console::ForegroundColor = ConsoleColor::Green;
 
             // Función lambda para actualizar datos
             auto actualizarDato = [this](string& dato, const string& label) {
-                cout << "Actualizar " << label << ": " << endl;
+                cout << "Actualizar " << label << ": ";
                 string newDato;
                 cin >> newDato;
                 dato = newDato;
