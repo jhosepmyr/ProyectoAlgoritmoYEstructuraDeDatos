@@ -50,6 +50,7 @@ public:
             //validarOpcion();
             resultadosOpcionSeleccionada();
             system("pause");
+            Console::SetWindowSize(60, 40);
             if (this->opcion!='6') { return MenuCliente(); }
             else return 0;
     }
@@ -88,6 +89,7 @@ public:
             break;
         }
         case '5': {
+            Console::SetWindowSize(90, 40);
             this->clienteAux->mostrarPedidos();
             this->opcion = '0';
             break;
