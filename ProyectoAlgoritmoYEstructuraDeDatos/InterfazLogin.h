@@ -1,6 +1,9 @@
 #pragma once
 #include "Interfaz.h"
 #include "Login.h"
+#include "conio.h"
+#define ABAJO 80
+#define ARRIBA 72
 
 using namespace std;
 
@@ -38,22 +41,40 @@ public:
             }
 
             Console::ForegroundColor = ConsoleColor::White;
-            Console::SetCursorPosition(21, 12);
-            cout << "1. Iniciar sesion";
-            Console::SetCursorPosition(22, 14);
-            cout << "2. Registrarse";
-            Console::SetCursorPosition(20, 16);
-            cout << "3. Funcionamiento\n";
-            Console::SetCursorPosition(18, 18);
-            cout << "4. Mostrar los integrantes\n";
-            Console::SetCursorPosition(22, 20);
-            cout << "5. Salir";
+            Console::SetCursorPosition(17, 12);
+            cout << "Iniciar sesion";
+            Console::SetCursorPosition(17, 14);
+            cout << "Registrarse";
+            Console::SetCursorPosition(17, 16);
+            cout << "Funcionamiento\n";
+            Console::SetCursorPosition(17, 18);
+            cout << "Mostrar los integrantes\n";
+            Console::SetCursorPosition(17, 20);
+            cout << "Salir";
             Console::SetCursorPosition(9, 22);
-            cout << "Selecciona una opcion ingresando el numero\n";
-            Console::SetCursorPosition(23, 24);
-            cout << "Opcion: ";
-            cin >> this->opcion;      
-           
+            cout << "Selecciona una opcion moviendo la flecha\n";
+            Console::SetCursorPosition(19, 24);
+            cout << "PRESIONA ENTER";
+            int x = 41, y = 12;
+            while (true) {
+                //borrar
+                Console::SetCursorPosition(x, y); cout << "  ";
+                //mover
+                if (_kbhit()) {
+                    char tecla = getch();
+                    if (tecla == ABAJO) y += 2;
+                    if (tecla == 13) {
+                        if (y == 12) opcion = '1';
+                        if (y == 14) opcion = '2';
+                        if (y == 16) opcion = '3';
+                        if (y == 18) opcion = '4';
+                        if (y == 20) opcion = '5';
+                        break;
+                    }
+                }
+                Console::SetCursorPosition(x, y); cout << "<-";
+                _sleep(100);
+            }
             if (this->opcion == '1' || this->opcion == '2')
             {
                 Console::SetCursorPosition(5, 26);
