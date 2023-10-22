@@ -37,7 +37,19 @@ public:
                 break;
             }
             case '2': {
-                this->productos.ordenarPorPrecioAscendente2();
+                // Inicializa la semilla para números aleatorios
+                srand(time(0));
+
+                // Genera un número aleatorio entre 0 y RAND_MAX
+                int numAleatorio = rand();
+
+                // Comprueba si el número está en la mitad superior del rango
+                if (numAleatorio > RAND_MAX / 2) {
+                    this->productos.ordenarPorPrecioAscendente();
+                }
+                else {
+                    this->productos.ordenarPorPrecioAscendente2();
+                }
                 this->productos.MostrarDatosPROD();
                 break;
             }
