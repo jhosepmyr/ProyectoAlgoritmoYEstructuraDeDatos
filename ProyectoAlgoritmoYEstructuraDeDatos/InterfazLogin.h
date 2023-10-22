@@ -2,6 +2,7 @@
 #include "Interfaz.h"
 #include "Login.h"
 #include "conio.h"
+#include "Cola.h"
 #define ABAJO 80
 #define ARRIBA 72
 
@@ -135,15 +136,20 @@ public:
                 break;
             }
             case '4': {
+                Cola<string>* integrantes;
+                integrantes = new Cola<string>();
+                integrantes->enqueue("Jhosepmyr Orlando");
+                integrantes->enqueue("Elmer Riva");
+                integrantes->enqueue("Jose Martinez");
                 Console::ForegroundColor = ConsoleColor::Green;
                 Console::SetCursorPosition(21, 26);
                 cout << "Los duenios son:";
                 Console::SetCursorPosition(20, 28);
-                cout << "Jhosepmyr Orlando";
+                integrantes->dequeue();
                 Console::SetCursorPosition(24, 30);
-                cout << "Elmer Riva";
+                integrantes->dequeue();
                 Console::SetCursorPosition(22, 32);
-                cout << "Jose Martinez";
+                integrantes->dequeue();
                 Console::SetCursorPosition(14, 34);
                 Console::ForegroundColor = ConsoleColor::Blue;
                 cout << "Presiona ENTER para volver";

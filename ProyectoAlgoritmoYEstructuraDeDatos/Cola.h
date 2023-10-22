@@ -53,7 +53,7 @@ void Cola<T>::dequeue() {
 		inicio = inicio->siguiente;
 	}
 
-	dato.mostrarDatos();
+	cout << dato;
 }
 
 template<class T>
