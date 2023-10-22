@@ -21,7 +21,7 @@ public:
 
 	}
 	void mostrarDatos() {
-		auto Datos = []() {
+		auto Datos = [this]() {
 			cout << endl << "---------------------------";
 			cout << endl << "Codigo Vendedor: " << this->codigoVendedor;
 			cout << endl << "ID: " << this->identificador;
