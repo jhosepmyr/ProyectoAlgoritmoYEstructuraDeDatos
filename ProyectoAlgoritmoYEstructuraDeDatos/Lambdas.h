@@ -39,22 +39,30 @@
                 this->opcionUsuario = '0';
             };*/
 
-//Lista -> buscarPRODMAYVALOR()
-/*auto ordIntercambio = [](Producto a[], int n)
-        {
-            for (int i = 0; i < n - 1; i++) {
-                for (int k = i + 1; k < n; k++) {
-                    if (a[i].getPrecio() > a[k].getPrecio()) {
-                        swap(a[i], a[k]);
-                    }
-                }
-            }
-};*/
+//Producto ->mostrarDatos()
+/*auto Datos = []() {
+    cout << endl << "---------------------------";
+    cout << endl << "Codigo Vendedor: " << this->codigoVendedor;
+    cout << endl << "ID: " << this->identificador;
+    cout << endl << "Nombre: " << this->Nombre;
+    cout << endl << "Precio: " << this->precio;
+    cout << endl << "Tipo: " << this->tipo;
+    cout << endl << "---------------------------";
+    cout << endl << endl;
+    };*/
 
-//Lista -> ordenarPorPrecioDescendente y ordenarPorPrecioAscendente()
-/*    auto comparadorPorPrecio = [](T a, T b) {
-        return a.getPrecio() > b.getPrecio();
-        };*/
+//Pedido -> mostrarListaProductos()
+/*auto Productos = [this]() {
+				cout << endl << "----------------------------------------------------------------------------------------";
+				cout << endl << "Codigo de pedido: " << this->nombrePedido << endl;
+				cout << endl << "Numero de productos: " << getCantidadProductosCarrito() << endl;
+				cout << endl;
+				this->carritoCompras.MostrarDatosPRODLinea();
+				cout << endl;
+				cout << "Costo total: S/." << to_string(getPrecioTotal()) << endl;
+				cout << endl << "----------------------------------------------------------------------------------------";
+				cout << endl;
+				};*/
 
 //Files -> actualizarProductosTxt()
 /*auto createLine = [](Producto producto) {

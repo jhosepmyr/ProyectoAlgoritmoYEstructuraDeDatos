@@ -21,14 +21,17 @@ public:
 
 	}
 	void mostrarDatos() {
-		cout << endl << "---------------------------";
-		cout << endl << "Codigo Vendedor: " << this->codigoVendedor;
-		cout << endl << "ID: " << this->identificador;
-		cout << endl << "Nombre: " << this->Nombre;
-		cout << endl << "Precio: " << this->precio;
-		cout << endl << "Tipo: " << this->tipo;
-		cout << endl << "---------------------------";
-		cout << endl << endl;
+		auto Datos = []() {
+			cout << endl << "---------------------------";
+			cout << endl << "Codigo Vendedor: " << this->codigoVendedor;
+			cout << endl << "ID: " << this->identificador;
+			cout << endl << "Nombre: " << this->Nombre;
+			cout << endl << "Precio: " << this->precio;
+			cout << endl << "Tipo: " << this->tipo;
+			cout << endl << "---------------------------";
+			cout << endl << endl;
+			};
+		Datos();
 	}
 	void mostrarDatosLinea() {
 		// Utilizar una función lambda para formatear la salida

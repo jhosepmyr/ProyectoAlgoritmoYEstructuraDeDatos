@@ -31,15 +31,18 @@ public:
 	void mostrarListaProductos() {
 		if (!this->carritoCompras.esVacia())
 		{
-			cout << endl << "----------------------------------------------------------------------------------------";
-			cout << endl << "Codigo de pedido: " << this->nombrePedido << endl;
-			cout << endl << "Numero de productos: " << getCantidadProductosCarrito() << endl;
-			cout << endl;
-			this->carritoCompras.MostrarDatosPRODLinea();
-			cout << endl;
-			cout << "Costo total: S/." << to_string(getPrecioTotal()) << endl;
-			cout << endl << "----------------------------------------------------------------------------------------";
-			cout << endl;
+			auto Productos = [this]() {
+				cout << endl << "----------------------------------------------------------------------------------------";
+				cout << endl << "Codigo de pedido: " << this->nombrePedido << endl;
+				cout << endl << "Numero de productos: " << getCantidadProductosCarrito() << endl;
+				cout << endl;
+				this->carritoCompras.MostrarDatosPRODLinea();
+				cout << endl;
+				cout << "Costo total: S/." << to_string(getPrecioTotal()) << endl;
+				cout << endl << "----------------------------------------------------------------------------------------";
+				cout << endl;
+				};
+			Productos();
 		}
 		else
 		{
