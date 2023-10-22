@@ -60,6 +60,9 @@ public:
     int Particion(int p, int r);
     void ordenarPorPrecioAscendente();
     void intercambiar(int i, int j);
+
+    void QuickSort(int p, int r);
+    void ordenarPorPrecioAscendente2();
     
     void desordenamientoShuffle();
 
@@ -440,6 +443,7 @@ int Lista<T>::Particion(int p, int r) {
     return i + 1;
 }
 
+
 template <typename T>
 T Lista<T>::QuickSelect(int p, int r, int k) {
     if (p == r) {
@@ -473,6 +477,24 @@ void Lista<T>::intercambiar(int i, int j) {
     T temp = obtenerPos(i);
     modificarPos(obtenerPos(j), i);
     modificarPos(temp, j);
+}
+
+
+template <typename T>
+void Lista<T>::QuickSort(int p, int r) {
+    if (p < r) {
+        int q = Particion(p, r);
+        QuickSort(p, q - 1);
+        QuickSort(q + 1, r);
+    }
+}
+
+template <typename T>
+void Lista<T>::ordenarPorPrecioAscendente2() {
+    if (longitud() <= 1) {
+        return;  // No es necesario ordenar
+    }
+    QuickSort(0, longitud() - 1);
 }
 
 

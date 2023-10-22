@@ -23,8 +23,8 @@ public:
             system("cls");
             //muestra producto actualizados
             cout << endl << "Filtrado para los productos:";
-            cout << endl << "1.Menor a mayor precio";
-            cout << endl << "2.Mayor a menor precio";
+            cout << endl << "1.Mayor a menor precio";
+            cout << endl << "2.Menor a mayor precio";
             cout << endl << "3.Ninguno de los anteriores";
             cout << endl;
             cin >> opc;
@@ -37,7 +37,7 @@ public:
                 break;
             }
             case '2': {
-                this->productos.ordenarPorPrecioAscendente();
+                this->productos.ordenarPorPrecioAscendente2();
                 this->productos.MostrarDatosPROD();
                 break;
             }
