@@ -21,12 +21,15 @@ public:
 
 	}
 	void mostrarDatos() {
-		cout << "\n---------------------------";
-		cout << "\nCodigo Vendedor: " << this->codigoVendedor;
-		cout << "\nID: " << this->identificador;
-		cout << "\nNombre: " << this->Nombre;
-		cout << "\nPrecio: " << this->precio;
-		cout << "\nTipo: " << this->tipo;
+		auto Datos = [this]() {
+			cout << "\n---------------------------";
+			cout << "\nCodigo Vendedor: " << this->codigoVendedor;
+			cout << "\nID: " << this->identificador;
+			cout << "\nNombre: " << this->Nombre;
+			cout << "\nPrecio: " << this->precio;
+			cout << "\nTipo: " << this->tipo;
+			};
+		Datos();
 	}
 	void mostrarDatosLinea() {
 		// Utilizar una función lambda para formatear la salida

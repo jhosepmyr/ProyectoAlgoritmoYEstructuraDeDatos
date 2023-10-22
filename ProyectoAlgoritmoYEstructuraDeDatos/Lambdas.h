@@ -39,23 +39,6 @@
                 this->opcionUsuario = '0';
             };*/
 
-//Lista -> buscarPRODMAYVALOR()
-/*auto ordIntercambio = [](Producto a[], int n)
-        {
-            for (int i = 0; i < n - 1; i++) {
-                for (int k = i + 1; k < n; k++) {
-                    if (a[i].getPrecio() > a[k].getPrecio()) {
-                        swap(a[i], a[k]);
-                    }
-                }
-            }
-};*/
-
-//Lista -> ordenarPorPrecioDescendente y ordenarPorPrecioAscendente()
-/*    auto comparadorPorPrecio = [](T a, T b) {
-        return a.getPrecio() > b.getPrecio();
-        };*/
-
 //Files -> actualizarProductosTxt()
 /*auto createLine = [](Producto producto) {
 			return producto.getNombre() + " " +
@@ -63,3 +46,23 @@
 				producto.getTipo() + " " +
 				producto.getIdentificador();
 		};*/
+
+//Producto -> mostrarDatos()
+/*auto Datos = [this]() {
+    cout << "\n---------------------------";
+    cout << "\nCodigo Vendedor: " << this->codigoVendedor;
+    cout << "\nID: " << this->identificador;
+    cout << "\nNombre: " << this->Nombre;
+    cout << "\nPrecio: " << this->precio;
+    cout << "\nTipo: " << this->tipo;
+    };
+Datos();*/
+
+//Pedido ->mostrarListaProductos
+/*auto Productos = [this]() {
+    cout << "*********************************\n";
+    cout << this->nombrePedido << endl;
+    this->carritoCompras.MostrarDatosPRODLinea();
+    cout << "*********************************\n";
+    };
+Productos();*/

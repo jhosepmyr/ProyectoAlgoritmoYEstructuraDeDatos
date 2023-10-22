@@ -22,10 +22,13 @@ public:
 	}
 
 	void mostrarListaProductos() {
-		cout << "*********************************\n";
-		cout << this->nombrePedido<<endl;
-		this->carritoCompras.MostrarDatosPRODLinea();
-		cout << "*********************************\n";
+		auto Productos = [this]() {
+			cout << "*********************************\n";
+			cout << this->nombrePedido << endl;
+			this->carritoCompras.MostrarDatosPRODLinea();
+			cout << "*********************************\n";
+			};
+		Productos();
 	}
 
 	int getCantidadProductosCarrito() {
