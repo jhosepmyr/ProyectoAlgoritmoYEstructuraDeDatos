@@ -49,7 +49,7 @@ public:
             cin >> this->opcion;
             //validarOpcion();
             resultadosOpcionSeleccionada();
-            system("pause");
+            system("pause>0");
             Console::SetWindowSize(60, 40);
             if (this->opcion!='6') { return MenuCliente(); }
             else return 0;
@@ -59,8 +59,6 @@ public:
 
         MenuCliente();
         this->clienteAux = nullptr;
-        cout << "SESION CERRADA\n";
-		system("pause>0");
 		return;
 	}
 
@@ -69,7 +67,6 @@ public:
         switch (this->opcion) {
         case '1': {
             this->clienteAux->mostrarDatosPersonales();
-            system("pause>0");
             this->opcion = '0';
             break;
         }
@@ -98,6 +95,7 @@ public:
         case '6': {
             this->clienteAux->actualizarDatosSesionATxt();
             this->clienteAux->actualizarDatosProductosTxt();
+            Console::SetCursorPosition(15, 10); Console::ForegroundColor = ConsoleColor::Green; cout << "SESION CERRADA EXITOSAMENTE";
             break;
         }
         }

@@ -1,6 +1,9 @@
 #pragma once
 #include "Usuario.h"
 #include "Pedido.h"
+#include "conio.h"
+#define ABAJO 80
+#define ARRIBA 72
 
 using namespace std;
 
@@ -21,14 +24,55 @@ public:
         do
         {
             system("cls");
+            for (int x = 2; x <= 57; x++) {//dibuja linea 
+                Console::SetCursorPosition(x, 10); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+            }
+            for (int x = 2; x <= 57; x++) { //dibuja linea 
+                Console::SetCursorPosition(x, 25); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+            }
             //muestra producto actualizados
-            cout << endl << "Filtrado para los productos:";
-            cout << endl << "1.Mayor a menor precio";
-            cout << endl << "2.Menor a mayor precio";
-            cout << endl << "3.Ninguno de los anteriores";
-            cout << endl;
-            cin >> opc;
+            Console::SetCursorPosition(17, 10); Console::ForegroundColor = ConsoleColor::White;
+            cout << "Filtrado para los productos";
+            Console::SetCursorPosition(19, 15);
+            cout << "Mayor a menor precio";
+            Console::SetCursorPosition(19, 17);
+            cout << "Menor a mayor precio";
+            Console::SetCursorPosition(16, 19);
+            cout << "Ninguno de los anteriores";
+            //animacion de seleccion
+            int y = 15;
+            while (true) {
+                //borrar
+                Console::BackgroundColor = ConsoleColor::Black;
+                if (y == 15) { Console::SetCursorPosition(19, y); cout << "Mayor a menor precio"; }
+                if (y == 17) { Console::SetCursorPosition(19, y); cout << "Menor a mayor precio"; }
+                if (y == 19) { Console::SetCursorPosition(16, y); cout << "Ninguno de los anteriores"; }
+
+                //mover
+                if (_kbhit()) {
+                    char tecla = getch();
+                    if (tecla == ABAJO && y < 19) y += 2;
+                    if (tecla == ARRIBA && y > 15) y -= 2;
+                    if (tecla == 13) {
+                        if (y == 15) opc = '1';
+                        if (y == 17) opc = '2';
+                        if (y == 19) opc = '3';
+                        break;
+                    }
+                }
+                Console::BackgroundColor = ConsoleColor::DarkMagenta;
+                if (y == 15) { Console::SetCursorPosition(19, y); cout << "Mayor a menor precio"; }
+                if (y == 17) { Console::SetCursorPosition(19, y); cout << "Menor a mayor precio"; }
+                if (y == 19) { Console::SetCursorPosition(16, y); cout << "Ninguno de los anteriores"; }
+                _sleep(100);
+            }
             system("cls");
+            for (int x = 2; x <= 57; x++) {//dibuja linea 
+                Console::SetCursorPosition(x, 2); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+            }
+            Console::SetCursorPosition(26, 2);  Console::ForegroundColor = ConsoleColor::White; cout << "PRODUCTOS";
+            cout << endl;
+            
             switch (opc)
             {
             case '1': {
@@ -77,15 +121,20 @@ public:
                 else
                 {
                     cout << "Codigo ingresado invalido" << endl;
-                    system("pause");
+
                 }
             }
         } while (opc!='2');
     }
 
     void mostrarPedido() {
+        for (int x = 2; x <= 57; x++) {//dibuja linea 
+            Console::SetCursorPosition(x, 2); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+        }
+        Console::SetCursorPosition(27, 2);  Console::ForegroundColor = ConsoleColor::White; cout << "PEDIDO";
+        cout << endl;
         this->pedido.mostrarListaProductos();
-        system("pause>0");
+
         if (!this->pedido.isVacio())
         {
             confirmarPedido();
@@ -118,6 +167,7 @@ public:
 
     void confirmarPedido() {
         system("cls");
+
         if (!this->pedido.isVacio())
         {
             char desicion = '0';
@@ -141,7 +191,9 @@ public:
         }
         else
         {
+            
             cout << endl << "Su pedido esta vacio" << endl;
+            cout << "Presione ENTER para volver";
         }
 
     }
@@ -242,8 +294,14 @@ public:
     }
 
     void mostrarPedidos() {
+        for (int x = 2; x <= 87; x++) {//dibuja linea 
+            Console::SetCursorPosition(x, 2); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+        }
+        Console::SetCursorPosition(35, 2);  Console::ForegroundColor = ConsoleColor::White; cout << "HISTORIAL DE PEDIDOS";
+        cout << endl;
         if (this->pedidos.estaVacia()) {
-            cout << "No hay pedidos registrados."<<endl;
+            Console::SetCursorPosition(33, 10); cout << "No hay pedidos registrados";
+            Console::SetCursorPosition(33, 12); cout << "PRESIONA ENTER PARA VOLVER" << endl;
         }
         else {
             cout << "Pedidos registrados:" << endl;

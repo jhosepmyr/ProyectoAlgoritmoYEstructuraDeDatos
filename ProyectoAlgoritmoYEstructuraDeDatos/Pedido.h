@@ -46,7 +46,10 @@ public:
 		}
 		else
 		{
-			cout << "No tienes ningun producto\n";
+			Console::SetCursorPosition(15, 14);
+			cout << "No tienes ningun producto";
+			Console::SetCursorPosition(15, 16);
+			cout << "PRESIONA ENTER PARA VOLVER";
 		}
 	}
 

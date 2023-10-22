@@ -56,10 +56,10 @@ public:
             cout << "Selecciona una opcion moviendo la flecha\n";
             Console::SetCursorPosition(19, 24);
             cout << "PRESIONA ENTER";
-            int x = 41, y = 12;
+            int y = 12;
             while (true) {
                 //borrar
-                Console::SetCursorPosition(x, y); cout << "  ";
+                Console::SetCursorPosition(41, y); cout << "  ";
                 //mover
                 if (_kbhit()) {
                     char tecla = getch();
@@ -74,7 +74,7 @@ public:
                         break;
                     }
                 }
-                Console::SetCursorPosition(x, y); cout << "<-";
+                Console::SetCursorPosition(41, y); cout << "<-";
                 _sleep(100);
             }
             if (this->opcion == '1' || this->opcion == '2')
@@ -85,7 +85,6 @@ public:
             }
             validarOpcion();
             resultadosOpcionSeleccionada();
-            system("pause>0");
         } while (this->opcion!= '5');
 
         Console::SetCursorPosition(20, 30);
@@ -118,6 +117,8 @@ public:
                 break;
             }
             case '3': {
+                system("cls");
+                Console::SetCursorPosition(10, 10);
                 cout << endl;
                 Console::ForegroundColor = ConsoleColor::Green;
                 cout << "\t\t    Funcionamiento" << endl;

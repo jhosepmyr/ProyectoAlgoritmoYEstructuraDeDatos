@@ -44,7 +44,7 @@ public:
     void eliminarTodos();
     void eliminarTodosRecursivo(Nodo* nodo);
 
-    void    MostrarDatosPROD();
+    bool   MostrarDatosPROD();
     void    MostrarDatosPRODLinea();
 
     void     eliminarporID(string ID);
@@ -274,7 +274,7 @@ void Lista<T>::eliminarTodosRecursivo(Nodo* nodo) {
 //MOSTRADO DE PRODUCTOS
 
 template<class T>
-void Lista<T>::MostrarDatosPROD() {
+bool Lista<T>::MostrarDatosPROD() {
     if (this->lon!=0)
     {
         Nodo* aux = ini;
@@ -286,10 +286,15 @@ void Lista<T>::MostrarDatosPROD() {
             aux = aux->sig;
         }
         cout << "\n\n";
+        return true;
     }
     else
     {
-        cout << "\nNo hay productos disponibles\n";
+        Console::SetCursorPosition(17, 10);
+        cout << "No hay productos disponibles";
+        Console::SetCursorPosition(18, 12);
+        cout << "Presiona ENTER para volver";
+        return false;
     }
 }
 

@@ -65,8 +65,6 @@ public:
         }
         Console::SetCursorPosition(14, 35);
         Console::ForegroundColor = ConsoleColor::Blue;
-        cout << "Presiona ENTER para volver";
-        system("pause>0");
     }
 
     bool existeIDEnArchivo(const string& id, const string& rutaTxt) {

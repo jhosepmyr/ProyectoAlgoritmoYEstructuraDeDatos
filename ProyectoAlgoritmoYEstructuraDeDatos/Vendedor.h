@@ -67,20 +67,36 @@ public:
         }
     }
 
-    void mostrarMisProductos() {
+    bool mostrarMisProductos() {
         system("cls");
-        productosPropios.MostrarDatosPROD();
-        system("pause");
+        for (int x = 2; x <= 57; x++) {//dibuja linea 
+            Console::SetCursorPosition(x, 2); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+        }
+        Console::SetCursorPosition(22, 2);  Console::ForegroundColor = ConsoleColor::White; cout << "MIS PRODUCTOS";
+        cout << endl;
+        if (productosPropios.MostrarDatosPROD() == true) return true;
+        else return false;
+
     }
 
     void opcionesMisProductos() {
         auto MENU = []() {
-            cout << "MODIFICACION DE MIS PRODUCTOS " << endl;
-            cout << "1. Agrega un nuevo producto\n";
-            cout << "2. Modificar un producto\n";
-            cout << "3. Elimina un producto\n";
-            cout << "4. Salir\n";
-            cout << "Selecciona una opcion ingresando el numero\n\n";
+            for (int x = 2; x <= 57; x++) {//dibuja linea 
+                Console::SetCursorPosition(x, 2); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+            }
+            Console::SetCursorPosition(16, 2);  Console::ForegroundColor = ConsoleColor::White;  cout << "MODIFICACION DE MIS PRODUCTOS";
+            cout << endl;
+            Console::SetCursorPosition(10, 6);
+            cout << "1. Agrega un nuevo producto";
+            Console::SetCursorPosition(10, 8);
+            cout << "2. Modificar un producto";
+            Console::SetCursorPosition(10, 10);
+            cout << "3. Elimina un producto";
+            Console::SetCursorPosition(10, 12);
+            cout << "4. Salir";
+            Console::SetCursorPosition(10, 14);
+            cout << "Selecciona una opcion ingresando el numero";
+            Console::SetCursorPosition(10, 15);
             cout << "Opcion: ";
             };
         do {
@@ -91,9 +107,8 @@ public:
             //validarOpcion();
             system("cls");
             modificacionMisProductos();
-            system("pause");
+            system("pause>0");
         } while (this->opcionUsuario != '4');
-        system("pause>0");
         return;
     }
 
@@ -119,7 +134,7 @@ public:
     void eliminarProducto() {
         string id;
         //system("cls");
-        cout << "Ingresar el identificador del producto a eliminar.\n";
+        cout << endl << "Ingresar el identificador del producto a eliminar.\n";
         cout << "ID:"; cin >> id;
         this->productosPropios.eliminarporID(id);
         this->productos.eliminarporID(id);
@@ -166,14 +181,12 @@ public:
             break;
         }
         case '2': {
-            mostrarMisProductos();
-            modificarProducto();
+            if (mostrarMisProductos() == true)modificarProducto();
             this->opcionUsuario = '0';
             break;
         }
         case '3': {
-            mostrarMisProductos();
-            eliminarProducto();
+            if (mostrarMisProductos() == true)eliminarProducto();
             this->opcionUsuario = '0';
             break;
         }
