@@ -15,6 +15,7 @@ public:
         this->datosInicioSesion = "DatosSesionVendedores.txt";
         getInformacionPersonalTxt();
     }
+
     // Generar un ID aleatorio de 7 cifras alfanuméricas sin repeticiones
     string generarIDUnico() {
         string caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -36,6 +37,7 @@ public:
         }
     }
     // Verificar que el ID no se repita en el archivo de productos
+
     bool existeIDEnArchivo(const string& id, const string& rutaTxt) {
         ifstream archivo(rutaTxt);
         string linea;
@@ -52,7 +54,6 @@ public:
         archivo.close();
         return false;
     }
-
 
     void setProductosPropios() {
         //string auxID = this->nombre + this->contra;
@@ -121,6 +122,7 @@ public:
         cout << "Ingresar el identificador del producto a eliminar.\n";
         cout << "ID:"; cin >> id;
         this->productosPropios.eliminarporID(id);
+        this->productos.eliminarporID(id);
     }
 
     void modificarProducto() {
@@ -130,16 +132,29 @@ public:
         string tipo;
         //system("cls");
         cout << "\nIngresar el identificador del producto a modificar.\n";
-        cout << "ID:"; cin >> id;
-        cout << "\nIngresar el nuevo nombre\n";
-        cin >> nombre;
-        this->productosPropios.buscarporID(id,2).setNombre(nombre);
-        cout << "\nIngresar el nuevo precio\n";
-        cin >> precio;
-        this->productosPropios.buscarporID(id,2).setPrecio(precio);
-        cout << "\nIngresar el nuevo tipo\n";
-        cin >> tipo;
-        this->productosPropios.buscarporID(id,2).setTipo(tipo);
+        cout << "ID:"; 
+        cin >> id;
+        if (this->productosPropios.existeID(id,1))
+        {
+            Producto auxProduct = this->productosPropios.buscarporID(id, 1);
+            this->productosPropios.eliminarporID(id);
+            this->productos.eliminarporID(id);
+            cout << "\nIngresar el nuevo nombre\n";
+            cin >> nombre;
+            auxProduct.setNombre(nombre);
+            cout << "\nIngresar el nuevo precio\n";
+            cin >> precio;
+            auxProduct.setPrecio(precio);
+            cout << "\nIngresar el nuevo tipo\n";
+            cin >> tipo;
+            auxProduct.setTipo(tipo);
+            this->productosPropios.agregaFinal(auxProduct);
+            this->productos.agregaFinal(auxProduct);
+        }
+        else
+        {
+            cout << "\nNo se puedo encontrar el ID ingresado.\n";
+        }
     }
 
     void modificacionMisProductos() {

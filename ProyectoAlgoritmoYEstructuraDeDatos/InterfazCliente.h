@@ -49,7 +49,7 @@ public:
             cin >> this->opcion;
             //validarOpcion();
             resultadosOpcionSeleccionada();
-
+            system("pause");
             if (this->opcion!='6') { return MenuCliente(); }
             else return 0;
     }

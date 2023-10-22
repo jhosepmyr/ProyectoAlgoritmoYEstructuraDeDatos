@@ -33,16 +33,24 @@ public:
     void    eliminaPos(uint pos);
     void    eliminaFinal();
 
+    T obtenerEliminarPorPosicion(uint pos);
+    T eliminarPrimero();
+    T eliminarUltimo();
+
     T       obtenerInicial();
     T       obtenerPos(uint pos);
     T       obtenerFinal();
 
+    void eliminarTodos();
+    void eliminarTodosRecursivo(Nodo* nodo);
+
     void    MostrarDatosPROD();
     void    MostrarDatosPRODLinea();
 
-    T     buscarporID(string ID, int tipo);
     void     eliminarporID(string ID);
-    T loopdeBusquedaDATO(Nodo* aux, string ID, int tipo);
+    bool  existeID(string ID, int tipo);
+    T     buscarporID(string ID, int tipo);
+    T     buscarRecursivo(Nodo* aux, string ID, int tipo);
 
     void MergeSort(int ini, int fin);
     void Merge(int ini, int mitad, int fin);
@@ -192,15 +200,93 @@ T Lista<T>::obtenerFinal() {
     return obtenerPos(lon - 1);
 }
 
+//ELIMINAR Y RETORNAR ELEMENTO
+template <class T>
+T Lista<T>::obtenerEliminarPorPosicion(uint pos) {
+    if (pos >= lon || pos < 0) {
+        throw out_of_range("Posición fuera de rango");
+    }
+
+    if (pos == 0) {
+        // Si la posición es la primera, eliminamos el primer elemento y lo retornamos
+        T elemento = ini->elem;
+        Nodo* temp = ini;
+        ini = ini->sig;
+        delete temp;
+        lon--;
+        return elemento;
+    }
+
+    Nodo* aux = ini;
+    for (uint i = 0; i < pos - 1; i++) {
+        aux = aux->sig;
+    }
+
+    // Guardamos el elemento en la posición especificada
+    T elemento = aux->sig->elem;
+
+    // Eliminamos el elemento de la posición
+    Nodo* temp = aux->sig;
+    aux->sig = temp->sig;
+    delete temp;
+    lon--;
+
+    return elemento;
+}
+
+template <class T>
+T Lista<T>::eliminarPrimero() {
+    if (lon == 0) {
+        throw std::runtime_error("La lista está vacía, no se puede eliminar el primer elemento.");
+    }
+
+    return obtenerEliminarPorPosicion(0);
+}
+
+template <class T>
+T Lista<T>::eliminarUltimo() {
+    if (lon == 0) {
+        throw std::runtime_error("La lista está vacía, no se puede eliminar el último elemento.");
+    }
+
+    return obtenerEliminarPorPosicion(lon - 1);
+}
+
+//ELIMINAR TODO ELEMENTO RECURSIVA
+template <class T>
+void Lista<T>::eliminarTodos() {
+    eliminarTodosRecursivo(ini);
+    ini = nullptr;  // Establecemos el puntero inicial a nullptr para indicar que la lista está vacía.
+    lon = 0;        // Restablecemos la longitud de la lista a 0.
+}
+
+template <class T>
+void Lista<T>::eliminarTodosRecursivo(Nodo* nodo) {
+    if (nodo) {
+        eliminarTodosRecursivo(nodo->sig);  // Llamada recursiva con el siguiente nodo.
+        delete nodo;                        // Elimina el nodo actual.
+    }
+}
 
 //MOSTRADO DE PRODUCTOS
 
 template<class T>
 void Lista<T>::MostrarDatosPROD() {
-    Nodo* aux = ini;
-    for (int i = 0; i < lon; i++) {
-        aux->elem.mostrarDatos();
-        aux = aux->sig;
+    if (this->lon!=0)
+    {
+        Nodo* aux = ini;
+        cout << "\n---------------------------\n";
+        cout << "Numero de productos: " << this->longitud();
+        cout << "\n---------------------------\n\n";
+        for (int i = 0; i < lon; i++) {
+            aux->elem.mostrarDatos();
+            aux = aux->sig;
+        }
+        cout << "\n\n";
+    }
+    else
+    {
+        cout << "\nNo hay productos disponibles\n";
     }
 }
 
@@ -216,15 +302,34 @@ void Lista<T>::MostrarDatosPRODLinea() {
 //BUSQUEDA DE PRODUCTOS
 
 template <class T>
-T Lista<T>::buscarporID(string ID, int tipo) {
-    Nodo *aux = ini;
-    /*while (aux != nullptr) {
-        if (aux->elem.getIdentificador()==ID) {
-            return aux->elem;
+bool Lista<T>::existeID(string ID, int tipo) {
+    Nodo* aux = ini;
+    while (aux != nullptr) {
+        if ((tipo == 1 && aux->elem.getIdentificador() == ID) || (tipo == 2 && aux->elem.getCodigoVendedor() == ID)) {
+            return true;  // Si se encuentra el ID, devuelve true.
         }
         aux = aux->sig;
-    }*/
-    return loopdeBusquedaDATO(aux, ID, tipo);
+    }
+    return false;  // Si no se encuentra el ID, devuelve false.
+}
+
+template <class T>
+T Lista<T>::buscarporID(string ID, int tipo) {
+    return buscarRecursivo(ini, ID, tipo);
+}
+
+template <class T>
+T Lista<T>::buscarRecursivo(Nodo* aux, string ID, int tipo) {
+    if (aux == nullptr) {
+        throw std::runtime_error("Elemento no encontrado");
+    }
+
+    bool encontrado = (tipo == 1) ? (aux->elem.getIdentificador() == ID) : (aux->elem.getCodigoVendedor() == ID);
+    if (encontrado) {
+        return aux->elem;
+    }
+
+    return buscarRecursivo(aux->sig, ID, tipo);
 }
 
 template <class T>
@@ -242,7 +347,7 @@ void Lista<T>::eliminarporID(string ID) {
                 anterior->sig = actual->sig;
             }
             delete actual;
-            cout << "\nSe ha eliminado el producto correctamente" << endl;
+            //cout << "\nSe ha eliminado el producto correctamente" << endl;
             lon--;
             return;
         }
@@ -252,15 +357,6 @@ void Lista<T>::eliminarporID(string ID) {
     }
 
     cout << "\nNo se ha encontrado el producto con el identificador brindado" << endl;
-}
-
-template <class T>
-T Lista<T>::loopdeBusquedaDATO(Nodo* aux, string ID, int tipo) {
-    bool encontrado = (tipo == 1) ? (aux->elem.getIdentificador() == ID) : (aux->elem.getCodigoVendedor() == ID);
-    if (encontrado) {
-        return aux->elem;
-    }
-    else  if (aux != nullptr) return loopdeBusquedaDATO(aux = aux->sig, ID, tipo);
 }
 
 //ORDENAMIENTOS O FILTRADOS
@@ -328,7 +424,6 @@ void Lista<T>::ordenarPorPrecioDescendente() {
         MergeSort(0, n - 1);
     }
 }
-
 
 
 template <typename T>
