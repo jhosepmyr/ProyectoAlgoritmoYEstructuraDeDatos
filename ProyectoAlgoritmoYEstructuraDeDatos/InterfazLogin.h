@@ -134,27 +134,30 @@ public:
                 Console::ForegroundColor = ConsoleColor::Blue;
                 cout << "Presiona ENTER para volver";
                 this->opcion = '0';
+                system("pause");
                 break;
             }
             case '4': {
+                system("cls");
                 Cola<string>* integrantes;
                 integrantes = new Cola<string>();
                 integrantes->enqueue("Jhosepmyr Orlando");
                 integrantes->enqueue("Elmer Riva");
                 integrantes->enqueue("Jose Martinez");
                 Console::ForegroundColor = ConsoleColor::Green;
-                Console::SetCursorPosition(21, 26);
+                Console::SetCursorPosition(21, 12);
                 cout << "Los duenios son:";
-                Console::SetCursorPosition(20, 28);
+                Console::SetCursorPosition(20, 14);
                 integrantes->dequeue();
-                Console::SetCursorPosition(24, 30);
+                Console::SetCursorPosition(24, 16);
                 integrantes->dequeue();
-                Console::SetCursorPosition(22, 32);
+                Console::SetCursorPosition(22, 18);
                 integrantes->dequeue();
-                Console::SetCursorPosition(14, 34);
+                Console::SetCursorPosition(14, 20);
                 Console::ForegroundColor = ConsoleColor::Blue;
                 cout << "Presiona ENTER para volver";
                 this->opcion = '0';
+                system("pause");
                 break;
             }
         }
