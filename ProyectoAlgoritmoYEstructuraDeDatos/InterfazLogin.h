@@ -62,7 +62,8 @@ public:
                 //mover
                 if (_kbhit()) {
                     char tecla = getch();
-                    if (tecla == ABAJO) y += 2;
+                    if (tecla == ABAJO && y < 20) y += 2;
+                    if (tecla == ARRIBA && y > 12) y -= 2;
                     if (tecla == 13) {
                         if (y == 12) opcion = '1';
                         if (y == 14) opcion = '2';
