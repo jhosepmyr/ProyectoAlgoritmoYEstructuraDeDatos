@@ -134,6 +134,7 @@ public:
         Console::SetCursorPosition(27, 2);  Console::ForegroundColor = ConsoleColor::White; cout << "PEDIDO";
         cout << endl;
         this->pedido.mostrarListaProductos();
+        system("pause");
 
         if (!this->pedido.isVacio())
         {
