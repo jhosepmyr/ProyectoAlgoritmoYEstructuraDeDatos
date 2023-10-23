@@ -86,6 +86,7 @@ public:
         case '5': {
             this->vendedorAux->actualizarDatosSesionATxt();
             this->vendedorAux->actualizarDatosProductosTxt();
+            Console::SetCursorPosition(15, 10); Console::ForegroundColor = ConsoleColor::Green; cout << "SESION CERRADA EXITOSAMENTE";
             break;
         }
         }

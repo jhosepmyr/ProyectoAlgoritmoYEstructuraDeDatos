@@ -133,6 +133,8 @@ public:
         }
         Console::SetCursorPosition(27, 2);  Console::ForegroundColor = ConsoleColor::White; cout << "PEDIDO";
         cout << endl;
+        string nombrePedido = generarNumeroAleatorio();
+        this->pedido.setNombrePedido(nombrePedido);
         this->pedido.mostrarListaProductos();
         system("pause");
 
@@ -177,8 +179,6 @@ public:
             cin >> desicion;
             if (desicion == '1')
             {
-                string nombrePedido = generarNumeroAleatorio();
-                this->pedido.setNombrePedido(nombrePedido);
                 agregarPedido(this->pedido);
                 restaurarPedido();
                 cout << endl << "GRACIAS POR SU COMPRA" << endl;
@@ -305,10 +305,9 @@ public:
             Console::SetCursorPosition(33, 12); cout << "PRESIONA ENTER PARA VOLVER" << endl;
         }
         else {
+            this->pedidos = cargarPedidos();
             cout << "Pedidos registrados:" << endl;
             cout << "Numero de pedidos realizados: " << this->pedidos.cantidadElementos() << endl;
-
-            this->pedidos = cargarPedidos();
             this->pedidos.mostrarTodosLosPedidos();
 
             //trae de nuevo los pedidos eliminados
