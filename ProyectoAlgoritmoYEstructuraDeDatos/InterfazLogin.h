@@ -3,6 +3,7 @@
 #include "Login.h"
 #include "conio.h"
 #include "Cola.h"
+#include "Grafo.h"
 #define ABAJO 80
 #define ARRIBA 72
 
@@ -51,10 +52,12 @@ public:
             Console::SetCursorPosition(17, 18);
             cout << "Mostrar los integrantes\n";
             Console::SetCursorPosition(17, 20);
+            cout << "Mostrar conexion entre sucursales\n";
+            Console::SetCursorPosition(17, 22);
             cout << "Salir";
-            Console::SetCursorPosition(9, 22);
+            Console::SetCursorPosition(9, 24);
             cout << "Selecciona una opcion moviendo la flecha\n";
-            Console::SetCursorPosition(19, 24);
+            Console::SetCursorPosition(19, 26);
             cout << "PRESIONA ENTER";
             int y = 12;
             while (true) {
@@ -63,14 +66,15 @@ public:
                 //mover
                 if (_kbhit()) {
                     char tecla = getch();
-                    if (tecla == ABAJO && y < 20) y += 2;
+                    if (tecla == ABAJO && y < 22) y += 2;
                     if (tecla == ARRIBA && y > 12) y -= 2;
                     if (tecla == 13) {
                         if (y == 12) opcion = '1';
                         if (y == 14) opcion = '2';
                         if (y == 16) opcion = '3';
                         if (y == 18) opcion = '4';
-                        if (y == 20) opcion = '5';
+                        if (y == 22) opcion = '5';
+                        if (y == 20)opcion = '6';
                         break;
                     }
                 }
@@ -160,6 +164,31 @@ public:
                 system("pause");
                 break;
             }
+            case'6': {
+                system("cls");
+                Grafo gp;
+                gp = Grafo();
+                //Agregar vertices
+                gp.agregar_vertice(0, "GuruShop-Miraflores");
+                gp.agregar_vertice(1, "GuruShop-Lima");
+                gp.agregar_vertice(2, "GuruShop-Rimac");
+                gp.agregar_vertice(3, "GuruShop-Monterrico");
+                gp.agregar_vertice(4, "GuruShop-Lince");
+                //Crear Vertices
+                gp.agregar_arista(0,1);
+                gp.agregar_arista(1, 2);
+                gp.agregar_arista(2, 3);
+                gp.agregar_arista(3, 4);
+                gp.agregar_arista(4, 0);
+                //Mostrar Grafo
+                gp.imprimir_grafo();
+                cout <<endl<< "Presiona ENTER para volver";
+                system("pause");
+                this->opcion = '0';
+                break;
+
+            }
+
         }
     }
 };

@@ -104,6 +104,15 @@
     <ClInclude Include="Recursividad.h">
       <Filter>Archivos de encabezado\Recursividad</Filter>
     </ClInclude>
+    <ClInclude Include="HashEntidad.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTable.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Grafo.h">
+      <Filter>Archivos de encabezado\EstructurasTemplates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProyectoAlgoritmoYEstructuraDeDatos.cpp">
