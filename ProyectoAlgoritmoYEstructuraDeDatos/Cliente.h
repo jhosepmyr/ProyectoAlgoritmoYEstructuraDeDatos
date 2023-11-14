@@ -316,5 +316,12 @@ public:
         }  
     }
 
-    ArbolAVL<C
+    void imprimir(int e) {
+        cout << " " << e;
+    }
+
+    ArbolAVL<Comentario> generarArbolAVL() {
+        ArbolAVL<Comentario> arbol();
+        
+    }
 };

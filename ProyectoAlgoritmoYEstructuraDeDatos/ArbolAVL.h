@@ -1,5 +1,18 @@
 #pragma once
 
+class Comentario {
+private:
+	string texto;
+	int fecha;
+public:
+	Comentario() {
+
+	}
+	void comentarioToString() {
+
+	}
+};
+
 template<class T>
 class Nodo {
 public:
@@ -119,19 +132,5 @@ public:
 	}
 	void inOrdenH() {
 		_inOrdenH(raiz);
-	}
-};
-
-template<class T>
-class Comentario {
-private:
-	string texto;
-	int fecha;
-public:
-	Comentario() {
-
-	}
-	void comentarioToString() {
-
 	}
 };
