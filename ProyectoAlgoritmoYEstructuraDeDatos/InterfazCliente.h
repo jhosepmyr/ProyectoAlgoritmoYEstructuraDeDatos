@@ -30,22 +30,22 @@ public:
             cout << "BIENVENIDO " + this->clienteAux->getNombre() << endl;
             Console::SetCursorPosition(20, 12);
             cout << "MENU DE OPCIONES";
-            Console::SetCursorPosition(18, 15);
+            Console::SetCursorPosition(18, 14);
             cout << "1. Informacion personal";
-            Console::SetCursorPosition(18, 17);
+            Console::SetCursorPosition(18, 16);
             cout << "2. Modificar informacion\n";
-            Console::SetCursorPosition(18, 19);
+            Console::SetCursorPosition(18, 18);
             cout << "3. Mostrar Productos\n";
-            Console::SetCursorPosition(18, 21);
+            Console::SetCursorPosition(18, 20);
             cout << "4. Mi carrito de compras\n";
-            Console::SetCursorPosition(18, 23);
+            Console::SetCursorPosition(18, 22);
             cout << "5. Historial de pedidos\n";
-            Console::SetCursorPosition(18, 25);
-            cout << "6. Cerrar sesion\n";
+            Console::SetCursorPosition(18, 24);
+            cout << "6. Comentarios de comunidad\n";
+            Console::SetCursorPosition(18, 26);
+            cout << "7. Cerrar sesion\n";
             Console::SetCursorPosition(10, 27);
-            cout << "Selecciona una opcion ingresando el numero\n\n";
-            Console::SetCursorPosition(10, 28);
-            cout << "Opcion: ";
+            cout << "Selecciona una opcion ingresando el numero: ";
             cin >> this->opcion;
             //validarOpcion();
             resultadosOpcionSeleccionada();
@@ -91,8 +91,11 @@ public:
             this->opcion = '0';
             break;
         }
-
         case '6': {
+
+            break;
+        }
+        case '7': {
             this->clienteAux->actualizarDatosSesionATxt();
             this->clienteAux->actualizarDatosProductosTxt();
             Console::SetCursorPosition(15, 10); Console::ForegroundColor = ConsoleColor::Green; cout << "SESION CERRADA EXITOSAMENTE";

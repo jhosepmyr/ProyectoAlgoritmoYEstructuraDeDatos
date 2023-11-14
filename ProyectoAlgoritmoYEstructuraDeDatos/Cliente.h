@@ -1,6 +1,7 @@
 #pragma once
 #include "Usuario.h"
 #include "Pedido.h"
+#include "ArbolAVL.h"
 #include "conio.h"
 #define ABAJO 80
 #define ARRIBA 72
@@ -314,4 +315,6 @@ public:
             this->pedidos = cargarPedidos();
         }  
     }
+
+    ArbolAVL<C
 };
