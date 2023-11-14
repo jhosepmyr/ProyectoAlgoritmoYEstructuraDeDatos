@@ -8,6 +8,7 @@ class Grafo {
 private:
     unordered_map<int, vector<int>> lista_adyacencia;
     vector<string>sucursal;
+    vector<int> pesos;
 
 public:
 
@@ -25,15 +26,18 @@ public:
         // Añadimos la arista a ambos vértices (grafo no dirigido)
         lista_adyacencia[vertice_origen].push_back(vertice_destino);
         lista_adyacencia[vertice_destino].push_back(vertice_origen);
+        pesos.push_back(1 + rand() % (10 - 1));
     }
 
     void imprimir_grafo() {
+        int i = 0;
         for (const auto& par : lista_adyacencia) {
-            cout <<"La sucursal " << sucursal.at(par.first) << " puede llevar paqueteria hasta la sucursal";
+            cout <<"La sucursal " << sucursal.at(par.first) << " puede llevar paqueteria hasta la sucursal.";
             for (const auto& vecino : par.second) {
-                cout << sucursal.at(vecino) << ".";
+                cout << sucursal.at(vecino) <<endl<< " (Tienen una distancia de " << pesos.at(i) << "KM entre ellos)";
                 break;
             }
+            i++;
             cout << endl;
         }
     }
