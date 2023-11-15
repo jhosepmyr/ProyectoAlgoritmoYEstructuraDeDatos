@@ -1,6 +1,7 @@
 #pragma once
 #include "Usuario.h"
 #include "Pedido.h"
+#include "ArbolAVL.h"
 #include "conio.h"
 #define ABAJO 80
 #define ARRIBA 72
@@ -313,5 +314,14 @@ public:
             //trae de nuevo los pedidos eliminados
             this->pedidos = cargarPedidos();
         }  
+    }
+
+    void imprimir(int e) {
+        cout << " " << e;
+    }
+
+    ArbolAVL<Comentario> generarArbolAVL() {
+        ArbolAVL<Comentario> arbol();
+        
     }
 };

@@ -113,6 +113,9 @@
     <ClInclude Include="Grafo.h">
       <Filter>Archivos de encabezado\EstructurasTemplates</Filter>
     </ClInclude>
+    <ClInclude Include="ArbolAVL.h">
+      <Filter>Archivos de encabezado\EstructurasTemplates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProyectoAlgoritmoYEstructuraDeDatos.cpp">
