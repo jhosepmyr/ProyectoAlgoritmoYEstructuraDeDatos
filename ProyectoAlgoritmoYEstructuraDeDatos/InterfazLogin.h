@@ -4,6 +4,7 @@
 #include "conio.h"
 #include "Cola.h"
 #include "Grafo.h"
+#include "HashTable.h"
 #define ABAJO 80
 #define ARRIBA 72
 
@@ -12,6 +13,9 @@ using namespace std;
 class InterfazLogin : public Interfaz {
 private:
     Login *login;
+    HashTabla<Grafo>grfs;
+    Grafo gp[3];
+    vector<string>keys = { "Peru", "Chile", "Argentina" };
 public:
     InterfazLogin(){
         login = new Login();
@@ -95,6 +99,54 @@ public:
         cout << "REGRESE PRONTO\n";
     }
    
+    void setGrafos() {
+        for (int i = 0; i < 3; i++) {
+            //Agregar vertices
+            if (i == 0) {
+                gp[i].agregar_vertice(0, "GuruShop-Miraflores");
+                gp[i].agregar_vertice(1, "GuruShop-Lima");
+                gp[i].agregar_vertice(2, "GuruShop-Rimac");
+                gp[i].agregar_vertice(3, "GuruShop-Monterrico");
+                gp[i].agregar_vertice(4, "GuruShop-Lince");
+            }
+            if (i == 1) {
+                gp[i].agregar_vertice(0, "GuruShop-Providencia");
+                gp[i].agregar_vertice(1, "GuruShop-Macul");
+                gp[i].agregar_vertice(2, "GuruShop-Quilicura");
+                gp[i].agregar_vertice(3, "GuruShop-Pudahuel");
+                gp[i].agregar_vertice(4, "GuruShop-Huechuraba");
+            }
+            if (i == 2) {
+                gp[i].agregar_vertice(0, "GuruShop-Palermo");
+                gp[i].agregar_vertice(1, "GuruShop-Belgrano");
+                gp[i].agregar_vertice(2, "GuruShop-Recoleta");
+                gp[i].agregar_vertice(3, "GuruShop-Caballito");
+                gp[i].agregar_vertice(4, "GuruShop-Floresta");
+            }
+            //Crear conexiones aristas
+            gp[i].agregar_arista(0, 1);
+            gp[i].agregar_arista(1, 2);
+            gp[i].agregar_arista(2, 3);
+            gp[i].agregar_arista(3, 4);
+            gp[i].agregar_arista(4, 0);
+        }
+        //Insertar en HashTable
+        grfs.insertar(keys[0], gp[0]);
+        grfs.insertar(keys[1], gp[1]);
+        grfs.insertar(keys[2], gp[2]);
+    }
+
+    int opciones_grafos() {
+        int opc = 0;
+        cout << endl << "1.Mostrar conexion entre sedes de Lima - Peru";
+        cout << endl << "2.Mostrar conexion entre sedes de Santiago - Chile";
+        cout << endl << "3.Mostrar conexion entre sedes de Buenos Aires - Argentina";
+        cout << endl << "4.Salir";
+        cout << endl << ".Ingrese la opcion deseada: "; cin >> opc;
+        if (opc > 4 || opc < 1) { system("cls"); return opciones_grafos(); }
+        else return opc;
+    }
+
     //metodo donde esta la llamada a la clase Login
     void resultadosOpcionSeleccionada() {
         switch (this->opcion) {
@@ -166,24 +218,17 @@ public:
             }
             case'6': {
                 system("cls");
-                Grafo gp;
-                gp = Grafo();
-                //Agregar vertices
-                gp.agregar_vertice(0, "GuruShop-Miraflores");
-                gp.agregar_vertice(1, "GuruShop-Lima");
-                gp.agregar_vertice(2, "GuruShop-Rimac");
-                gp.agregar_vertice(3, "GuruShop-Monterrico");
-                gp.agregar_vertice(4, "GuruShop-Lince");
-                //Crear Vertices
-                gp.agregar_arista(0,1);
-                gp.agregar_arista(1, 2);
-                gp.agregar_arista(2, 3);
-                gp.agregar_arista(3, 4);
-                gp.agregar_arista(4, 0);
-                //Mostrar Grafo
-                gp.imprimir_grafo();
-                cout <<endl<< "Presiona ENTER para volver";
-                system("pause");
+                //Configurar Grafo y HashTable
+                int op = 0;
+                setGrafos();
+                while (true) {
+                    op = opciones_grafos();
+                    if (op == 4)break;
+                    system("cls");
+                    grfs.imprimir_grafos(keys[op - 1]);
+                    system("pause");
+                    system("cls");
+                }
                 this->opcion = '0';
                 break;
 

@@ -1,17 +1,17 @@
 #pragma once
 #include <iostream>
 #include "HashEntidad.h"
-
+using namespace std;
+template<typename T>
 class HashTabla {
 private:
-	HashEntidad** tabla;
+	HashEntidad<T>** tabla;
 	int numElementos;
 	int TABLE_SIZE;
-
 public:
 	HashTabla(int TABLE_SIZE = 128) {
 		this->TABLE_SIZE = TABLE_SIZE;
-		tabla = new HashEntidad * [TABLE_SIZE];
+		tabla = new HashEntidad<T> * [TABLE_SIZE];
 		for (int i = 0; i < TABLE_SIZE; ++i)
 			tabla[i] = nullptr;
 		numElementos = 0;
@@ -24,12 +24,22 @@ public:
 		delete[]tabla;
 	}
 
-	void insertar(int key, int value) {
+	int _hash(string key) {
+		int hash = 0;
+
+		for (char ch : key) {
+			hash += int(ch);
+		}
+		hash = hash * 3 / 10;
+		return hash % TABLE_SIZE;
+	}
+
+	void insertar(string key, T value) {
 		int base, step, hash;
 		//validar si la tabla esta llena 
 		if (numElementos == TABLE_SIZE)return;
 		//Funcion Hash
-		base = key % TABLE_SIZE; //base es el indice 
+		base = _hash(key); //base es el indice 
 		hash = base; //igualas hash a base 
 		step = 0; //para recorrer la tabla
 		while (tabla[hash] != nullptr) {
@@ -39,16 +49,16 @@ public:
 			//se recorre la tabla hasta encontrar un espacio
 		}
 		//almacenarlo en la tabla
-		tabla[hash] = new HashEntidad(key, value);
+		tabla[hash] = new HashEntidad<T>(key, value);
 		numElementos++;
 	}
 
 	int size() { return TABLE_SIZE; }
 	int sizeactual() { return numElementos; }
-	int buscar(int key) {
+	int buscar(string key) {
 		int step = 0;
 		int i, base;
-		i = base = key % TABLE_SIZE;
+		i = base = _hash(key);
 		while (true) {
 			if (tabla[i] == nullptr)return -1;
 			else if (tabla[i]->getKey() == key)return i;
@@ -57,15 +67,19 @@ public:
 		}
 	}
 
-	int buscarElem(int key) {
+	T buscarElem(string key) {
 		int step = 0;
 		int i, base;
-		i = base = key % TABLE_SIZE;
+		i = base = _hash(key);
 		while (true) {
-			if (tabla[i] == nullptr)return -1;
+			if (tabla[i] == nullptr)break;
 			else if (tabla[i]->getKey() == key)return tabla[i]->getValue();
 			else step++;
 			i = (base + step) % TABLE_SIZE;
 		}
+	}
+
+	void imprimir_grafos(string keys) {
+		buscarElem(keys).imprimir_grafo();
 	}
 };

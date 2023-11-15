@@ -1,13 +1,15 @@
 #pragma once
+using namespace std;
+template<typename T>
 class HashEntidad {
 private:
-	int key;
-	int value;
+	string key;
+	T value;
 public:
-	HashEntidad(int key, int value) {
+	HashEntidad(string key, T value) {
 		this->key = key;
 		this->value = value;
 	}
-	int getKey() { return key; }
-	int getValue() { return value; }
+    string getKey() { return key; }
+	T getValue() { return value; }
 };
