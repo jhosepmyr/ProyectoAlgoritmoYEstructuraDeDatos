@@ -1,45 +1,119 @@
 #pragma once
 #include <ctime>
-#include <iomanip>  // Necesario para std::put_time
+#include <vector>
 using namespace std;
 class Fecha {
-private:
+public:
 	int dia, mes, anio, hora, min;
 public:
-	Fecha(int dia, int mes, int anio, int hora) :dia(dia), mes(mes), anio(anio), hora(hora), min(min) {}
+	//crear fechas desde txt
+	Fecha(int dia, int mes, int anio, int hora, int min) :dia(dia), mes(mes), anio(anio), hora(hora), min(min) {}
+	
+	//crear fechas del momento del usuario
 	Fecha() {
-		// Obtiene el tiempo actual
-		std::time_t tiempoActual = std::time(0);
+		// Obtiene la fecha y hora actual
+		time_t t = std::time(0);
+		tm* now = std::localtime(&t);
 
-		// Convierte el tiempo a una cadena legible
-		std::tm* tiempoLocal = std::localtime(&tiempoActual);
-		std::ostringstream ss;
-		ss << std::put_time(tiempoLocal, "%Y%m%d");
-		std::string tiempoFormateado = ss.str();
-
-		this->anio = stoi(tiempoFormateado.substr(0, 4));
-		this->mes = stoi(tiempoFormateado.substr(4, 2));
-		this->dia = stoi(tiempoFormateado.substr(6, 2));
+		// Extrae los componentes de la fecha y hora
+		this->dia = now->tm_mday;
+		this->mes = now->tm_mon + 1; // tm_mon comienza desde 0
+		this->anio = now->tm_year + 1900; // tm_year es el año actual desde 1900
+		this->hora = now->tm_hour;
+		this->min = now->tm_min;
 	}
 
+	//establecer datos de fecha
+	void setFecha(int dia, int mes, int anio, int hora, int min) {
+		this->dia = dia;
+		this->mes = mes;
+		this->anio = anio;
+		this->hora = hora;
+		this->min = min;
+	}
 };
 class Comentario {
 private:
 	string texto;
 	Fecha fecha;
 public:
-	Comentario(string texto, string nameUsuario) {
-
+	Comentario(string texto, int dia, int mes, int anio, int hora, int min) {
+		this->texto = texto;
+		this->fecha.setFecha(dia, mes, anio, hora, min);
 	}
 
-	void comentarioToString() {
-
+	Comentario(string texto) {
+		this->texto = texto;
 	}
 
-	static bool igualFechas(Fecha comentaria1, Fecha comentario2) {}
-	static bool mayorPrimeraFecha(Fecha comentaria1, Fecha comentario2) {}
-	static bool menorPrimeraFecha(Fecha comentaria1, Fecha comentario2) {}
+	vector<Comentario> extraerComentariosTXT() {
+		std::vector<Comentario> comentarios;
 
+		std::istringstream iss(texto);
+		std::string linea;
+
+		while (std::getline(iss, linea)) {
+			// Suponemos que cada línea contiene un comentario en el formato deseado
+			std::string comentarioTexto = linea;
+
+			// Suponemos que también hay información de fecha en el formato deseado en la misma línea
+			int dia, mes, anio, hora, min;
+			// Aquí deberías implementar la lógica para extraer los valores de fecha
+
+			// Crear un objeto Comentario y agregarlo al vector
+			comentarios.push_back(Comentario(comentarioTexto, dia, mes, anio, hora, min));
+		}
+
+		return comentarios;
+	}
+
+	Fecha getFecha() {
+		return this->fecha;
+	}
+
+	static bool esMenor(Fecha& fecha1,Fecha& fecha2) {
+		if (fecha1.anio < fecha2.anio) {
+			return true;
+		}
+		else if (fecha1.anio > fecha2.anio) {
+			return false;
+		}
+
+		if (fecha1.mes < fecha2.mes) {
+			return true;
+		}
+		else if (fecha1.mes > fecha2.mes) {
+			return false;
+		}
+
+		if (fecha1.dia < fecha2.dia) {
+			return true;
+		}
+		else if (fecha1.dia > fecha2.dia) {
+			return false;
+		}
+
+		if (fecha1.hora < fecha2.hora) {
+			return true;
+		}
+		else if (fecha1.hora > fecha2.hora) {
+			return false;
+		}
+
+		return fecha1.min < fecha2.min;
+	}
+
+	static bool esMayor(Fecha& fecha1, Fecha& fecha2) {
+		return !esMenor(fecha1, fecha2) && !(fecha1.anio == fecha2.anio && fecha1.mes == fecha2.mes &&
+			fecha1.dia == fecha2.dia && fecha1.hora == fecha2.hora &&
+			fecha1.min == fecha2.min);
+	}
+
+	bool sonIguales(Fecha& fecha1,Fecha& fecha2) {
+		return fecha1.anio == fecha2.anio && fecha1.mes == fecha2.mes &&
+			fecha1.dia == fecha2.dia && fecha1.hora == fecha2.hora &&
+			fecha1.min == fecha2.min;
+	}
 };
 
 template<class T>
@@ -121,12 +195,13 @@ private:
 			NodoAVL->elemento = e;
 			return true;
 		}
-		else if (e == NodoAVL->elemento)
+		else if (Comentario::sonIguales(e.getFecha(), NodoAVL->elemento.getFecha())) {
 			return false;
-		else if (e < NodoAVL->elemento) {
+		}
+		else if (Comentario::esMayor(e.getFecha(), NodoAVL->elemento.getFecha())) {
 			_insertar(NodoAVL->izq, e);
 		}
-		else if (e > NodoAVL->elemento) {
+		else if (Comentario::esMenor(e.getFecha(), NodoAVL->elemento.getFecha())) {
 			_insertar(NodoAVL->der, e);
 		}
 		_balanceo(NodoAVL);
