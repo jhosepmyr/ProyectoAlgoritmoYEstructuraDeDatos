@@ -51,7 +51,7 @@ public:
             resultadosOpcionSeleccionada();
             system("pause>0");
             Console::SetWindowSize(60, 40);
-            if (this->opcion!='6') { return MenuCliente(); }
+            if (this->opcion!='7') { return MenuCliente(); }
             else return 0;
     }
 

@@ -20,7 +20,7 @@ public:
 	NodoAVL* izq;
 	NodoAVL* der;
 	int altura;
-
+	
 	NodoAVL() {
 		izq = nullptr;
 		der = nullptr;
