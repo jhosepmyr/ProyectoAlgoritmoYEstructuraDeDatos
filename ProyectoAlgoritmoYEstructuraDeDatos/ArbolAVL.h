@@ -4,8 +4,9 @@
 using namespace std;
 class Fecha {
 private:
-	int dia, mes, anio;
+	int dia, mes, anio, hora, min;
 public:
+	Fecha(int dia, int mes, int anio, int hora) :dia(dia), mes(mes), anio(anio), hora(hora), min(min) {}
 	Fecha() {
 		// Obtiene el tiempo actual
 		std::time_t tiempoActual = std::time(0);
@@ -25,7 +26,6 @@ public:
 class Comentario {
 private:
 	string texto;
-	string nameUsuario;
 	Fecha fecha;
 public:
 	Comentario(string texto, string nameUsuario) {
@@ -35,6 +35,10 @@ public:
 	void comentarioToString() {
 
 	}
+
+	static bool igualFechas(Fecha comentaria1, Fecha comentario2) {}
+	static bool mayorPrimeraFecha(Fecha comentaria1, Fecha comentario2) {}
+	static bool menorPrimeraFecha(Fecha comentaria1, Fecha comentario2) {}
 
 };
 
