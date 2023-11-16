@@ -4,6 +4,7 @@
 #include "InterfazInicio.h"
 #include "InterfazLogin.h"
 #include "Usuario.h"
+#include "ArbolAVL.h"
 using namespace std;
 using namespace System;
 int main()

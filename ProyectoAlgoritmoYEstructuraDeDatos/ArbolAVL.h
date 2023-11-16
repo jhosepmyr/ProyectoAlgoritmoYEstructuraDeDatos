@@ -1,16 +1,41 @@
 #pragma once
+#include <ctime>
+#include <iomanip>  // Necesario para std::put_time
+using namespace std;
+class Fecha {
+private:
+	int dia, mes, anio;
+public:
+	Fecha() {
+		// Obtiene el tiempo actual
+		std::time_t tiempoActual = std::time(0);
 
+		// Convierte el tiempo a una cadena legible
+		std::tm* tiempoLocal = std::localtime(&tiempoActual);
+		std::ostringstream ss;
+		ss << std::put_time(tiempoLocal, "%Y%m%d");
+		std::string tiempoFormateado = ss.str();
+
+		this->anio = stoi(tiempoFormateado.substr(0, 4));
+		this->mes = stoi(tiempoFormateado.substr(4, 2));
+		this->dia = stoi(tiempoFormateado.substr(6, 2));
+	}
+
+};
 class Comentario {
 private:
 	string texto;
-	int fecha;
+	string nameUsuario;
+	Fecha fecha;
 public:
-	Comentario() {
+	Comentario(string texto, string nameUsuario) {
 
 	}
+
 	void comentarioToString() {
 
 	}
+
 };
 
 template<class T>
