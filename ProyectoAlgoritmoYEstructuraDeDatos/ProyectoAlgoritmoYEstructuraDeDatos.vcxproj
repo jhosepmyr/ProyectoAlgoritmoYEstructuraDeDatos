@@ -171,6 +171,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Comentarios.txt" />
     <Text Include="DatosProductos.txt" />
     <Text Include="DatosSesionClientes.txt" />
     <Text Include="DatosSesionVendedores.txt" />

@@ -46,15 +46,15 @@ public:
 		this->texto = texto;
 	}
 
-	vector<Comentario> extraerComentariosTXT() {
-		std::vector<Comentario> comentarios;
+	static vector<Comentario> extraerComentariosTXT() {
+		vector<Comentario> comentarios;
 
-		std::istringstream iss(texto);
-		std::string linea;
+		istringstream iss("Comentarios.txt");
+		string linea;
 
 		while (std::getline(iss, linea)) {
 			// Suponemos que cada línea contiene un comentario en el formato deseado
-			std::string comentarioTexto = linea;
+			string comentarioTexto = linea;
 
 			// Suponemos que también hay información de fecha en el formato deseado en la misma línea
 			int dia, mes, anio, hora, min;
