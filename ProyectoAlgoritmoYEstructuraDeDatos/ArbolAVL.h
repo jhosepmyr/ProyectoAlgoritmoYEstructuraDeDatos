@@ -1,5 +1,8 @@
 #pragma once
 #include <ctime>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 #include <vector>
 using namespace std;
 class Fecha {
@@ -96,6 +99,13 @@ public:
 		archivo.close();
 
 		return comentarios;
+	}
+
+	// Obtener el comentario formateado para guardar en el archivo
+	string obtenerComentarioFormateado() {
+		ostringstream ss;
+		ss << this->fecha.dia << "," << this->fecha.mes << "," << this->fecha.anio << "," << this->fecha.hora << "," << this->fecha.min << "," << this->texto;
+		return ss.str();
 	}
 
 	Fecha getFecha() {
@@ -230,10 +240,10 @@ private:
 		else if (Comentario::sonIguales(e.getFecha(), nodoAV->elemento.getFecha())) {
 			return false;
 		}
-		else if (Comentario::esMayor(e.getFecha(), nodoAV->elemento.getFecha())) {
+		else if (Comentario::esMenor(e.getFecha(), nodoAV->elemento.getFecha())) {
 			_insertar(nodoAV->izq, e);
 		}
-		else if (Comentario::esMenor(e.getFecha(), nodoAV->elemento.getFecha())) {
+		else if (Comentario::esMayor(e.getFecha(), nodoAV->elemento.getFecha())) {
 			_insertar(nodoAV->der, e);
 		}
 		_balanceo(nodoAV);

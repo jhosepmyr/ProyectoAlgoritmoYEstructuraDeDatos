@@ -1,7 +1,6 @@
 #pragma once
 #include "Interfaz.h"
 #include "Cliente.h"
-#include <sstream>
 
 using namespace std;
 
@@ -93,6 +92,7 @@ public:
         }
         case '6': {
             this->clienteAux->generarArbolAVL();
+            this->clienteAux->realizarComentario();
             this->opcion = '0';
             break;
         }

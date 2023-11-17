@@ -1,3 +1,14 @@
-10,11,2022,15,30,El producto que he comprado cumple con todas las caracteristicas mencionada
+10,11,2022,15,30,El producto que he comprado esta bueno
 15,12,2022,10,45,La entrega del envio fue mas rapido de lo que espere
 20,1,2023,8,0,No puedo creer el precio por el que se estaba vendiendo
+5,5,2022,12,15,El servicio al cliente fue excepcional
+8,7,2023,9,30,Me encanta la calidad del producto
+3,10,2022,18,0,La presentación del producto superó mis expectativas
+12,4,2023,14,45,El envío llegó en perfecto estado
+22,8,2022,7,20,Excelente relación calidad-precio
+18,9,2022,13,0,El producto superó mis expectativas
+7,6,2023,11,15,La atención al cliente fue muy amable
+14,2,2022,20,45,Me encanta la rapidez con la que llegó mi pedido
+30,11,2023,9,30,El diseño del producto es elegante y moderno
+5,4,2022,16,0,Increíble oferta en este producto
+17,11,2023,10,0,Excelente servicio volvere a comprar

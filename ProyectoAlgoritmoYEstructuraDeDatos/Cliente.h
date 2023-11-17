@@ -327,4 +327,44 @@ public:
         arbol.inOrden();
         
     }
+
+    void agregarComentarioAlArchivo(const string& nombreArchivo, Comentario& comentario) {
+        ofstream archivo(nombreArchivo, ios::app);  // Modo de apertura: adjuntar al final del archivo
+
+        if (!archivo.is_open()) {
+            cerr << "Error al abrir el archivo: " << nombreArchivo << " para escritura." << endl;
+            return;
+        }
+
+        archivo << comentario.obtenerComentarioFormateado() << "\n";
+
+        archivo.close();
+    }
+
+    void realizarComentario() {
+        cout << "---------------------------------------------------------------" << endl;
+        cout << "COMENTARIOS Y RESENAS" << endl;
+        cout << "---------------------------------------------------------------" << endl;
+        cout << "Ingresa tu comentario (presiona Enter para finalizar):\n";
+
+        // Pedir al usuario que ingrese un nuevo comentario
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar el búfer de entrada
+        cin.clear();
+        string textoComentario;
+        getline(cin, textoComentario);
+
+        // Verificar si el campo del comentario está vacío
+        if (textoComentario.empty()) {
+            cout << "No se ha ingresado ningún comentario. Operación cancelada.\n";
+            return; // Salir de la función sin agregar nada al archivo
+        }
+
+        // Crear un objeto Comentario con la fecha y hora actual y el comentario del usuario
+        Comentario nuevoComentario(textoComentario);
+
+        // Agregar el nuevo comentario al archivo
+        agregarComentarioAlArchivo("Comentarios.txt", nuevoComentario);
+
+        cout << "Comentario agregado con éxito.\n";
+    }
 };
