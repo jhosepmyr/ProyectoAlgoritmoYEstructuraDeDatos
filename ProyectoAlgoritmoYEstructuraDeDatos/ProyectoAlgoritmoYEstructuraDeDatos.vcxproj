@@ -130,6 +130,8 @@
     <ClInclude Include="ArbolAVL.h" />
     <ClInclude Include="Cliente.h" />
     <ClInclude Include="Cola.h" />
+    <ClInclude Include="Comentarios.h" />
+    <ClInclude Include="Fecha.h" />
     <ClInclude Include="Files.h" />
     <ClInclude Include="Grafo.h" />
     <ClInclude Include="HashEntidad.h" />
