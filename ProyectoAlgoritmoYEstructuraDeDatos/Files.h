@@ -45,6 +45,49 @@ public:
 		}
 		return nombreArchivoPropio;
 	}
+	string generarIDUnico() {
+		string caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		random_device rd;
+		mt19937 generator(rd());
+		uniform_int_distribution<int> distribution(0, caracteres.size() - 1);
+		set<string> IDsExistentes;
+
+		while (true) {
+			string nuevoID;
+			for (int i = 0; i < 7; i++) {
+				nuevoID += caracteres[distribution(generator)];
+			}
+
+			// Verificar que el nuevo ID no se repita en el archivo TXT
+			if (!existeIDEnArchivo(nuevoID, "DatosProductos.txt")) {
+				return nuevoID;
+			}
+		}
+	}
+	bool existeIDEnArchivo(const string& id, const string& rutaTxt) {
+		ifstream archivo(rutaTxt);
+		string linea;
+		while (getline(archivo, linea)) {
+			// Parsear la línea para obtener el ID (asumiendo el formato "nombre precio tipo idUnico codigoVendedor")
+			string token;
+			istringstream ss(linea);
+			ss >> token >> token >> token >> token;  // Saltar nombre, precio y tipo
+			if (token == id) {
+				archivo.close();
+				return true;
+			}
+		}
+		archivo.close();
+		return false;
+	}
+
+	Lista<Producto> Dataset(Lista<Producto> lista, int numDatos) {
+		string nombres[20] = { "Cepillo", "televisor", "papa", "yuca", "Manzana", "Naranja", "Platano", "Fresa", "Pinia", "Mango", "Kiwi", "Uva", "Melon", "Sandia", "Smartphone", "Laptop", "Smartwatch", "Auriculares", "Camara", "PS5" };
+		//double precio[20] = {}; //precio con rand
+		string tipo[2] = { "Comestible","NoComestible" };
+		auto idAleatorio = [] {}; //id aleatorio desde generarIDUnico
+		string codigoVendedor[6] = { "987653","543663","756323","523412","123456","272064" };
+	}
 
 	Lista<Producto> getProductos(string datosProductos = "DatosProductos.txt") {
 		Lista<Producto> auxList;
@@ -67,6 +110,7 @@ public:
 		else {
 			cerr << "Error al abrir el archivo." <<endl;
 		}
+
 		return auxList;
 	}
 
