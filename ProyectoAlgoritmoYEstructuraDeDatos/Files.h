@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <sstream>
 #include <string>
+#include <set>
 #include "Lista.h"
 #include "Producto.h"
 using namespace std;

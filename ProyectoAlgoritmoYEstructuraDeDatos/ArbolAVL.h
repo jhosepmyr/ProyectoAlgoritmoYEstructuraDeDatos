@@ -12,8 +12,8 @@ public:
 	//crear fechas del momento del usuario
 	Fecha() {
 		// Obtiene la fecha y hora actual
-		time_t t = std::time(0);
-		tm* now = std::localtime(&t);
+		time_t t = time(0);
+		tm* now = localtime(&t);
 
 		// Extrae los componentes de la fecha y hora
 		this->dia = now->tm_mday;
@@ -32,6 +32,7 @@ public:
 		this->min = min;
 	}
 };
+
 class Comentario {
 private:
 	string texto;
@@ -45,24 +46,54 @@ public:
 	Comentario(string texto) {
 		this->texto = texto;
 	}
+	Comentario(){}
+
+	void mostrarDatos() {
+		cout << "---------------------------------------------------------------" << endl;
+		cout << "Fecha de publicacion: "<<to_string(this->fecha.dia)<<"/"<< to_string(this->fecha.mes)<<"/"<<to_string(this->fecha.anio)<<endl;
+		cout << this->texto << endl;
+		cout << "---------------------------------------------------------------" << endl;
+	}
 
 	static vector<Comentario> extraerComentariosTXT() {
 		vector<Comentario> comentarios;
 
-		istringstream iss("Comentarios.txt");
+		ifstream archivo("Comentarios.txt");
+		if (!archivo.is_open()) {
+			cerr << "Error al abrir el archivo: Comentarios.txt" << endl;
+			return comentarios;
+		}
+
 		string linea;
-
-		while (std::getline(iss, linea)) {
-			// Suponemos que cada línea contiene un comentario en el formato deseado
-			string comentarioTexto = linea;
-
-			// Suponemos que también hay información de fecha en el formato deseado en la misma línea
+		while (getline(archivo, linea)) {
+			istringstream ss(linea);
+			string token;
 			int dia, mes, anio, hora, min;
-			// Aquí deberías implementar la lógica para extraer los valores de fecha
+			string texto;
+
+			// Leer los datos separados por comas
+			getline(ss, token, ',');
+			dia = stoi(token);
+
+			getline(ss, token, ',');
+			mes = stoi(token);
+
+			getline(ss, token, ',');
+			anio = stoi(token);
+
+			getline(ss, token, ',');
+			hora = stoi(token);
+
+			getline(ss, token, ',');
+			min = stoi(token);
+
+			getline(ss, texto);
 
 			// Crear un objeto Comentario y agregarlo al vector
-			comentarios.push_back(Comentario(comentarioTexto, dia, mes, anio, hora, min));
+			comentarios.emplace_back(texto, dia, mes, anio, hora, min);
 		}
+
+		archivo.close();
 
 		return comentarios;
 	}
@@ -109,12 +140,16 @@ public:
 			fecha1.min == fecha2.min);
 	}
 
-	bool sonIguales(Fecha& fecha1,Fecha& fecha2) {
+	static bool sonIguales(Fecha& fecha1,Fecha& fecha2) {
 		return fecha1.anio == fecha2.anio && fecha1.mes == fecha2.mes &&
 			fecha1.dia == fecha2.dia && fecha1.hora == fecha2.hora &&
 			fecha1.min == fecha2.min;
 	}
 };
+
+void mostrarComentarios(Comentario comentario) {
+	comentario.mostrarDatos();
+}
 
 template<class T>
 class NodoAVL {
@@ -124,10 +159,7 @@ public:
 	NodoAVL* der;
 	int altura;
 	
-	NodoAVL() {
-		izq = nullptr;
-		der = nullptr;
-		altura = 0;
+	NodoAVL(): izq(nullptr), der(nullptr), altura(0) {
 	}
 };
 
@@ -138,93 +170,94 @@ private:
 	void(*procesar)(T); //puntero a función
 
 	//Operaciones privadas
-	int _altura(NodoAVL<T>* NodoAVL) {
-		if (NodoAVL == nullptr) return 0;
-		return NodoAVL->altura;
+	int _altura(NodoAVL<T>* nodoAVL) {
+		if (nodoAVL == nullptr) return 0;
+		return nodoAVL->altura;
 	}
 
-	void _rotarDerecha(NodoAVL<T>*& NodoAVL) {
-		NodoAVL<T>* p = NodoAVL->izq;
-		NodoAVL->izq = p->der;
-		p->der = NodoAVL;
+	void _rotarDerecha(NodoAVL<T>*& nodoAVL) {
+		NodoAVL<T>* p = nodoAVL->izq;
+		nodoAVL->izq = p->der;
+		p->der = nodoAVL;
 		//Actualizamos la altura
 
-		NodoAVL = p;
+		nodoAVL = p;
 	}
 
-	void _rotarIzquierda(NodoAVL<T>*& NodoAVL) {
-		NodoAVL<T>* p = NodoAVL->der;
-		NodoAVL->der = p->izq;
-		p->izq = NodoAVL;
+	void _rotarIzquierda(NodoAVL<T>*& nodoAVL) {
+		NodoAVL<T>* p = nodoAVL->der;
+		nodoAVL->der = p->izq;
+		p->izq = nodoAVL;
 		//Actualizamos la altura
 
-		NodoAVL = p;
+		nodoAVL = p;
 	}
-	void _balanceo(NodoAVL<T>*& NodoAVL) {
-		int hizq = _altura(NodoAVL->izq);
-		int hder = _altura(NodoAVL->der);
+	void _balanceo(NodoAVL<T>*& nodoAVL) {
+		int hizq = _altura(nodoAVL->izq);
+		int hder = _altura(nodoAVL->der);
 		int fb = hder - hizq;
 
 		if (fb > 1) { //rotar a la izq
-			int hhizq = _altura(NodoAVL->der->izq);
-			int hhder = _altura(NodoAVL->der->der);
+			int hhizq = _altura(nodoAVL->der->izq);
+			int hhder = _altura(nodoAVL->der->der);
 			if (hhizq > hhder) { //verificar si aplica doble rotación
-				_rotarDerecha(NodoAVL->der);
+				_rotarDerecha(nodoAVL->der);
 			}
-			_rotarIzquierda(NodoAVL);
+			_rotarIzquierda(nodoAVL);
 		}
 		if (fb < -1) { //rotar a la der
-			int hhizq = _altura(NodoAVL->izq->izq);
-			int hhder = _altura(NodoAVL->izq->der);
+			int hhizq = _altura(nodoAVL->izq->izq);
+			int hhder = _altura(nodoAVL->izq->der);
 			if (hhizq < hhder) {//verificar si aplica doble rotación 
-				_rotarIzquierda(NodoAVL->izq);
+				_rotarIzquierda(nodoAVL->izq);
 			}
-			_rotarDerecha(NodoAVL);
+			_rotarDerecha(nodoAVL);
 		}
 		//Actualizar la altura del NodoAVL raiz
-		hizq = _altura(NodoAVL->izq);
-		hder = _altura(NodoAVL->der);
-		NodoAVL->altura = 1 + ((hizq > hder) ? hizq : hder);
+		hizq = _altura(nodoAVL->izq);
+		hder = _altura(nodoAVL->der);
+		nodoAVL->altura = 1 + ((hizq > hder) ? hizq : hder);
 	}
 
-	bool _insertar(NodoAVL<T>*& NodoAVL, T e) {
+	bool _insertar(NodoAVL<T>*& nodoAV, T e) {
 
-		if (NodoAVL == nullptr) {
+		if (nodoAV == nullptr) {
 			//Nuevo elemento
-			NodoAVL = new NodoAVL<T>();
-			NodoAVL->elemento = e;
+			nodoAV = new NodoAVL<T>();
+			nodoAV->elemento = e;
 			return true;
 		}
-		else if (Comentario::sonIguales(e.getFecha(), NodoAVL->elemento.getFecha())) {
+		else if (Comentario::sonIguales(e.getFecha(), nodoAV->elemento.getFecha())) {
 			return false;
 		}
-		else if (Comentario::esMayor(e.getFecha(), NodoAVL->elemento.getFecha())) {
-			_insertar(NodoAVL->izq, e);
+		else if (Comentario::esMayor(e.getFecha(), nodoAV->elemento.getFecha())) {
+			_insertar(nodoAV->izq, e);
 		}
-		else if (Comentario::esMenor(e.getFecha(), NodoAVL->elemento.getFecha())) {
-			_insertar(NodoAVL->der, e);
+		else if (Comentario::esMenor(e.getFecha(), nodoAV->elemento.getFecha())) {
+			_insertar(nodoAV->der, e);
 		}
-		_balanceo(NodoAVL);
+		_balanceo(nodoAV);
 		return true;
 	}
 
-	void _inOrden(NodoAVL<T>* NodoAVL) {
-		if (NodoAVL == nullptr) return;
-		_inOrden(NodoAVL->izq);
-		procesar(NodoAVL->elemento);
-		_inOrden(NodoAVL->der);
+	void _inOrden(NodoAVL<T>* nodoAVL) {
+		if (nodoAVL == nullptr) return;
+		_inOrden(nodoAVL->izq);
+		procesar(nodoAVL->elemento);
+		_inOrden(nodoAVL->der);
 	}
 
-	void _inOrdenH(NodoAVL<T>* NodoAVL) {
-		if (NodoAVL == nullptr) return;
-		_inOrdenH(NodoAVL->izq);
-		procesar(NodoAVL->altura);
-		_inOrdenH(NodoAVL->der);
+	void _inOrdenH(NodoAVL<T>* nodoAVL) {
+		if (nodoAVL == nullptr) return;
+		_inOrdenH(nodoAVL->izq);
+		procesar(nodoAVL->altura);
+		_inOrdenH(nodoAVL->der);
 	}
 
 public:
-	ArbolAVL(void(*nuevaFuncion)(T)) {
-		this->procesar = nuevaFuncion;
+	ArbolAVL() {
+		//void(*nuevaFuncion)(T)
+		this->procesar = mostrarComentarios;
 		this->raiz = nullptr;
 	}
 

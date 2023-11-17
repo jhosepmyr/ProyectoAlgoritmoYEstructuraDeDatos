@@ -316,18 +316,15 @@ public:
         }  
     }
 
-    void imprimir(int e) {
-        cout << " " << e;
-    }
-
-    ArbolAVL<Comentario> generarArbolAVL() {
-        ArbolAVL<Comentario> arbol();
+    void generarArbolAVL() {
+        ArbolAVL<Comentario> arbol;
         vector<Comentario> comentariosGenerados = Comentario::extraerComentariosTXT();
 
         for (int i = 0; i < comentariosGenerados.size(); i++)
         {
-
+            arbol.Insertar(comentariosGenerados[i]);
         }
+        arbol.inOrden();
         
     }
 };

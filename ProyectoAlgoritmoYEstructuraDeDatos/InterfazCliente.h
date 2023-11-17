@@ -92,7 +92,8 @@ public:
             break;
         }
         case '6': {
-
+            this->clienteAux->generarArbolAVL();
+            this->opcion = '0';
             break;
         }
         case '7': {
