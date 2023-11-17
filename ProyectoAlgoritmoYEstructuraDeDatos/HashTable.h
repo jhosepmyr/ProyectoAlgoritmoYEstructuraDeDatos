@@ -82,4 +82,8 @@ public:
 	void imprimir_grafos(string keys) {
 		buscarElem(keys).imprimir_grafo();
 	}
+
+	void caminoMinimoEntreSucursales(string keys) {
+		buscarElem(keys).ingresar_datos_y_mostrar_camino_mas_corto();
+	}
 };

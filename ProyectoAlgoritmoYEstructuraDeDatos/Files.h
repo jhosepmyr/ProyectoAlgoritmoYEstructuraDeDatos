@@ -83,11 +83,35 @@ public:
 	}
 
 	Lista<Producto> Dataset(Lista<Producto> lista, int numDatos) {
-		string nombres[20] = { "Cepillo", "televisor", "papa", "yuca", "Manzana", "Naranja", "Platano", "Fresa", "Pinia", "Mango", "Kiwi", "Uva", "Melon", "Sandia", "Smartphone", "Laptop", "Smartwatch", "Auriculares", "Camara", "PS5" };
-		//double precio[20] = {}; //precio con rand
-		string tipo[2] = { "Comestible","NoComestible" };
-		auto idAleatorio = [] {}; //id aleatorio desde generarIDUnico
+		string nombres[100] = { "Cepillo", "Televisor", "Papa", "Yuca", "Manzana", "Naranja", "Platano", "Fresa", "Piña", "Mango",
+					  "Kiwi", "Uva", "Melon", "Sandia", "Smartphone", "Laptop", "Smartwatch", "Auriculares", "Camara",
+					  "PS5", "Mouse", "Teclado", "Silla", "Mesa", "Monitor", "Libro", "Pelota", "Cuchillo", "Lámpara",
+					  "Reloj", "Zapatos", "Gafas", "Sombrero", "Bicicleta", "DiscoDuro", "Impresora", "TecladoInalámbrico",
+					  "Altavoces", "Microondas", "Refrigeradora", "Aspiradora", "MáquinaCafé", "Ventilador", "RobotCocina",
+					  "Secadora", "Plancha", "Estufa", "Licuadora", "BateríaPortátil", "MonitorGaming", "Guitarra", "CámaraDeportiva",
+					  "Pantalones", "Camisa", "ZapatosDeportivos", "Mochila", "Gorra", "LentesSol", "Collar", "Anillo", "Pulsera",
+					  "Perfume", "JuegoMesa", "Peluche", "Bolso", "Corbata", "Calcetines", "Billetera", "Maleta", "FundaMóvil",
+					  "Lápiz", "Cuaderno", "BolsaBasura", "Escoba", "PapelHigiénico", "CajaPañuelos", "BotellaAgua", "CepilloDientes",
+					  "CremaDental", "CepilloPelo", "Revista", "CajaHerramientas", "CintaAdhesiva", "Báscula", "BicicletaEstática",
+					  "CañaPescar", "TiendaCampaña", "Sartén", "Taza", "Candelabro", "Perchero", "Escritorio", "MáquinaCoser", "Ratón",
+					  "Almohada", "BolsoDeporte", "MáscaraFacial", "CargadorPortátil", "Paraguas", "JuegoToallas" };
+
+		string tipo[2] = { "Comestible", "NoComestible" };
 		string codigoVendedor[6] = { "987653","543663","756323","523412","123456","272064" };
+
+		for (int i = 0; i < numDatos; ++i) {
+			string nombre = nombres[rand() % 100];
+			double precio = (rand() % 500 + 50) / 10.0; // Rango de precios de 5.0 a 50.0 con incrementos de 0.1
+			precio = round(precio * 10.0) / 10.0; // Redondear el precio a un solo decimal
+			string tipoProducto = tipo[rand() % 2];
+			string idUnico = generarIDUnico();
+			string codigoVend = codigoVendedor[rand() % 6];
+
+			Producto nuevoProducto(nombre, precio, tipoProducto, idUnico, codigoVend);
+			lista.agregaFinal(nuevoProducto);
+		}
+
+		return lista;
 	}
 
 	Lista<Producto> getProductos(string datosProductos = "DatosProductos.txt") {
@@ -111,6 +135,10 @@ public:
 		else {
 			cerr << "Error al abrir el archivo." <<endl;
 		}
+
+		// Agregar datos generados aleatoriamente con la función Dataset
+
+		auxList = Dataset(auxList, 500);
 
 		return auxList;
 	}

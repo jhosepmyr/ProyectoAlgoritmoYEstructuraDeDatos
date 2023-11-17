@@ -223,9 +223,12 @@ public:
                 setGrafos();
                 while (true) {
                     op = opciones_grafos();
-                    if (op == 4)break;
+                    if (op == 4) break;
                     system("cls");
                     grfs.imprimir_grafos(keys[op - 1]);
+                    cout << endl;
+                    cout << endl;
+                    grfs.caminoMinimoEntreSucursales(keys[op - 1]);
                     system("pause");
                     system("cls");
                 }

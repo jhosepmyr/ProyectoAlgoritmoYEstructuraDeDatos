@@ -1,6 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <ctime>
+#include <iomanip> // Para setw
+#include <queue>
+#include <climits>  // Para INT_MAX
 
 using namespace std;
 
@@ -12,7 +16,10 @@ private:
 
 public:
 
-    Grafo() {};
+    Grafo() {
+        // Inicializar la semilla del generador de números aleatorios con el tiempo actual
+        srand(static_cast<unsigned>(time(nullptr)));
+    };
 
     void agregar_vertice(int vertice, string sucursal) {
         // Si el vértice no está en el mapa, lo agregamos con un vector vacío como valor
@@ -29,16 +36,94 @@ public:
         pesos.push_back(1 + rand() % (10 - 1));
     }
 
+    // Función para obtener el índice correspondiente a la arista entre dos vértices
+    int obtener_indice(int vertice_origen, int vertice_destino) {
+        auto it = find(lista_adyacencia[vertice_origen].begin(), lista_adyacencia[vertice_origen].end(), vertice_destino);
+        int indice = distance(lista_adyacencia[vertice_origen].begin(), it);
+        return indice;
+    }
+
     void imprimir_grafo() {
-        int i = 0;
+        cout << "==============================================" << endl;
+        cout << setw(25) << "Informacion del Grafo" << endl;
+        cout << "==============================================" << endl;
+
         for (const auto& par : lista_adyacencia) {
-            cout <<"La sucursal " << sucursal.at(par.first) << " puede llevar paqueteria hasta la sucursal.";
             for (const auto& vecino : par.second) {
-                cout << sucursal.at(vecino) <<endl<< " (Tienen una distancia de " << pesos.at(i) << "KM entre ellos)";
-                break;
+                // Evitar repeticiones mostrando solo si el vecino es mayor que el vértice actual
+                if (vecino > par.first) {
+                    cout << left << setw(30) << "Desde la sucursal '" + sucursal.at(par.first) + "' hasta la sucursal '" + sucursal.at(vecino) + "' : " <<
+                        "Distancia = " << pesos.at(obtener_indice(par.first, vecino)) << " KM" << endl;
+                }
             }
-            i++;
-            cout << endl;
         }
+        cout << "==============================================" << endl;
+    }
+
+    // Función para calcular la distancia más corta entre dos puntos usando Dijkstra
+    int calcular_distancia_corta(int sucursal_inicio, int sucursal_destino) {
+        // Verificar si las sucursales son válidas
+        if (sucursal_inicio < 0 || sucursal_inicio >= sucursal.size() ||
+            sucursal_destino < 0 || sucursal_destino >= sucursal.size()) {
+            cerr << "Error: Sucursales no válidas." << endl;
+            return -1; // O cualquier otro valor que indique un error
+        }
+
+        // Estructuras para Dijkstra
+        vector<int> distancias(sucursal.size(), INT_MAX);
+        distancias[sucursal_inicio] = 0;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        pq.push({ 0, sucursal_inicio });
+
+        while (!pq.empty()) {
+            int u = pq.top().second;
+            pq.pop();
+
+            for (int v : lista_adyacencia[u]) {
+                int peso = pesos[obtener_indice(u, v)];
+                if (distancias[v] > distancias[u] + peso) {
+                    distancias[v] = distancias[u] + peso;
+                    pq.push({ distancias[v], v });
+                }
+            }
+        }
+
+        // Mostrar la distancia más corta entre las sucursales
+        cout << "La distancia más corta entre '" << sucursal.at(sucursal_inicio) << "' y '"
+            << sucursal.at(sucursal_destino) << "' es: " << distancias[sucursal_destino] << " KM" << endl;
+
+        return distancias[sucursal_destino];
+    }
+
+    void ingresar_datos_y_mostrar_camino_mas_corto() {
+        // Mostrar todas las sucursales disponibles
+        cout << "Sucursales disponibles:" << endl;
+        for (size_t i = 0; i < sucursal.size(); ++i) {
+            cout << i << ". " << sucursal[i] << endl;
+        }
+
+        // Solicitar al usuario ingresar la sucursal de origen
+        int indice_origen, indice_destino;
+        cout << "Ingrese el índice de la sucursal de origen: ";
+        cin >> indice_origen;
+
+        // Validar la entrada del usuario
+        if (indice_origen < 0 || indice_origen >= sucursal.size()) {
+            cerr << "Índice de sucursal de origen no válido." << endl;
+            return;
+        }
+
+        // Solicitar al usuario ingresar la sucursal de destino
+        cout << "Ingrese el índice de la sucursal de destino: ";
+        cin >> indice_destino;
+
+        // Validar la entrada del usuario
+        if (indice_destino < 0 || indice_destino >= sucursal.size()) {
+            cerr << "Índice de sucursal de destino no válido." << endl;
+            return;
+        }
+
+        // Calcular y mostrar el camino más corto entre las sucursales
+        calcular_distancia_corta(indice_origen, indice_destino);
     }
 };
