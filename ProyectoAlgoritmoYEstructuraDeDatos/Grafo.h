@@ -96,34 +96,28 @@ public:
     }
 
     void ingresar_datos_y_mostrar_camino_mas_corto() {
-        // Mostrar todas las sucursales disponibles
         cout << "Sucursales disponibles:" << endl;
         for (size_t i = 0; i < sucursal.size(); ++i) {
             cout << i << ". " << sucursal[i] << endl;
         }
 
-        // Solicitar al usuario ingresar la sucursal de origen
         int indice_origen, indice_destino;
         cout << "Ingrese el índice de la sucursal de origen: ";
         cin >> indice_origen;
 
-        // Validar la entrada del usuario
         if (indice_origen < 0 || indice_origen >= sucursal.size()) {
             cerr << "Índice de sucursal de origen no válido." << endl;
             return;
         }
 
-        // Solicitar al usuario ingresar la sucursal de destino
         cout << "Ingrese el índice de la sucursal de destino: ";
         cin >> indice_destino;
 
-        // Validar la entrada del usuario
         if (indice_destino < 0 || indice_destino >= sucursal.size()) {
             cerr << "Índice de sucursal de destino no válido." << endl;
             return;
         }
 
-        // Calcular y mostrar el camino más corto entre las sucursales
         calcular_distancia_corta(indice_origen, indice_destino);
     }
 };

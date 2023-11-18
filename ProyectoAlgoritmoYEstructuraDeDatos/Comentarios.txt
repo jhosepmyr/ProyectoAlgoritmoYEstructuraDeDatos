@@ -12,3 +12,4 @@
 30,11,2023,9,30,El diseño del producto es elegante y moderno
 5,4,2022,16,0,Increíble oferta en este producto
 17,11,2023,10,0,Excelente servicio volvere a comprar
+18,11,2023,17,17,kasdhkjasdkjasdk
