@@ -151,6 +151,7 @@
     <ClInclude Include="Producto.h" />
     <ClInclude Include="Recursividad.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Sucursal.h" />
     <ClInclude Include="Usuario.h" />
     <ClInclude Include="Vendedor.h" />
   </ItemGroup>

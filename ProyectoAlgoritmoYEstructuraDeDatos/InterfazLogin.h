@@ -5,6 +5,7 @@
 #include "Cola.h"
 #include "Grafo.h"
 #include "HashTable.h"
+#include "Sucursal.h"
 #define ABAJO 80
 #define ARRIBA 72
 

@@ -116,6 +116,15 @@
     <ClInclude Include="ArbolAVL.h">
       <Filter>Archivos de encabezado\EstructurasTemplates</Filter>
     </ClInclude>
+    <ClInclude Include="Comentarios.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Fecha.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Sucursal.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProyectoAlgoritmoYEstructuraDeDatos.cpp">
@@ -143,5 +152,6 @@
     <Text Include="DatosSesionVendedores.txt">
       <Filter>Archivos de encabezado\Archivos</Filter>
     </Text>
+    <Text Include="Comentarios.txt" />
   </ItemGroup>
 </Project>
