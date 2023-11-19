@@ -27,47 +27,33 @@ public:
 	}
 
 	static vector<Comentario> extraerComentariosTXT() {
+		// Operaciones constantes: 1
 		vector<Comentario> comentarios;
-
+		// Operaciones constantes: 1
 		ifstream archivo("Comentarios.txt");
 		if (!archivo.is_open()) {
+			// Operaciones constantes: 1
 			cerr << "Error al abrir el archivo: Comentarios.txt" << endl;
-			return comentarios;
+			return comentarios;  // Operaciones constantes: 1
 		}
-
 		string linea;
-		while (getline(archivo, linea)) {
+		// Bucle que se ejecuta n veces, donde n es el número de líneas en el archivo
+		while (getline(archivo, linea)) {  // n veces
+			// Operaciones constantes: 1
 			istringstream ss(linea);
 			string token;
 			int dia, mes, anio, hora, min;
 			string texto;
-
-			// Leer los datos separados por comas
 			getline(ss, token, ',');
-			dia = stoi(token);
+			dia = stoi(token); // Operaciones constantes: 1
 
-			getline(ss, token, ',');
-			mes = stoi(token);
-
-			getline(ss, token, ',');
-			anio = stoi(token);
-
-			getline(ss, token, ',');
-			hora = stoi(token);
-
-			getline(ss, token, ',');
-			min = stoi(token);
-
-			getline(ss, texto);
-
-			// Crear un objeto Comentario y agregarlo al vector
-			comentarios.emplace_back(texto, dia, mes, anio, hora, min);
+			getline(ss, texto); // Operaciones constantes: 1
+			comentarios.emplace_back(texto, dia, mes, anio, hora, min); //1
 		}
-
-		archivo.close();
-
-		return comentarios;
+		archivo.close(); // Operaciones constantes: 1
+		return comentarios; // Operaciones constantes: 1
 	}
+
 
 	// Obtener el comentario formateado para guardar en el archivo
 	string obtenerComentarioFormateado() {

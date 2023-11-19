@@ -207,11 +207,11 @@ T Lista<T>::obtenerFinal() {
 template <class T>
 T Lista<T>::obtenerEliminarPorPosicion(uint pos) {
     if (pos >= lon || pos < 0) {
-        throw out_of_range("Posición fuera de rango");
+        throw out_of_range("Posiciï¿½n fuera de rango");
     }
 
     if (pos == 0) {
-        // Si la posición es la primera, eliminamos el primer elemento y lo retornamos
+        // Si la posiciï¿½n es la primera, eliminamos el primer elemento y lo retornamos
         T elemento = ini->elem;
         Nodo* temp = ini;
         ini = ini->sig;
@@ -225,10 +225,10 @@ T Lista<T>::obtenerEliminarPorPosicion(uint pos) {
         aux = aux->sig;
     }
 
-    // Guardamos el elemento en la posición especificada
+    // Guardamos el elemento en la posiciï¿½n especificada
     T elemento = aux->sig->elem;
 
-    // Eliminamos el elemento de la posición
+    // Eliminamos el elemento de la posiciï¿½n
     Nodo* temp = aux->sig;
     aux->sig = temp->sig;
     delete temp;
@@ -240,7 +240,7 @@ T Lista<T>::obtenerEliminarPorPosicion(uint pos) {
 template <class T>
 T Lista<T>::eliminarPrimero() {
     if (lon == 0) {
-        throw std::runtime_error("La lista está vacía, no se puede eliminar el primer elemento.");
+        throw std::runtime_error("La lista estï¿½ vacï¿½a, no se puede eliminar el primer elemento.");
     }
 
     return obtenerEliminarPorPosicion(0);
@@ -249,7 +249,7 @@ T Lista<T>::eliminarPrimero() {
 template <class T>
 T Lista<T>::eliminarUltimo() {
     if (lon == 0) {
-        throw std::runtime_error("La lista está vacía, no se puede eliminar el último elemento.");
+        throw std::runtime_error("La lista estï¿½ vacï¿½a, no se puede eliminar el ï¿½ltimo elemento.");
     }
 
     return obtenerEliminarPorPosicion(lon - 1);
@@ -259,7 +259,7 @@ T Lista<T>::eliminarUltimo() {
 template <class T>
 void Lista<T>::eliminarTodos() {
     eliminarTodosRecursivo(ini);
-    ini = nullptr;  // Establecemos el puntero inicial a nullptr para indicar que la lista está vacía.
+    ini = nullptr;  // Establecemos el puntero inicial a nullptr para indicar que la lista estï¿½ vacï¿½a.
     lon = 0;        // Restablecemos la longitud de la lista a 0.
 }
 
@@ -277,26 +277,22 @@ template<class T>
 bool Lista<T>::MostrarDatosPROD() {
     if (this->lon!=0)
     {
-        Nodo* aux = ini;
+        Nodo* aux = ini;//1
         cout << "\n---------------------------\n";
         cout << "Numero de productos: " << this->longitud();
         cout << "\n---------------------------\n\n";
-        for (int i = 0; i < lon; i++) {
+        for (int i = 0; i < lon; i++) { //1+n
             aux->elem.mostrarDatos();
-            aux = aux->sig;
+            aux = aux->sig;//1
         }
         cout << "\n\n";
-        return true;
     }
     else
     {
-        Console::SetCursorPosition(17, 10);
-        cout << "No hay productos disponibles";
-        Console::SetCursorPosition(18, 12);
-        cout << "Presiona ENTER para volver";
-        return false;
+        cout << "\nNo hay productos disponibles\n";
     }
 }
+
 
 template<class T>
 void Lista<T>::MostrarDatosPRODLinea() {
@@ -327,18 +323,20 @@ T Lista<T>::buscarporID(string ID, int tipo) {
 }
 
 template <class T>
-T Lista<T>::buscarRecursivo(Nodo* aux, string ID, int tipo) {
+T Lista<T>::buscarRecursivo(Nodo* aux, string ID, int tipo) {//1
     if (aux == nullptr) {
-        throw std::runtime_error("Elemento no encontrado");
+        throw std::runtime_error("Elemento no encontrado");//1
     }
 
-    bool encontrado = (tipo == 1) ? (aux->elem.getIdentificador() == ID) : (aux->elem.getCodigoVendedor() == ID);
-    if (encontrado) {
-        return aux->elem;
+    bool encontrado = (tipo == 1) ? (aux->elem.getIdentificador() == ID) : (aux->elem.getCodigoVendedor() == ID);//1
+    if (encontrado) {//1
+        return aux->elem;//1
     }
 
-    return buscarRecursivo(aux->sig, ID, tipo);
+    return buscarRecursivo(aux->sig, ID, tipo); //n
 }
+
+
 
 template <class T>
 void Lista<T>::eliminarporID(string ID) {
@@ -437,14 +435,14 @@ void Lista<T>::ordenarPorPrecioDescendente() {
 template <typename T>
 int Lista<T>::Particion(int p, int r) {
     T x = obtenerPos(r); // El pivote
-    int i = p - 1; // Índice de los menores
+    int i = p - 1; // ï¿½ndice de los menores
     for (int j = p; j < r; j++) {
         if (obtenerPos(j).getPrecio() <= x.getPrecio()) {
             i++;
-            intercambiar(i, j); // Utiliza una función para intercambiar elementos
+            intercambiar(i, j); // Utiliza una funciï¿½n para intercambiar elementos
         }
     }
-    intercambiar(i + 1, r); // Utiliza una función para intercambiar elementos
+    intercambiar(i + 1, r); // Utiliza una funciï¿½n para intercambiar elementos
     return i + 1;
 }
 
@@ -454,9 +452,9 @@ T Lista<T>::QuickSelect(int p, int r, int k) {
     if (p == r) {
         return obtenerPos(p);
     }
-    // Índice del pivote con A ordenado Izq(Menores) Der(Mayores) al pivote
+    // ï¿½ndice del pivote con A ordenado Izq(Menores) Der(Mayores) al pivote
     int q = Particion(p, r);
-    int l = q - p + 1; // Número de elementos del subarreglo donde se encuentra el k-ésimo elemento
+    int l = q - p + 1; // Nï¿½mero de elementos del subarreglo donde se encuentra el k-ï¿½simo elemento
     if (k == l) {
         return obtenerPos(q);
     }

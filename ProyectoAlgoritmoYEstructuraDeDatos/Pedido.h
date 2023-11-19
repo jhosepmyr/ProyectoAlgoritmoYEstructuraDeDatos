@@ -58,10 +58,10 @@ public:
 	}
 
 	int getPrecioTotal() {
-		this->precioTotal = 0;
-		for (int i = 0; i < this->carritoCompras.longitud(); i++)
+		this->precioTotal = 0; //1
+		for (int i = 0; i < this->carritoCompras.longitud(); i++) //1+n.
 		{
-			precioTotal += this->carritoCompras.obtenerPos(i).getPrecio();
+			precioTotal += this->carritoCompras.obtenerPos(i).getPrecio(); //n
 		}
 		return this->precioTotal;
 	}
