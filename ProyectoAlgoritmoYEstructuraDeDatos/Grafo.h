@@ -44,9 +44,9 @@ public:
     }
 
     void imprimir_grafo() {
-        cout << "==============================================" << endl;
-        cout << setw(25) << "Informacion del Grafo" << endl;
-        cout << "==============================================" << endl;
+        cout << "====================================================================================================" << endl;
+        cout << setw(25) << "                                     Informacion del Grafo" << endl;
+        cout << "====================================================================================================" << endl;
 
         for (const auto& par : lista_adyacencia) {
             for (const auto& vecino : par.second) {
@@ -57,7 +57,7 @@ public:
                 }
             }
         }
-        cout << "==============================================" << endl;
+        cout << "====================================================================================================" << endl;
     }
 
     // Función para calcular la distancia más corta entre dos puntos usando Dijkstra

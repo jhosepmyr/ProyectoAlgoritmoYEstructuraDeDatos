@@ -48,17 +48,17 @@ public:
             }
 
             Console::ForegroundColor = ConsoleColor::White;
-            Console::SetCursorPosition(17, 12);
+            Console::SetCursorPosition(16, 12);
             cout << "Iniciar sesion";
-            Console::SetCursorPosition(17, 14);
+            Console::SetCursorPosition(16, 14);
             cout << "Registrarse";
-            Console::SetCursorPosition(17, 16);
+            Console::SetCursorPosition(16, 16);
             cout << "Funcionamiento\n";
-            Console::SetCursorPosition(17, 18);
+            Console::SetCursorPosition(16, 18);
             cout << "Mostrar los integrantes\n";
-            Console::SetCursorPosition(17, 20);
-            cout << "Mostrar conexion entre sucursales\n";
-            Console::SetCursorPosition(17, 22);
+            Console::SetCursorPosition(16, 20);
+            cout << "Conexion entre sucursales\n";
+            Console::SetCursorPosition(16, 22);
             cout << "Salir";
             Console::SetCursorPosition(9, 24);
             cout << "Selecciona una opcion moviendo la flecha\n";
@@ -139,11 +139,25 @@ public:
 
     int opciones_grafos() {
         int opc = 0;
-        cout << endl << "1.Mostrar conexion entre sedes de Lima - Peru";
-        cout << endl << "2.Mostrar conexion entre sedes de Santiago - Chile";
-        cout << endl << "3.Mostrar conexion entre sedes de Buenos Aires - Argentina";
-        cout << endl << "4.Salir";
-        cout << endl << ".Ingrese la opcion deseada: "; cin >> opc;
+        for (int x = 2; x <= 57; x++) {//dibuja linea 
+            Console::SetCursorPosition(x, 10); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+        }
+        for (int x = 2; x <= 57; x++) { //dibuja linea 
+            Console::SetCursorPosition(x, 25); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
+        }
+        //muestra producto actualizados
+        Console::SetCursorPosition(17, 10); Console::ForegroundColor = ConsoleColor::White;
+        cout << "OPCIONES EN CONEXIONES";
+        Console::SetCursorPosition(2, 14);
+        cout << "1.Mostrar conexion entre sedes de Lima - Peru";
+        Console::SetCursorPosition(2, 15);
+        cout << "2.Mostrar conexion entre sedes de Santiago - Chile";
+        Console::SetCursorPosition(2, 16);
+        cout << "3.Mostrar conexion entre sedes de Buenos Aires-Argentina";
+        Console::SetCursorPosition(2, 17);
+        cout << "4.Salir";
+        Console::SetCursorPosition(2, 19);
+        cout << ".Ingrese la opcion deseada: "; cin >> opc;
         if (opc > 4 || opc < 1) { system("cls"); return opciones_grafos(); }
         else return opc;
     }
@@ -191,7 +205,7 @@ public:
                 Console::ForegroundColor = ConsoleColor::Blue;
                 cout << "Presiona ENTER para volver";
                 this->opcion = '0';
-                system("pause");
+                system("pause>0");
                 break;
             }
             case '4': {
@@ -214,7 +228,7 @@ public:
                 Console::ForegroundColor = ConsoleColor::Blue;
                 cout << "Presiona ENTER para volver";
                 this->opcion = '0';
-                system("pause");
+                system("pause>0");
                 break;
             }
             case'6': {
@@ -226,11 +240,13 @@ public:
                     op = opciones_grafos();
                     if (op == 4) break;
                     system("cls");
+                    Console::SetWindowSize(100, 40);
                     grfs.imprimir_grafos(keys[op - 1]);
                     cout << endl;
                     cout << endl;
                     grfs.caminoMinimoEntreSucursales(keys[op - 1]);
-                    system("pause");
+                    system("pause>0");
+                    Console::SetWindowSize(60, 40);
                     system("cls");
                 }
                 this->opcion = '0';
