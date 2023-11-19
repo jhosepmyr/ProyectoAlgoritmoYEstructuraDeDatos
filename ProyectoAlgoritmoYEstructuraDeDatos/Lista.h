@@ -275,21 +275,26 @@ void Lista<T>::eliminarTodosRecursivo(Nodo* nodo) {
 
 template<class T>
 bool Lista<T>::MostrarDatosPROD() {
-    if (this->lon!=0)
+    if (this->lon != 0)
     {
-        Nodo* aux = ini;//1
+        Nodo* aux = ini;
         cout << "\n---------------------------\n";
         cout << "Numero de productos: " << this->longitud();
         cout << "\n---------------------------\n\n";
-        for (int i = 0; i < lon; i++) { //1+n
+        for (int i = 0; i < lon; i++) {
             aux->elem.mostrarDatos();
-            aux = aux->sig;//1
+            aux = aux->sig;
         }
         cout << "\n\n";
+        return true;
     }
     else
     {
-        cout << "\nNo hay productos disponibles\n";
+        Console::SetCursorPosition(17, 10);
+        cout << "No hay productos disponibles";
+        Console::SetCursorPosition(18, 12);
+        cout << "Presiona ENTER para volver";
+        return false;
     }
 }
 
