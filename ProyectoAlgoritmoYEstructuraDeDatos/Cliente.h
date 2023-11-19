@@ -137,7 +137,7 @@ public:
         string nombrePedido = generarNumeroAleatorio();
         this->pedido.setNombrePedido(nombrePedido);
         this->pedido.mostrarListaProductos();
-        system("pause");
+        system("pause>0");
 
         if (!this->pedido.isVacio())
         {
@@ -342,9 +342,9 @@ public:
     }
 
     void realizarComentario() {
-        cout << "---------------------------------------------------------------" << endl;
-        cout << "COMENTARIOS Y RESENAS" << endl;
-        cout << "---------------------------------------------------------------" << endl;
+        cout << "------------------------------------------------------------" << endl;
+        cout << "                  COMENTARIOS Y RESENIAS" << endl;
+        cout << "------------------------------------------------------------" << endl;
         cout << "Ingresa tu comentario (presiona Enter para finalizar):\n";
 
         // Pedir al usuario que ingrese un nuevo comentario
