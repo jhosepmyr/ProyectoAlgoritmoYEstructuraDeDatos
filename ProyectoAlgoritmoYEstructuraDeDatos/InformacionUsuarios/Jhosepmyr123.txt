@@ -16,3 +16,4 @@
 2674193|{Perla;1222;nc;hjwuI02;987653}|
 7618425|{Azul;7243;nc;p4DcVub;987653}|
 6213958|{Perla;1222;nc;hjwuI02;987653}|
+3159246|{Libro;5;Comestible;EMPXfn2;543663}{Monitor;5;Comestible;NYH9H2g;272064}|
