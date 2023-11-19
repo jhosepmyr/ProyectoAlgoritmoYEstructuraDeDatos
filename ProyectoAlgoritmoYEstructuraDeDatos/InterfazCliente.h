@@ -91,10 +91,6 @@ public:
             break;
         }
         case '6': {
-            for (int x = 2; x <= 57; x++) {//dibuja linea 
-                Console::SetCursorPosition(x, 2); Console::ForegroundColor = ConsoleColor::Cyan; ; cout << (char)219;
-            }
-            Console::SetCursorPosition(26, 2);  Console::ForegroundColor = ConsoleColor::White; cout << "COMENTARIOS\n";
             this->clienteAux->generarArbolAVL();
             this->clienteAux->realizarComentario();
             this->opcion = '0';

@@ -20,10 +20,10 @@ public:
 	Comentario() {}
 
 	void mostrarDatos() {
-		cout << "------------------------------------------------------------" << endl;
+		cout << "---------------------------------------------------------------" << endl;
 		cout << "Fecha de publicacion: " << to_string(this->fecha.dia) << "/" << to_string(this->fecha.mes) << "/" << to_string(this->fecha.anio) << endl;
 		cout << this->texto << endl;
-		cout << "------------------------------------------------------------" << endl;
+		cout << "---------------------------------------------------------------" << endl;
 	}
 
 	static vector<Comentario> extraerComentariosTXT() {
