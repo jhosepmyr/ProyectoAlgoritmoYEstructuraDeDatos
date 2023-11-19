@@ -33,7 +33,7 @@ public:
         // Añadimos la arista a ambos vértices (grafo no dirigido)
         lista_adyacencia[vertice_origen].push_back(vertice_destino);
         lista_adyacencia[vertice_destino].push_back(vertice_origen);
-        pesos.push_back(1 + rand() % (10 - 1));
+        pesos.push_back(1 + rand() % (20 - 1));
     }
 
     // Función para obtener el índice correspondiente a la arista entre dos vértices
@@ -52,7 +52,8 @@ public:
             for (const auto& vecino : par.second) {
                 // Evitar repeticiones mostrando solo si el vecino es mayor que el vértice actual
                 if (vecino > par.first) {
-                    cout << left << setw(30) << "Desde la sucursal '" + sucursal.at(par.first) + "' hasta la sucursal '" + sucursal.at(vecino) + "' : " <<
+                    cout << left << setw(30) << "Desde la sucursal '" + sucursal.at(par.first);
+                    cout<<endl<<"' hasta la sucursal '" + sucursal.at(vecino) + "' : " <<
                         "Distancia = " << pesos.at(obtener_indice(par.first, vecino)) << " KM" << endl;
                 }
             }
